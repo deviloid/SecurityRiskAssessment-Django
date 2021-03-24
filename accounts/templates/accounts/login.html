@@ -1,0 +1,52 @@
+{% extends 'accounts/base.html' %}
+{% load static %}
+
+{% block title %}
+Sentinel | Login
+{% endblock %}
+
+
+{% block content %}
+<body id="body">
+    <div class="login-parent-div">
+        <!-- <img src="{% static '/images/auth-bg.jpg' %}" class="auth-bg">  -->
+        <div class="dimmer">
+            <div class="login-logo-div">
+                <img src="{% static '/images/Sentinel_bl.png' %}" class="sentinel-logo">
+            </div>
+            <div class="login-form-div">
+                <form method="POST" action="">
+                    {% csrf_token %}
+                    <table>
+                        <tr>
+                            <td>
+                                <h1 class="auth-header">Login</h1>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="text" name="username" class="login-form-field" placeholder="Username" maxlength="150">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="password" name="password" class="login-form-field" placeholder="Password" maxlength="150">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="submit" name="Create User" class="login-form-submit">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a href="{% url "signup" %}"  class="login-form-submit">Sign Up</a>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+{% endblock %}

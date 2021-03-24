@@ -1,0 +1,58 @@
+{% extends 'accounts/base.html' %}
+{% load static %}
+
+{% block title %}
+Sentinel | Signup
+{% endblock %}
+
+
+{% block content %}
+
+<body id="body">
+    <div class="login-parent-div">
+        <!-- <img src="{% static '/images/auth-bg.jpg' %}" class="auth-bg">  -->
+        <div class="dimmer">
+            <div class="login-logo-div">
+                <img src="{% static '/images/Sentinel_bl.png' %}" class="sentinel-logo">
+            </div>
+            <div class="login-form-div">
+                <table border="0">
+                    <tr>
+                        <td colspan="2">
+                            <h1>Sign Up</h1>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <h2>I am a...</h2>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="{% url 'dept_signup' %}" class="btn-link">
+                                <div class="buttond button1">
+                                    <p class="btn link">Department</p>
+                                    <img src="{% static '/images/department.png' %}" class="btn img">
+                                </div>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="{% url 'vend_signup' %}" class="btn-link">
+                                <div class="buttond button1">
+                                    <p class="btn link">Vendor</p>
+                                    <img src="{% static '/images/vendor.png' %}" class="btn img">
+                                </div>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <a href="{% url "login" %}" class="login-form-submit">Login</a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+{% endblock %}

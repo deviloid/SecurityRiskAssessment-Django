@@ -1,0 +1,214 @@
+html {
+    height: 100%;
+}
+
+body {
+    overflow: hidden;
+    height: 100%;
+    margin: 0;
+    display: grid;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.login-parent-div {
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    background-color: #000;
+}
+
+.signup-parent-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.parent-div {
+    background-color: #fff;
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-form-div {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    width: 40%;
+}
+
+.login-logo-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+}
+
+.dimmer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
+    width: 85vw;
+    background: #f5f5f5;
+    margin: auto;
+}
+
+.login-parent-div .sentinel-logo {
+    height: 300px;
+}
+
+input[type=text], input[type=password], input[type=email] {
+    /* width: 100%; */
+    color: rgb(0, 0, 0);
+    background: transparent;
+}
+
+.auth-header {
+    font-size: 28pt;
+    color: rgb(0, 0, 0)
+}
+
+.register-form-field {
+    border: none;
+    border-bottom: 1px solid #000000;
+    border-left: 1px solid #000000;
+    margin-bottom: 10px;
+    /* border-radius: 3px; */
+    outline: none;
+    padding: 10px 10px;
+    font-size: 20pt;
+    /* background-color: #000; */
+}
+
+.login-form-field {
+    border: none;
+    border-bottom: 1px solid #000000;
+    border-left: 1px solid #000000;
+    margin-bottom: 10px;
+    /* border-radius: 3px; */
+    outline: none;
+    padding: 10px 10px;
+    font-size: 20pt;
+    /* background-color: #000; */
+}
+
+.login-form-submit {
+    /* width: 100%; */
+    /* width:100%; */
+    padding: 10px 10px;
+    border: none;
+    font-size: 20pt;
+    margin-bottom: 10px;
+    /* border-radius: 5px; */
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    background-color: #000000;
+    cursor: pointer;
+    outline: none;
+    align-items: center;
+    text-decoration: none;
+}
+
+a.login-form-submit {
+    padding-left: 119px;
+    padding-right: 119px;
+}
+
+input.login-form-submit {
+    padding-left: 125px;
+    padding-right: 124px;
+}
+
+
+.login-form-submit:hover {
+    background-color: #555555;
+}
+
+.register-form-submit {
+    width: 100%;
+    padding: 10px 10px;
+    border: none;
+    font-size: 20pt;
+    margin-bottom: 10px;
+    /* border-radius: 5px; */
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    background-color: #000000;
+    cursor: pointer;
+    outline: none;
+}
+
+.register-form-submit:hover {
+    background-color: #555555;
+}
+
+.username {
+    color: rgb(0, 117, 106);
+}
+
+.message {
+    color: rgb(0, 117, 106);
+}
+
+.signup-h1 {
+    font-size: 28pt;
+    color: #000;
+}
+
+.Im-a {
+    font-size: 16pt;
+}
+
+.button1 {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    border: #000 solid;
+    position: relative;
+    margin: 10px;
+    width: 200px;
+    height: 200px;
+}
+
+.btn.link {
+    font-size: 24pt;
+    font-family: Arial, Helvetica, sans-serif;
+    position: absolute;
+    text-decoration: none;
+    /* justify-content: center;
+    align-items: center;
+    display: flex; */
+}
+
+.btn.img {
+    /* justify-content: center;
+    align-items: center;
+    display: flex; */
+    opacity: 10%;
+    width: 150px;
+    height: 150px;
+}
+
+a.btn-link {
+    color: #000;
+}
+
+a.btn-link :is(:hover, :active) {
+    color: #000;
+}
+
+.button1:hover {
+    background-color: rgba(116, 116, 116, 0.267);
+    /* color: #fff; */
+}
+
+.utl-btn{
+    height: 250px;
+    width: 250px;
+    color: #f5f5f5;
+    background-color: #555555;
+    /* padding: 5px; */
+    margin: 5px;
+}

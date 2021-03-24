@@ -1,0 +1,101 @@
+{% extends 'accounts/base.html' %}
+{% load static %}
+
+{% block title %}
+Sentinel | Department Signup
+{% endblock %}
+
+
+{% block content %}
+    <div class="login-parent-div">
+        <!-- <img src="{% static '/images/auth-bg.jpg' %}" class="auth-bg">  -->
+        <div class="dimmer">
+            <div class="login-logo-div">
+                <img src="{% static '/images/Sentinel_bl.png' %}" class="sentinel-logo">
+            </div>
+            <div class="login-form-div">
+                <form method="POST" action="">
+                    {% csrf_token %}
+                    <table>
+                        <tr>
+                            <td>
+                                <h1 class="auth-header">Department Registration</h1>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                {{form.fname}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                {{form.lname}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                {{form.email}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                {{form.password1}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                {{form.password2}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="submit" name="Create User" class="login-form-submit">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a href="{% url "signup" %}"  class="login-form-submit">Sign Up</a>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+
+
+{% comment %} {% load crispy_forms_tags %} {% endcomment %}
+
+{% comment %} <h1>Department Signup</h1>
+<br>
+<form method="POST" action="">
+  <div class="form">
+    {% csrf_token %}
+    <table>
+      <tr>
+        <td>{{form.fname.label}}</td>
+        <td>{{form.fname}}</td>
+      </tr>
+      <tr>
+        <td>{{form.lname.label}}</td>
+        <td>{{form.lname}}</td>
+      </tr>
+      <tr>
+        <td>{{form.email.label}}</td>
+        <td>{{form.email}}</td>
+      </tr>
+      <tr>
+        <td>{{form.password1.label}}</td>
+        <td>{{form.password1}}</td>
+      </tr>
+      <tr>
+        <td>{{form.password2.label}}</td>
+        <td>{{form.password2}}</td>
+      </tr>
+    </table>
+  </div>
+  <input type="submit" name="Create User">
+</form> {% endcomment %}

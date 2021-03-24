@@ -19,14 +19,6 @@ from . import views
 # from vendor import views
 
 urlpatterns = [
-    path('login/', views.loginPage, name="login"),
-    path('logout/', views.logoutUser, name="logout"),
-    path('signup/', views.registerPage, name="signup"),
-    path('signup/department/', views.deptregisterPage, name='dept_signup'),
-    path('signup/vendor/', views.vendregisterPage, name='vend_signup'),
-
-    path('accountCreatedSuccess/', views.accountCreatedSuccess, name="accountCreatedSuccess"),
-
-    path('', views.home, name="home"),
-    # path('customer/', views.customer, name="customer"),
+    path('vendor/create-vendor', views.createVendor, name="createVendor"),
+    path('vendor/vendorRoleError', views.vendorRoleError, name="vendorRoleError"),
 ]

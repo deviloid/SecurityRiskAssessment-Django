@@ -1,0 +1,17 @@
+{% extends 'accounts/base.html' %}
+{% load static %}
+{% block title %}
+    Sentinel | Account Created
+{% endblock %}
+{% block content %}
+    <div class="parent-div">
+        <div class="success-message">
+            {% for message in messages %}
+            <h1 class="username">{{message}}, </h1>
+            {% endfor %}
+            <h2 class="message">Your account has been created.</h2>
+            <h3>You will now be redirected to Login</h3>
+
+        </div>
+    </div>
+{% endblock %}
