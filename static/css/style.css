@@ -1,0 +1,28 @@
+#form {
+    border-radius: 0;
+}
+
+#layer-top {
+    z-index: 10;
+    left: 62.5%;
+    top: 5%;
+    width: fit-content;
+    position: absolute;
+    transform: translate(-15%, 50%);
+}
+
+.relative {
+    /* position: absolute;  */
+    width: max-content !important;
+    height: max-content !important;
+    position: absolute !important;
+    transform: translate(-50%, -50%) !important;
+    z-index: 10 !important;
+    left: 50% !important;
+    top: 50% !important; 
+    color: white !important;  
+}
+
+.relative-parent {
+    background-color: rgba(0, 0, 0, 0.5);
+}

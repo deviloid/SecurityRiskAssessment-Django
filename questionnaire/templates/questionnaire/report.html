@@ -1,0 +1,2802 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+        crossorigin="anonymous"></script>
+    <title>Security Risk Assessment Report</title>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row sticky-top">
+            <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark" style="width: 100%;">
+                <a class="navbar-brand" href="#">Sentinel</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Dashboard</a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Technical Admin
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="#">Profile</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Log Out</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <div class="row d-flex justify-content-center bg-secondary" style="min-height: 100vh; max-height: max-content;">
+            <div class="col-3 fixed-top py-5 d-flex d-print-none" style="top: 11px; left:80px">
+                <div class="">
+                    <nav aria-label="Page navigation example">
+                        <ul class="list-group">
+                            <li class="list-group-item d-flex justify-content-end"><a class=""
+                                    style="text-decoration: none;" href="#ProjectInfo">Project Information</a></li>
+                            <li class="list-group-item d-flex justify-content-end"><a class=""
+                                    style="text-decoration: none;" href="#DeptInfo">Department Information</a></li>
+                            <li class="list-group-item d-flex justify-content-end"><a class=""
+                                    style="text-decoration: none;" href="#VendInfo">Vendor Information</a></li>
+                            <li class="list-group-item d-flex justify-content-end"><a class=""
+                                    style="text-decoration: none;" href="#DataManagement">Data Management</a></li>
+                            <li class="list-group-item d-flex justify-content-end"><a class=""
+                                    style="text-decoration: none;" href="#AvailabilityCriticality">Availability &
+                                    Criticality</a></li>
+                            <li class="list-group-item d-flex justify-content-end"><a class=""
+                                    style="text-decoration: none;" href="#Compliance">Compliance</a></li>
+                            <li class="list-group-item d-flex justify-content-end"><a class=""
+                                    style="text-decoration: none;" href="#SEM">Security Maturity Evidence</a></li>
+                            <li class="list-group-item d-flex justify-content-end"><a class=""
+                                    style="text-decoration: none;" href="#ADR">Architectural Diagram Requirements</a>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-end"><a class=""
+                                    style="text-decoration: none;" href="#CSM">Cloud Service Model</a></li>
+                            <li class="list-group-item d-flex justify-content-end"><a class=""
+                                    style="text-decoration: none;" href="#SD">Secure Design</a></li>
+                            <li class="list-group-item d-flex justify-content-end"><a class=""
+                                    style="text-decoration: none;" href="#Encr">Encryption</a></li>
+                            <li class="list-group-item d-flex justify-content-end"><a class=""
+                                    style="text-decoration: none;" href="#QAE">Quality Assurance Environment</a>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-end"><a class=""
+                                    style="text-decoration: none;" href="#DS">Database Servers</a></li>
+                            <li class="list-group-item d-flex justify-content-end"><a class=""
+                                    style="text-decoration: none;" href="#SC">Secure Communications</a></li>
+                            <li class="list-group-item d-flex justify-content-end"><a class=""
+                                    style="text-decoration: none;" href="#SI">Software Integrity</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div class="col-7 bg-light d-flex justify-content-center">
+                <div class="row d-flex justify-content-center d-print-block">
+                    <div class="col-12 py-5 d-flex justify-content-center">
+                        <h1 class="display-4">Security Risk Assessment Report</h1>
+                    </div>
+
+                    <!-- Project -->
+                    <span class="text-white print-none" id="ProjectInfo">s</span>
+                    <span class="text-white print-none" id="">s</span>
+                    <div class="col-8 px-5">
+                        <div class="row" style="height: 25px;"></div>
+                        <div class="row">
+                            <div class="col-6">
+                                <button type="button" class="btn btn-primary">Project Information</button>
+                            </div>
+                        </div>
+                        <div class="row" style="height: 30px;"></div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-6 col-form-label">Project Id</label>
+                            <div class="col-sm-6">
+                                <input type="text" readonly class="form-control-plaintext" id="staticEmail"
+                                    value="1234143412">
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-6 col-form-label">Project Name</label>
+                            <div class="col-sm-6">
+                                <input type="text" readonly class="form-control-plaintext" id="staticEmail"
+                                    value="Applied Project">
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-6 col-form-label">Project Purpose</label>
+                            <div class="col-sm-6">
+                                <input type="text" readonly class="form-control-plaintext" id="staticEmail"
+                                    value="email@example.com">
+                            </div>
+                        </div>
+                        <!-- <hr class="dropdown-divider">
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-6 col-form-label">Main Project Contact</label>
+                            <div class="col-sm-6">
+                                <input type="text" readonly class="form-control-plaintext" id="staticEmail"
+                                    value="FirstName LastName">
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-6 col-form-label"></label>
+                            <div class="col-sm-6">
+                                <input type="text" readonly class="form-control-plaintext" id="staticEmail"
+                                    value="email@example.com">
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-6 col-form-label"></label>
+                            <div class="col-sm-6">
+                                <input type="text" readonly class="form-control-plaintext" id="staticEmail"
+                                    value="+1 480-480-4800">
+                            </div>
+                        </div> -->
+                    </div>
+
+                    <!-- Department -->
+                    <span class="text-white print-none" id="DeptInfo">s</span>
+                    <span class="text-white print-none" id="">s</span>
+                    <div class="col-8 px-5">
+                        <div class="row" style="height: 25px;"></div>
+                        <div class="row">
+                            <div class="col-6">
+                                <button type="button" class="btn btn-primary">Departments Information</button>
+                            </div>
+                        </div>
+                        <div class="row" style="height: 30px;"></div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-6 col-form-label">Department Name</label>
+                            <div class="col-sm-6">
+                                <input type="text" readonly class="form-control-plaintext" id="staticEmail"
+                                    value="Applied Project">
+                            </div>
+                        </div>
+                        <hr class="dropdown-divider">
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-6 col-form-label">Main Project Contact</label>
+                            <div class="col-sm-6">
+                                <input type="text" readonly class="form-control-plaintext" id="staticEmail"
+                                    value="Department Name">
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-6 col-form-label"></label>
+                            <div class="col-sm-6">
+                                <input type="text" readonly class="form-control-plaintext" id="staticEmail"
+                                    value="FirstName LastName">
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-6 col-form-label"></label>
+                            <div class="col-sm-6">
+                                <input type="text" readonly class="form-control-plaintext" id="staticEmail"
+                                    value="email@example.com">
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-6 col-form-label"></label>
+                            <div class="col-sm-6">
+                                <input type="text" readonly class="form-control-plaintext" id="staticEmail"
+                                    value="+1 480-480-4800">
+                            </div>
+                        </div>
+                        <hr class="dropdown-divider">
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-6 col-form-label">Technical Administrator
+                                Contact</label>
+                            <div class="col-sm-6">
+                                <input type="text" readonly class="form-control-plaintext" id="staticEmail"
+                                    value="Department Name">
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-6 col-form-label"></label>
+                            <div class="col-sm-6">
+                                <input type="text" readonly class="form-control-plaintext" id="staticEmail"
+                                    value="FirstName LastName">
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-6 col-form-label"></label>
+                            <div class="col-sm-6">
+                                <input type="text" readonly class="form-control-plaintext" id="staticEmail"
+                                    value="email@example.com">
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-6 col-form-label"></label>
+                            <div class="col-sm-6">
+                                <input type="text" readonly class="form-control-plaintext" id="staticEmail"
+                                    value="+1 480-480-4800">
+                            </div>
+                        </div>
+                        <hr class="dropdown-divider">
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-6 col-form-label">End-User Requestor Contact</label>
+                            <div class="col-sm-6">
+                                <input type="text" readonly class="form-control-plaintext" id="staticEmail"
+                                    value="Department Name">
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-6 col-form-label"></label>
+                            <div class="col-sm-6">
+                                <input type="text" readonly class="form-control-plaintext" id="staticEmail"
+                                    value="FirstName LastName">
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-6 col-form-label"></label>
+                            <div class="col-sm-6">
+                                <input type="text" readonly class="form-control-plaintext" id="staticEmail"
+                                    value="email@example.com">
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-6 col-form-label"></label>
+                            <div class="col-sm-6">
+                                <input type="text" readonly class="form-control-plaintext" id="staticEmail"
+                                    value="+1 480-480-4800">
+                            </div>
+                        </div>
+                        <hr class="dropdown-divider">
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-6 col-form-label">Data Steward</label>
+                            <div class="col-sm-6">
+                                <input type="text" readonly class="form-control-plaintext" id="staticEmail"
+                                    value="Department Name">
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-6 col-form-label"></label>
+                            <div class="col-sm-6">
+                                <input type="text" readonly class="form-control-plaintext" id="staticEmail"
+                                    value="FirstName LastName">
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-6 col-form-label"></label>
+                            <div class="col-sm-6">
+                                <input type="text" readonly class="form-control-plaintext" id="staticEmail"
+                                    value="email@example.com">
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-6 col-form-label"></label>
+                            <div class="col-sm-6">
+                                <input type="text" readonly class="form-control-plaintext" id="staticEmail"
+                                    value="+1 480-480-4800">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Vendor -->
+                    <span class="text-white print-none" id="VendInfo">s</span>
+                    <span class="text-white print-none" id="">s</span>
+                    <div class="col-8 px-5">
+                        <div class="row" style="height: 25px;"></div>
+                        <div class="row">
+                            <div class="col-6">
+                                <button type="button" class="btn btn-primary">Vendor Information</button>
+                            </div>
+                        </div>
+                        <div class="row" style="height: 30px;"></div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-6 col-form-label">Vendor Name</label>
+                            <div class="col-sm-6">
+                                <input type="text" readonly class="form-control-plaintext" id="staticEmail"
+                                    value="Applied Project">
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-6 col-form-label">Vendor Website</label>
+                            <div class="col-sm-6">
+                                <input type="text" readonly class="form-control-plaintext" id="staticEmail"
+                                    value="https://www.exaplevendor.com">
+                            </div>
+                        </div>
+                        <hr class="dropdown-divider">
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-6 col-form-label">Main Project Contact</label>
+                            <div class="col-sm-6">
+                                <input type="text" readonly class="form-control-plaintext" id="staticEmail"
+                                    value="FirstName LastName">
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-6 col-form-label"></label>
+                            <div class="col-sm-6">
+                                <input type="text" readonly class="form-control-plaintext" id="staticEmail"
+                                    value="email@example.com">
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-6 col-form-label"></label>
+                            <div class="col-sm-6">
+                                <input type="text" readonly class="form-control-plaintext" id="staticEmail"
+                                    value="+1 480-480-4800">
+                            </div>
+                        </div>
+                        <hr class="dropdown-divider">
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-6 col-form-label">Vendor Technical Contact</label>
+                            <div class="col-sm-6">
+                                <input type="text" readonly class="form-control-plaintext" id="staticEmail"
+                                    value="FirstName LastName">
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-6 col-form-label"></label>
+                            <div class="col-sm-6">
+                                <input type="text" readonly class="form-control-plaintext" id="staticEmail"
+                                    value="email@example.com">
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-6 col-form-label"></label>
+                            <div class="col-sm-6">
+                                <input type="text" readonly class="form-control-plaintext" id="staticEmail"
+                                    value="+1 480-480-4800">
+                            </div>
+                        </div>
+                        <hr class="dropdown-divider">
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-6 col-form-label">Does the Comapany have an existing
+                                signed contract with this vendor?</label>
+                            <div class="col-sm-6">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioDisabled" id="flexRadioDisabled" disabled>
+                                            <label class="form-check-label" for="flexRadioDisabled">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioDisabled6" id="flexRadioCheckedDisabled6" disabled>
+                                            <label class="form-check-label" for="flexRadioCheckedDisabled6">
+                                                No
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioDisabled11" id="flexRadioCheckedDisabled11" checked
+                                                disabled>
+                                            <label class="form-check-label" for="flexRadioCheckedDisabled11">
+                                                Under Negotiation
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Data Management -->
+                    <span class="text-white print-none" id="DataManagement">s</span>
+                    <span class="text-white print-none" id="">s</span>
+
+                    <div class="col-8 px-5">
+                        <div class="row" style="height: 25px;"></div>
+                        <div class="row">
+                            <div class="col-6">
+                                <button type="button" class="btn btn-primary">Data Management</button>
+                            </div>
+                            <div class="col-6 d-flex justify-content-end">
+                                <h3 class="">Score: 3/5</h3><span class="text-light">S</span>
+                                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                    <button type="button" disabled class="btn btn-danger">H</button>
+                                    <button type="button" class="btn btn-warning">M</button>
+                                    <button type="button" disabled class="btn btn-success">L</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="height: 30px;"></div>
+                        <!-- <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-6 col-form-label">Company Data Steward Name</label>
+                            <div class="col-sm-6">
+                                <input type="text" readonly class="form-control-plaintext" id="staticEmail"
+                                    value="FirstName LastName">
+                            </div>
+                        </div> -->
+                        <!-- <hr class="dropdown-divider"> -->
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-2 col-form-label">Regulated Data</label>
+                            <div class="col-sm-10">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="checkbox" value=""
+                                                id="flexCheckDefault">
+                                            <label class="form-check-label" for="flexCheckDefault">
+                                                FERPA
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="checkbox" value=""
+                                                id="flexCheckDefault">
+                                            <label class="form-check-label" for="flexCheckDefault">
+                                                HIPAA
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="checkbox" value=""
+                                                id="flexCheckChecked">
+                                            <label class="form-check-label" for="flexCheckChecked">
+                                                GDPR
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="checkbox" value=""
+                                                id="flexCheckChecked">
+                                            <label class="form-check-label" for="flexCheckChecked">
+                                                ITAR
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="checkbox" value=""
+                                                id="flexCheckChecked" checked>
+                                            <label class="form-check-label" for="flexCheckChecked">
+                                                PCI
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="checkbox" value=""
+                                                id="flexCheckChecked">
+                                            <label class="form-check-label" for="flexCheckChecked">
+                                                PII
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-3 col-form-label">Data Classification</label>
+                            <div class="col-sm-9 d-flex justify-content-end">
+                                <div>
+                                    <div class="input-group mb-3">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="checkbox" value=""
+                                                id="flexCheckDefault">
+                                            <label class="form-check-label" for="flexCheckDefault">
+                                                Highly Sensitive
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="checkbox" value=""
+                                                id="flexCheckChecked">
+                                            <label class="form-check-label" for="flexCheckChecked">
+                                                Sensitive
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="checkbox" value=""
+                                                id="flexCheckChecked">
+                                            <label class="form-check-label" for="flexCheckChecked">
+                                                Internal
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="checkbox" value=""
+                                                id="flexCheckChecked" checked>
+                                            <label class="form-check-label" for="flexCheckChecked">
+                                                Public
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="dropdown-divider">
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-10 col-form-label">Number of Records in Data</label>
+                            <div class="col-sm-2">
+                                <input type="text" readonly class="form-control-plaintext" id="staticEmail"
+                                    value="10000">
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-6 col-form-label">Are records purged from
+                                Data?</label>
+                            <div class="col-sm-6">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioYDisabled" id="flexRadioYDisabled" checked disabled>
+                                            <label class="form-check-label" for="flexRadioYDisabled">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioDisabled0" id="flexRadioCheckedDisabled0" disabled>
+                                            <label class="form-check-label" for="flexRadioCheckedDisabled0">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-10 col-form-label">Estimated yearly additional
+                                Records</label>
+                            <div class="col-sm-2">
+                                <input type="text" readonly class="form-control-plaintext" id="staticEmail"
+                                    value="7000">
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-7 col-form-label">Is data processing performed
+                                outside the US?</label>
+                            <div class="col-sm-5">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioYDisabled" id="flexRadioYDisabled" disabled>
+                                            <label class="form-check-label" for="flexRadioYDisabled">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioCheckedDisabled1" id="flexRadioCheckedDisabled1" checked
+                                                disabled>
+                                            <label class="form-check-label" for="flexRadioCheckedDisabled1">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-6 col-form-label">Is data stored outside the
+                                US?</label>
+                            <div class="col-sm-6">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioYDisabled" id="flexRadioYDisabled" disabled>
+                                            <label class="form-check-label" for="flexRadioYDisabled">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioCheckedDisabled2" id="flexRadioCheckedDisabled2" checked
+                                                disabled>
+                                            <label class="form-check-label" for="flexRadioCheckedDisabled2">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-6 col-form-label">Is any data received (directly or
+                                indirectly by the Company) from individuals outside of the US?</label>
+                            <div class="col-sm-6">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioYDisabled" id="flexRadioYDisabled" disabled>
+                                            <label class="form-check-label" for="flexRadioYDisabled">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioCheckedDisabled3" id="flexRadioCheckedDisabled3" checked
+                                                disabled>
+                                            <label class="form-check-label" for="flexRadioCheckedDisabled3">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-7 col-form-label">Are data or Systems accessible
+                                outside the US?</label>
+                            <div class="col-sm-5">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioYDisabled4" id="flexRadioYDisabled" disabled>
+                                            <label class="form-check-label" for="flexRadioYDisabled">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioCheckedDisabled4" id="flexRadioCheckedDisabled4" checked
+                                                disabled>
+                                            <label class="form-check-label" for="flexRadioCheckedDisabled4">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Availability & Criticality -->
+                    <span class="text-white print-none" id="AvailabilityCriticality">s</span>
+                    <span class="text-white print-none" id="">s</span>
+
+                    <div class="col-8 px-5">
+                        <div class="row" style="height: 25px;"></div>
+                        <div class="row">
+                            <div class="col-6">
+                                <button type="button" class="btn btn-primary">Availability & Criticality</button>
+                            </div>
+                            <div class="col-6 d-flex justify-content-end">
+                                <h3 class="">Score: 3/5</h3><span class="text-light">S</span>
+                                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                    <button type="button" disabled class="btn btn-danger">H</button>
+                                    <button type="button" class="btn btn-warning">M</button>
+                                    <button type="button" disabled class="btn btn-success">L</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="height: 30px;"></div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-7 col-form-label">What is the Availability Rating of
+                                this System?</label>
+                            <div class="col-sm-5">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioCheckedDisabled12" id="flexRadioCheckedDisabled12"
+                                                checked disabled>
+                                            <label class="form-check-label" for="flexRadioCheckedDisabled12">
+                                                Tier 1
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioCheckedDisabled13" id="flexRadioCheckedDisabled13"
+                                                disabled>
+                                            <label class="form-check-label" for="flexRadioCheckedDisabled13">
+                                                Tier 2
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioCheckedDisabled15" id="flexRadioCheckedDisabled15"
+                                                disabled>
+                                            <label class="form-check-label" for="flexRadioCheckedDisabled15">
+                                                Tier 3
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-7 col-form-label">System Criticality
+                                rating is based on Sensitivity of Data, and the Availability Rating.
+                                Note: All Critical, High, and Medium is required to log events to Splunk and set up for
+                                monitoring/alerting and must be added to the centralized asset inventory in the CMDB.
+                                Additional information is available on the Vulnerability Management Website.</label>
+                            <div class="col-sm-5">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioYDisabled4" id="flexRadioYDisabled" disabled>
+                                            <label class="form-check-label" for="flexRadioYDisabled">
+                                                High
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioDisabled" id="flexRadioCheckedDisabled4" disabled>
+                                            <label class="form-check-label" for="flexRadioCheckedDisabled4">
+                                                Medium
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioDisabled" id="flexRadioCheckedDisabled4" checked
+                                                disabled>
+                                            <label class="form-check-label" for="flexRadioCheckedDisabled4">
+                                                Low
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Compliance -->
+                    <span class="text-white print-none" id="Compliance">s</span>
+                    <span class="text-white print-none" id="">s</span>
+
+                    <div class="col-8 px-5">
+                        <div class="row" style="height: 25px;"></div>
+                        <div class="row">
+                            <div class="col-6">
+                                <button type="button" class="btn btn-primary">Compliance</button>
+                            </div>
+                            <div class="col-6 d-flex justify-content-end">
+                                <h3 class="">Score: 0/3</h3><span class="text-light">S</span>
+                                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                    <button type="button" disabled class="btn btn-danger">H</button>
+                                    <button type="button" disabled class="btn btn-warning">M</button>
+                                    <button type="button" class="btn btn-success">L</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="height: 30px;"></div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">Do all users roles of this System
+                                authenticate using standard Company enterprise "single-sign-on" systems such as Company
+                                WebAuth
+                                or CAS/SAML in alignment with the Company Privileged Account Standard?</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioCheckedDisabled01" id="flexRadioCheckedDisabled01"
+                                                checked disabled>
+                                            <label class="form-check-label" for="flexRadioCheckedDisabled01">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioCheckedDisabled15" id="flexRadioCheckedDisabled15"
+                                                disabled>
+                                            <label class="form-check-label" for="flexRadioCheckedDisabled15">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">Are all system components included
+                                in this project logging in compliance with the Company System Audit Requirements
+                                Standard?</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioYDisabled02" id="flexRadioYDisabled02" checked disabled>
+                                            <label class="form-check-label" for="flexRadioYDisabled02">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioDisabled" id="flexRadioCheckedDisabled4" disabled>
+                                            <label class="form-check-label" for="flexRadioCheckedDisabled4">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">The vendor provides automated
+                                patching and includes the procedures in an information security policy.</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioCheckedDisabled03" id="flexRadioCheckedDisabled03"
+                                                checked disabled>
+                                            <label class="form-check-label" for="flexRadioCheckedDisabled03">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioCheckedDisabled13" id="flexRadioCheckedDisabled13"
+                                                disabled>
+                                            <label class="form-check-label" for="flexRadioCheckedDisabled13">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- Security Maturity Evidence -->
+                    <span class="text-white print-none" id="SEM">s</span>
+                    <span class="text-white print-none" id="">s</span>
+
+                    <div class="col-8 px-5">
+                        <div class="row" style="height: 25px;"></div>
+                        <div class="row">
+                            <div class="col-6">
+                                <button type="button" class="btn btn-primary">Security Maturity Evidence</button>
+                            </div>
+                            <div class="col-6 d-flex justify-content-end">
+                                <h3 class="">Score: 3/5</h3><span class="text-light">S</span>
+                                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                    <button type="button" disabled class="btn btn-danger">H</button>
+                                    <button type="button" disabled class="btn btn-warning">M</button>
+                                    <button type="button" class="btn btn-success">L</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="height: 30px;"></div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">Industry standard cybersecurity
+                                framework(s) attestation of compliance. FedRAMP, ISO 27001/2, CIS Controls, NIST 800-53,
+                                CSA CCM, HITRUST, HECVAT</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioCheckedDisabled41" id="flexRadioCheckedDisabled41"
+                                                checked disabled>
+                                            <label class="form-check-label" for="flexRadioCheckedDisabled41">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioCheckedDisabled15" id="flexRadioCheckedDisabled15"
+                                                disabled>
+                                            <label class="form-check-label" for="flexRadioCheckedDisabled15">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <label for="staticEmail" class="col-sm-12 col-form-label">https://uto.asu.edu/security-policies/policy/web-application-security-standard</label>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">Current system’s vendor 3rd party
+                                SOC2 Type 2 reports</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioYDisabled42" id="flexRadioYDisabled42" checked disabled>
+                                            <label class="form-check-label" for="flexRadioYDisabled42">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioDisabled" id="flexRadioCheckedDisabled4" disabled>
+                                            <label class="form-check-label" for="flexRadioCheckedDisabled4">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">Annual penetration/vulnerability
+                                scanning results of all system components</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioCheckedDisabled43" id="flexRadioCheckedDisabled43"
+                                                checked disabled>
+                                            <label class="form-check-label" for="flexRadioCheckedDisabled43">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioCheckedDisabled13" id="flexRadioCheckedDisabled13"
+                                                disabled>
+                                            <label class="form-check-label" for="flexRadioCheckedDisabled13">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">Annual web application
+                                vulnerability scan of all system web applications</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioCheckedDisabled44" id="flexRadioCheckedDisabled44"
+                                                checked disabled>
+                                            <label class="form-check-label" for="flexRadioCheckedDisabled44">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioCheckedDisabled13" id="flexRadioCheckedDisabled13"
+                                                disabled>
+                                            <label class="form-check-label" for="flexRadioCheckedDisabled13">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- Architectural Diagram Requirements -->
+                    <span class="text-white print-none" id="ADR">s</span>
+                    <span class="text-white print-none" id="">s</span>
+
+                    <div class="col-8 px-5">
+                        <div class="row" style="height: 25px;"></div>
+                        <div class="row">
+                            <div class="col-6">
+                                <button type="button" class="btn btn-primary">Integration</button>
+                            </div>
+                            <div class="col-6 d-flex justify-content-end">
+                                <h3 class="">Score: 3/5</h3><span class="text-light">S</span>
+                                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                    <button type="button" disabled class="btn btn-danger">H</button>
+                                    <button type="button" disabled class="btn btn-warning">M</button>
+                                    <button type="button" class="btn btn-success">L</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="height: 30px;"></div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-12 col-form-label">Does the technology integrate with
+                                the following Company systems:</label>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">Single Sign-On</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioCheckedDisabled33" id="flexRadioCheckedDisabled33"
+                                                checked disabled>
+                                            <label class="form-check-label" for="flexRadioCheckedDisabled33">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioCheckedDisabled15" id="flexRadioCheckedDisabled15"
+                                                disabled>
+                                            <label class="form-check-label" for="flexRadioCheckedDisabled15">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">Multi-Factor Authentication</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioYDisabled32" id="flexRadioYDisabled32" checked disabled>
+                                            <label class="form-check-label" for="flexRadioYDisabled32">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioDisabled" id="flexRadioCheckedDisabled4" disabled>
+                                            <label class="form-check-label" for="flexRadioCheckedDisabled4">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">Active Directory Federation
+                                Services</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioCheckedDisabled31" id="flexRadioCheckedDisabled31"
+                                                checked disabled>
+                                            <label class="form-check-label" for="flexRadioCheckedDisabled31">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioCheckedDisabled13" id="flexRadioCheckedDisabled13"
+                                                disabled>
+                                            <label class="form-check-label" for="flexRadioCheckedDisabled13">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">Complete the Architecture Diagram
+                                Architecture Diagram Criteria</label>
+                            <div class="col-sm-3">
+                                <input type="text" readonly class="form-control-plaintext" id="staticEmail"
+                                    value="https://arizonastateu-my.sharepoint.com/:b:/r/personal/smridha_sundevils_asu_edu/Documents/Docs/Resume_SayantanM.pdf?csf=1&web=1&e=r06qhn">
+                            </div>
+                        </div> -->
+                    </div>
+
+
+                    <!-- Cloud Service Model -->
+                    <span class="text-white print-none" id="CSM">s</span>
+                    <span class="text-white print-none" id="">s</span>
+
+                    <div class="col-8 px-5">
+                        <div class="row" style="height: 25px;"></div>
+                        <div class="row">
+                            <div class="col-6">
+                                <button type="button" class="btn btn-primary">Cloud Service Model</button>
+                            </div>
+                            <div class="col-6 d-flex justify-content-end">
+                                <h3 class="">Score: 3/5</h3><span class="text-light">S</span>
+                                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                    <button type="button" disabled class="btn btn-danger">H</button>
+                                    <button type="button" disabled class="btn btn-warning">M</button>
+                                    <button type="button" class="btn btn-success">L</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="height: 30px;"></div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">Is this a SaaS solution?</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioCheckedDisabled51" id="flexRadioCheckedDisabled51"
+                                                checked disabled>
+                                            <label class="form-check-label" for="flexRadioCheckedDisabled51">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioCheckedDisabled15" id="flexRadioCheckedDisabled15"
+                                                disabled>
+                                            <label class="form-check-label" for="flexRadioCheckedDisabled15">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">Is it hosted in IaaS owned by the
+                                Company?</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioYDisabled52" id="flexRadioYDisabled52" checked disabled>
+                                            <label class="form-check-label" for="flexRadioYDisabled52">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioDisabled" id="flexRadioCheckedDisabled4" disabled>
+                                            <label class="form-check-label" for="flexRadioCheckedDisabled4">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">Complete the Architecture Diagram
+                                Architecture Diagram Criteria</label>
+                            <div class="col-sm-3">
+                                <input type="text" readonly class="form-control-plaintext" id="staticEmail"
+                                    value="https://arizonastateu-my.sharepoint.com/:b:/r/personal/smridha_sundevils_asu_edu/Documents/Docs/Resume_SayantanM.pdf?csf=1&web=1&e=r06qhn">
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">Is the solution built on premises
+                                in the Company's datacenter?</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioCheckedDisabled53" id="flexRadioCheckedDisabled53"
+                                                checked disabled>
+                                            <label class="form-check-label" for="flexRadioCheckedDisabled53">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioCheckedDisabled13" id="flexRadioCheckedDisabled13"
+                                                disabled>
+                                            <label class="form-check-label" for="flexRadioCheckedDisabled13">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- Secure Design -->
+                    <span class="text-white print-none" id="SD">s</span>
+                    <span class="text-white print-none" id="">s</span>
+
+                    <div class="col-8 px-5">
+                        <div class="row" style="height: 25px;"></div>
+                        <div class="row">
+                            <div class="col-6">
+                                <button type="button" class="btn btn-primary">Secure Design</button>
+                            </div>
+                            <div class="col-6 d-flex justify-content-end">
+                                <h3 class="">Score: 3/5</h3><span class="text-light">S</span>
+                                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                    <button type="button" disabled class="btn btn-danger">H</button>
+                                    <button type="button" disabled class="btn btn-warning">M</button>
+                                    <button type="button" class="btn btn-success">L</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="height: 30px;"></div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-12 col-form-label"><strong>Who is responsible for the
+                                    secure design of the entire system?</strong></label>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">We do not know who is responsible
+                                for the security design of the entire system.</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioCheckedDisabled63" id="flexRadioCheckedDisabled63"
+                                                checked disabled>
+                                            <label class="form-check-label" for="flexRadioCheckedDisabled63">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioCheckedDisabled15" id="flexRadioCheckedDisabled15"
+                                                disabled>
+                                            <label class="form-check-label" for="flexRadioCheckedDisabled15">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">Although certain parts may be
+                                designed for security, nobody is responsible for the security design and Company
+                                standards
+                                compliance of the entire system including users and their devices.</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioYDisabled61" id="flexRadioYDisabled61" checked disabled>
+                                            <label class="form-check-label" for="flexRadioYDisabled61">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioDisabled" id="flexRadioCheckedDisabled4" disabled>
+                                            <label class="form-check-label" for="flexRadioCheckedDisabled4">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">A vendor claims to be responsible
+                                for the security design and Company standards compliance of the entire system, but the
+                                vendor has not signed ISO language, or the scope of the vendor's contracted
+                                responsibility does not cover the entire system including users and their
+                                devices.</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioCheckedDisabled62" id="flexRadioCheckedDisabled62"
+                                                checked disabled>
+                                            <label class="form-check-label" for="flexRadioCheckedDisabled62">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioCheckedDisabled13" id="flexRadioCheckedDisabled13"
+                                                disabled>
+                                            <label class="form-check-label" for="flexRadioCheckedDisabled13">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">A single vendor has accepted
+                                responsibility for all of the security design and Company standards compliance, has
+                                signed
+                                ISO language, and the scope of the vendor's contracted responsibility covers the entire
+                                system including users and their devices.However the vendor has not provided evidence of
+                                compliance with the ISO language.</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioCheckedDisabled64" id="flexRadioCheckedDisabled64"
+                                                checked disabled>
+                                            <label class="form-check-label" for="flexRadioCheckedDisabled64">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioCheckedDisabled15" id="flexRadioCheckedDisabled15"
+                                                disabled>
+                                            <label class="form-check-label" for="flexRadioCheckedDisabled15">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">A single vendor has accepted
+                                responsibility for all of the security design and Company standards compliance, has
+                                signed
+                                ISO language, and the scope of the vendor's contracted responsibility covers the entire
+                                system including users and their devices.
+                                If the vendor has signed or has intent to sign the ISO contract language ensure you
+                                provide a copy of the following documents from the vendor:
+                                <ul>
+                                    <li>SOC2 Report</li>
+                                    <li>Security Policies or SOPs</li>
+                                </ul>
+                            </label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioYDisabled65" id="flexRadioYDisabled65" checked disabled>
+                                            <label class="form-check-label" for="flexRadioYDisabled65">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioDisabled" id="flexRadioCheckedDisabled4" disabled>
+                                            <label class="form-check-label" for="flexRadioCheckedDisabled4">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">One or more Company employees have
+                                designed the system with a holistic security perspective from the beginning, selecting
+                                components and/or vendors that meet regulatory requirements and Company
+                                standards.</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioCheckedDisabled66" id="flexRadioCheckedDisabled66"
+                                                checked disabled>
+                                            <label class="form-check-label" for="flexRadioCheckedDisabled66">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioCheckedDisabled13" id="flexRadioCheckedDisabled13"
+                                                disabled>
+                                            <label class="form-check-label" for="flexRadioCheckedDisabled13">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- Encryption -->
+                    <span class="text-white print-none" id="Encr">s</span>
+                    <span class="text-white print-none" id="">s</span>
+
+                    <div class="col-8 px-5">
+                        <div class="row" style="height: 25px;"></div>
+                        <div class="row">
+                            <div class="col-6">
+                                <button type="button" class="btn btn-primary">Encryption</button>
+                            </div>
+                            <div class="col-6 d-flex justify-content-end">
+                                <h3 class="">Score: 3/5</h3><span class="text-light">S</span>
+                                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                    <button type="button" disabled class="btn btn-danger">H</button>
+                                    <button type="button" class="btn btn-warning">M</button>
+                                    <button type="button" disabled class="btn btn-success">L</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="height: 30px;"></div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-12 col-form-label"><strong>How will sensitive data be
+                                    protected in transit (as it travels across the network)?</strong></label>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">Sensitive data will be traveling
+                                across one or more external connections outside of the Company data Center without any
+                                protection.</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioCheckedDisabled71" id="flexRadioCheckedDisabled71"
+                                                checked disabled>
+                                            <label class="form-check-label" for="flexRadioCheckedDisabled71">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioCheckedDisabled15" id="flexRadioCheckedDisabled15"
+                                                disabled>
+                                            <label class="form-check-label" for="flexRadioCheckedDisabled15">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">All systems and connections storing
+                                or processing sensitive data are within the Company data center, but sensitive data is
+                                not
+                                encrypted as it moves from system to system.</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioYDisabled72" id="flexRadioYDisabled72" checked disabled>
+                                            <label class="form-check-label" for="flexRadioYDisabled72">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioDisabled" id="flexRadioCheckedDisabled4" disabled>
+                                            <label class="form-check-label" for="flexRadioCheckedDisabled4">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">Firewalls, network segmentation,
+                                and/or other techniques limit sensitive traffic to only those systems that are intended
+                                to receive it. Other systems are prevented from connecting, or listening to sensitive
+                                traffic. However, sensitive data is not encrypted in transit.</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioCheckedDisabled73" id="flexRadioCheckedDisabled73"
+                                                checked disabled>
+                                            <label class="form-check-label" for="flexRadioCheckedDisabled73">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioCheckedDisabled13" id="flexRadioCheckedDisabled13"
+                                                disabled>
+                                            <label class="form-check-label" for="flexRadioCheckedDisabled13">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">Is there a crypto key management
+                                system of certificates?</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioCheckedDisabled74" id="flexRadioCheckedDisabled74"
+                                                checked disabled>
+                                            <label class="form-check-label" for="flexRadioCheckedDisabled74">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioCheckedDisabled15" id="flexRadioCheckedDisabled15"
+                                                disabled>
+                                            <label class="form-check-label" for="flexRadioCheckedDisabled15">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">All sensitive data is encrypted as
+                                it travels over each network connection.</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioYDisabled75" id="flexRadioYDisabled75" checked disabled>
+                                            <label class="form-check-label" for="flexRadioYDisabled75">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioDisabled" id="flexRadioCheckedDisabled4" disabled>
+                                            <label class="form-check-label" for="flexRadioCheckedDisabled4">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">All sensitive data is encrypted as
+                                when it is at rest.</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioCheckedDisabled76" id="flexRadioCheckedDisabled76"
+                                                checked disabled>
+                                            <label class="form-check-label" for="flexRadioCheckedDisabled76">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioCheckedDisabled13" id="flexRadioCheckedDisabled13"
+                                                disabled>
+                                            <label class="form-check-label" for="flexRadioCheckedDisabled13">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">All* web sites are using https
+                                encryption. Servers have valid https certificates. (The certificates are correctly
+                                configured and installed so that no warnings are seen.)</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioCheckedDisabled77" id="flexRadioCheckedDisabled77"
+                                                checked disabled>
+                                            <label class="form-check-label" for="flexRadioCheckedDisabled77">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioCheckedDisabled15" id="flexRadioCheckedDisabled15"
+                                                disabled>
+                                            <label class="form-check-label" for="flexRadioCheckedDisabled15">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">This project has no sensitive
+                                data.</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioCheckedDisabled78" id="flexRadioCheckedDisabled78"
+                                                checked disabled>
+                                            <label class="form-check-label" for="flexRadioCheckedDisabled78">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioCheckedDisabled13" id="flexRadioCheckedDisabled13"
+                                                disabled>
+                                            <label class="form-check-label" for="flexRadioCheckedDisabled13">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">This question is not applicable for
+                                this project because all of the following are true:
+                                <ul>
+                                    <li>No Company equipment or network connections will be used to transmit sensitive
+                                        data.If a vendor is transmitting or receiving sensitive data, the vendor has
+                                        accepted responsibility for protecting the data by signing a contract that
+                                        includesISO language.</li>
+                                </ul>
+                            </label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioYDisabled79" id="flexRadioYDisabled79" checked disabled>
+                                            <label class="form-check-label" for="flexRadioYDisabled79">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioDisabled" id="flexRadioCheckedDisabled4" disabled>
+                                            <label class="form-check-label" for="flexRadioCheckedDisabled4">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-12 col-form-label"><strong>How will sensitive data be
+                                    protected at rest (wherever it is stored)?</strong></label>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">Sensitive data will be stored
+                                without any protection, on devices available to the general public without logging
+                                in.</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioCheckedDisabled710" id="flexRadioCheckedDisabled710"
+                                                checked disabled>
+                                            <label class="form-check-label" for="flexRadioCheckedDisabled710">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioCheckedDisabled15" id="flexRadioCheckedDisabled15"
+                                                disabled>
+                                            <label class="form-check-label" for="flexRadioCheckedDisabled15">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">Sensitive data will be stored
+                                without encryption at rest, even though PCI or other applicable regulations require
+                                it.</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioYDisabled711" id="flexRadioYDisabled711" checked
+                                                disabled>
+                                            <label class="form-check-label" for="flexRadioYDisabled711">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioDisabled" id="flexRadioCheckedDisabled4" disabled>
+                                            <label class="form-check-label" for="flexRadioCheckedDisabled4">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">Sensitive data will be stored
+                                without encryption, but the devices require a login, and there is no applicable
+                                regulation requiring encryption at rest.</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioCheckedDisabled712" id="flexRadioCheckedDisabled712"
+                                                checked disabled>
+                                            <label class="form-check-label" for="flexRadioCheckedDisabled712">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioCheckedDisabled13" id="flexRadioCheckedDisabled13"
+                                                disabled>
+                                            <label class="form-check-label" for="flexRadioCheckedDisabled13">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">All systems storing or processing
+                                sensitive data are within the Company data center, but sensitive data is not encrypted
+                                on
+                                disk. There is no applicable regulation requiring encryption at rest.</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioCheckedDisabled713" id="flexRadioCheckedDisabled713"
+                                                checked disabled>
+                                            <label class="form-check-label" for="flexRadioCheckedDisabled713">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioCheckedDisabled15" id="flexRadioCheckedDisabled15"
+                                                disabled>
+                                            <label class="form-check-label" for="flexRadioCheckedDisabled15">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">Sensitive data is encrypted on
+                                disk, but not on backups. There is no applicable regulation requiring encryption at
+                                rest.</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioYDisabled714" id="flexRadioYDisabled714" checked
+                                                disabled>
+                                            <label class="form-check-label" for="flexRadioYDisabled714">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioDisabled" id="flexRadioCheckedDisabled4" disabled>
+                                            <label class="form-check-label" for="flexRadioCheckedDisabled4">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">All sensitive data is encrypted at
+                                every location where it is stored, including user devices and backups.</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioCheckedDisabled715" id="flexRadioCheckedDisabled715"
+                                                checked disabled>
+                                            <label class="form-check-label" for="flexRadioCheckedDisabled715">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioCheckedDisabled13" id="flexRadioCheckedDisabled13"
+                                                disabled>
+                                            <label class="form-check-label" for="flexRadioCheckedDisabled13">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">This question is not applicable for
+                                this project because all of the following are true:
+                                <ul>
+                                    <li>No Company equipment or network connections will be used to transmit sensitive
+                                        data.If a vendor is transmitting or receiving sensitive data, the vendor has
+                                        accepted responsibility for protecting the data by signing a contract that
+                                        includesISO language.</li>
+                                </ul>
+                            </label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioCheckedDisabled716" id="flexRadioCheckedDisabled716"
+                                                checked disabled>
+                                            <label class="form-check-label" for="flexRadioCheckedDisabled716">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioCheckedDisabled15" id="flexRadioCheckedDisabled15"
+                                                disabled>
+                                            <label class="form-check-label" for="flexRadioCheckedDisabled15">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- Quality Assurance Environment -->
+                    <span class="text-white print-none" id="QAE">s</span>
+                    <span class="text-white print-none" id="">s</span>
+
+                    <div class="col-8 px-5">
+                        <div class="row" style="height: 25px;"></div>
+                        <div class="row">
+                            <div class="col-6">
+                                <button type="button" class="btn btn-primary">Quality Assurance Environment</button>
+                            </div>
+                            <div class="col-6 d-flex justify-content-end">
+                                <h3 class="">Score: 3/5</h3><span class="text-light">S</span>
+                                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                    <button type="button" class="btn btn-danger">H</button>
+                                    <button type="button" disabled class="btn btn-warning">M</button>
+                                    <button type="button" disabled class="btn btn-success">L</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="height: 30px;"></div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-12 col-form-label"><strong>Is there a Development or
+                                    QA instance?</strong></label>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">There will be Development or QA
+                                instances of the web site(s).</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioCheckedDisabled81" id="flexRadioCheckedDisabled81"
+                                                checked disabled>
+                                            <label class="form-check-label" for="flexRadioCheckedDisabled81">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioCheckedDisabled15" id="flexRadioCheckedDisabled15"
+                                                disabled>
+                                            <label class="form-check-label" for="flexRadioCheckedDisabled15">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">Only a Production instance exists.
+                                There is no place to test code or changes without impacting live systems and data - in
+                                the Production instance.</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioYDisabled82" id="flexRadioYDisabled82" disabled>
+                                            <label class="form-check-label" for="flexRadioYDisabled82">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioYDisabled82" id="flexRadioYDisabled82" checked disabled>
+                                            <label class="form-check-label" for="flexRadioYDisabled82">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">Development or QA instance exists,
+                                but it is different from Production to the extent that there could be flaws in one
+                                instance that do not exist in the other instance.</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioCheckedDisabled83" id="flexRadioCheckedDisabled83"
+                                                disabled>
+                                            <label class="form-check-label" for="flexRadioCheckedDisabled83">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioCheckedDisabled83" id="flexRadioCheckedDisabled83"
+                                                checked disabled>
+                                            <label class="form-check-label" for="flexRadioCheckedDisabled83">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">All sites have QA instances that
+                                are sufficiently identical to Production, that the results of tests in QA can be relied
+                                on to evaluate the Production instance.</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioCheckedDisabled84" id="flexRadioCheckedDisabled84"
+                                                checked disabled>
+                                            <label class="form-check-label" for="flexRadioCheckedDisabled84">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioCheckedDisabled84" id="flexRadioCheckedDisabled84"
+                                                disabled>
+                                            <label class="form-check-label" for="flexRadioCheckedDisabled84">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">This project has no web
+                                sites.</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioYDisabled85" id="flexRadioYDisabled85" disabled>
+                                            <label class="form-check-label" for="flexRadioYDisabled85">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioYDisabled85" id="flexRadioYDisabled85" checked disabled>
+                                            <label class="form-check-label" for="flexRadioYDisabled85">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- Database Servers -->
+                    <span class="text-white print-none" id="DS">s</span>
+                    <span class="text-white print-none" id="">s</span>
+
+                    <div class="col-8 px-5">
+                        <div class="row" style="height: 25px;"></div>
+                        <div class="row">
+                            <div class="col-6">
+                                <button type="button" class="btn btn-primary">Database Servers</button>
+                            </div>
+                            <div class="col-6 d-flex justify-content-end">
+                                <h3 class="">Score: 3/5</h3><span class="text-light">S</span>
+                                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                    <button type="button" disabled class="btn btn-danger">H</button>
+                                    <button type="button" disabled class="btn btn-warning">M</button>
+                                    <button type="button" class="btn btn-success">L</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="height: 30px;"></div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-12 col-form-label">Servers that have databases
+                                containing sensitive data should be protected from various types of attacks. A database
+                                server directly connected to the Internet has no defenses except the ID and password
+                                that may be required. A database server directly connected to a web server may loseeven
+                                that ID/password defenseif the web server is compromised.</label>
+                            <label for="staticEmail" class="col-sm-12 col-form-label"><strong>What database protections
+                                    are in place?</strong></label>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">There are one or more databases
+                                with access to sensitive data. The database servers have publicly routable IP addresses
+                                and there is no firewall limiting connections to the database. People from anywhere in
+                                the world can connect directly to the database server.</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioCheckedDisabled91" id="flexRadioCheckedDisabled91"
+                                                checked disabled>
+                                            <label class="form-check-label" for="flexRadioCheckedDisabled91">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioCheckedDisabled15" id="flexRadioCheckedDisabled15"
+                                                disabled>
+                                            <label class="form-check-label" for="flexRadioCheckedDisabled15">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">A database containing sensitive
+                                data is directly accessible by a web server, but the database only accepts requests from
+                                the web server. Other devices cannot make connections to the database.</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioYDisabled92" id="flexRadioYDisabled92" disabled>
+                                            <label class="form-check-label" for="flexRadioYDisabled92">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioYDisabled92" id="flexRadioYDisabled92" checked disabled>
+                                            <label class="form-check-label" for="flexRadioYDisabled92">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">Web servers can connect to database
+                                servers directly, but alternate protections are in place to defend the database from a
+                                web server compromise, such as a Web Application Firewall in front of the web server.
+                                (Describe in the notes how the protective technology protects the database from a web
+                                server compromise.)</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioCheckedDisabled93" id="flexRadioCheckedDisabled93"
+                                                disabled>
+                                            <label class="form-check-label" for="flexRadioCheckedDisabled93">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioCheckedDisabled93" id="flexRadioCheckedDisabled93"
+                                                checked disabled>
+                                            <label class="form-check-label" for="flexRadioCheckedDisabled93">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">Web servers cannot connect directly
+                                to database servers due to network segmentation, firewall rules, etc. Web servers
+                                interact with database servers through an application server that only permits a white
+                                list of known good transactions (a three tier architecture). Web servers also have
+                                defenses against typical attacks (such as SQL injection) via parameterized queries,
+                                stored procedures, or other techniques that do not pass arbitrary strings to the SQL
+                                command interpreter.</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioCheckedDisabled94" id="flexRadioCheckedDisabled94"
+                                                checked disabled>
+                                            <label class="form-check-label" for="flexRadioCheckedDisabled94">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioCheckedDisabled94" id="flexRadioCheckedDisabled94"
+                                                disabled>
+                                            <label class="form-check-label" for="flexRadioCheckedDisabled94">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">None of the systems in this project
+                                have access to a database containing sensitive data.</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioYDisabled95" id="flexRadioYDisabled95" disabled>
+                                            <label class="form-check-label" for="flexRadioYDisabled95">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioYDisabled95" id="flexRadioYDisabled95" checked disabled>
+                                            <label class="form-check-label" for="flexRadioYDisabled95">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">This question is not applicable for
+                                this project because all of the following are true:
+                                <ul>
+                                    <li>No Company equipment or network connections will be used to transmit sensitive
+                                        data.If a vendor is transmitting or receiving sensitive data, the vendor has
+                                        accepted responsibility for protecting the data by signing a contract that
+                                        includesISO language.</li>
+                                </ul>
+                            </label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioYDisabled96" id="flexRadioYDisabled96" disabled>
+                                            <label class="form-check-label" for="flexRadioYDisabled96">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioYDisabled96" id="flexRadioYDisabled96" checked disabled>
+                                            <label class="form-check-label" for="flexRadioYDisabled96">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- Secure Communications -->
+                    <span class="text-white print-none" id="SC">s</span>
+                    <span class="text-white print-none" id="">s</span>
+
+                    <div class="col-8 px-5">
+                        <div class="row" style="height: 25px;"></div>
+                        <div class="row">
+                            <div class="col-6">
+                                <button type="button" class="btn btn-primary">Secure Communications</button>
+                            </div>
+                            <div class="col-6 d-flex justify-content-end">
+                                <h3 class="">Score: 3/5</h3><span class="text-light">S</span>
+                                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                    <button type="button" disabled class="btn btn-danger">H</button>
+                                    <button type="button" disabled class="btn btn-warning">M</button>
+                                    <button type="button" class="btn btn-success">L</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="height: 30px;"></div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-12 col-form-label"><strong>How does the components of
+                                    the architecture communicate and authenticate to each other?</strong></label>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">One or more servers initiate or
+                                accept connections with their peers, but do not verify or otherwise restrict which
+                                servers can connect.</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioCheckedDisabled101" id="flexRadioCheckedDisabled101"
+                                                checked disabled>
+                                            <label class="form-check-label" for="flexRadioCheckedDisabled101">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioCheckedDisabled15" id="flexRadioCheckedDisabled15"
+                                                disabled>
+                                            <label class="form-check-label" for="flexRadioCheckedDisabled15">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">When a server logs in to another
+                                server, a password or other secret is transmitted across a network connection without
+                                encryption.</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioYDisabled102" id="flexRadioYDisabled102" disabled>
+                                            <label class="form-check-label" for="flexRadioYDisabled102">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioYDisabled102" id="flexRadioYDisabled102" checked
+                                                disabled>
+                                            <label class="form-check-label" for="flexRadioYDisabled102">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">Firewalls, network segmentation, or
+                                other controls make it impossible for connections to be opened between anything other
+                                than the intended servers. Connections are imited by a "black list" identifying which
+                                addresses are not allowed to connect.</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioCheckedDisabled103" id="flexRadioCheckedDisabled103"
+                                                disabled>
+                                            <label class="form-check-label" for="flexRadioCheckedDisabled103">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioCheckedDisabled103" id="flexRadioCheckedDisabled103"
+                                                checked disabled>
+                                            <label class="form-check-label" for="flexRadioCheckedDisabled103">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">Firewalls, network segmentation, or
+                                other controls make it impossible for connections to be opened between anything other
+                                than the intended servers. Connections are limited by a "white list" specifically
+                                identifying which addresses are allowed to connect, and denying all others by
+                                default.</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioCheckedDisabled104" id="flexRadioCheckedDisabled104"
+                                                checked disabled>
+                                            <label class="form-check-label" for="flexRadioCheckedDisabled104">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioCheckedDisabled104" id="flexRadioCheckedDisabled104"
+                                                disabled>
+                                            <label class="form-check-label" for="flexRadioCheckedDisabled104">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">Servers use credentials to identify
+                                each other, but there are weaknesses (explain in the notes). For example: (A) the
+                                credentials are not unique to one application (B) the credentials are not safely stored,
+                                or (C) it is difficult to change the credentials.</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioYDisabled105" id="flexRadioYDisabled105" disabled>
+                                            <label class="form-check-label" for="flexRadioYDisabled105">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioYDisabled105" id="flexRadioYDisabled105" checked
+                                                disabled>
+                                            <label class="form-check-label" for="flexRadioYDisabled105">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">Each server uses a standard
+                                mechanism, such as https, to verify the other server's identity when initiating a
+                                connection to another server. If using https, servers have valid https certificates, and
+                                clients verify certificate validity. (The certificates are correctly configured and
+                                installed so that no warnings are seen.) The listening server authenticates the
+                                requesting server using credentials that are unique to this application. The credentials
+                                are not stored where they can be accessed without authorization. Credentials are
+                                periodically updated, and can be quickly updated if a compromise is suspected.
+                            </label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioYDisabled106" id="flexRadioYDisabled106" disabled>
+                                            <label class="form-check-label" for="flexRadioYDisabled106">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioYDisabled106" id="flexRadioYDisabled106" checked
+                                                disabled>
+                                            <label class="form-check-label" for="flexRadioYDisabled106">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">The project does not have more than
+                                one server, so there is no need for servers to authenticate each other.</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioYDisabled107" id="flexRadioYDisabled107" disabled>
+                                            <label class="form-check-label" for="flexRadioYDisabled107">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioYDisabled107" id="flexRadioYDisabled107" checked
+                                                disabled>
+                                            <label class="form-check-label" for="flexRadioYDisabled107">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">The changes being made as part of
+                                this project will not affect a situation where two or more servers are communicating
+                                with each other, so the question does not apply.</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioYDisabled108" id="flexRadioYDisabled108" disabled>
+                                            <label class="form-check-label" for="flexRadioYDisabled108">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioYDisabled108" id="flexRadioYDisabled108" checked
+                                                disabled>
+                                            <label class="form-check-label" for="flexRadioYDisabled108">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- Software Integrity -->
+                    <span class="text-white print-none" id="SI">s</span>
+                    <span class="text-white print-none" id="">s</span>
+
+                    <div class="col-8 px-5">
+                        <div class="row" style="height: 25px;"></div>
+                        <div class="row">
+                            <div class="col-6">
+                                <button type="button" class="btn btn-primary">Software Integrity</button>
+                            </div>
+                            <div class="col-6 d-flex justify-content-end">
+                                <h3 class="">Score: 3/5</h3><span class="text-light">S</span>
+                                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                    <button type="button" disabled class="btn btn-danger">H</button>
+                                    <button type="button" disabled class="btn btn-warning">M</button>
+                                    <button type="button" class="btn btn-success">L</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="height: 30px;"></div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-12 col-form-label">Whoever writes your software gains
+                                control of your computer, sensitive data, and identity. Thus it is important to be sure
+                                the software comes from sources you trust. Verify the origin of software before
+                                installing it, and keep it up to date if security fixes have been released.</label>
+                            <label for="staticEmail" class="col-sm-12 col-form-label">Current versions should be
+                                originally installed, upgrades should be applied when available, and security patches
+                                should be applied promptly. During original installation or subsequent updates, controls
+                                should be in place to ensure that all software comes from trustworthy authors, and has
+                                not been tampered with along the way.</label>
+                            <label for="staticEmail" class="col-sm-12 col-form-label"><strong>Are current versions of
+                                    software being deployed? Will upgrades and patches be promptly
+                                    applied?</strong></label>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">Some systems run outdated versions
+                                of their operating system, utilities, or installed applications. Or, systems are
+                                initially deployed with current software, but nothing will be in place to keep them
+                                current in the future.</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioCheckedDisabled111" id="flexRadioCheckedDisabled111"
+                                                checked disabled>
+                                            <label class="form-check-label" for="flexRadioCheckedDisabled111">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioCheckedDisabled15" id="flexRadioCheckedDisabled15"
+                                                disabled>
+                                            <label class="form-check-label" for="flexRadioCheckedDisabled15">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">There is a capability in place to
+                                distribute the most recent software version or updates, but it does not have controls to
+                                protect against fake (malicious) updates.</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioYDisabled112" id="flexRadioYDisabled112" disabled>
+                                            <label class="form-check-label" for="flexRadioYDisabled112">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioYDisabled112" id="flexRadioYDisabled112" checked
+                                                disabled>
+                                            <label class="form-check-label" for="flexRadioYDisabled112">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">Initial install files and/or
+                                updates carry a signature (e.g. a hash or checksum) to verify file integrity, but the
+                                file must be (and will be) manually checked against a trusted list of valid
+                                signatures.</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioCheckedDisabled113" id="flexRadioCheckedDisabled113"
+                                                disabled>
+                                            <label class="form-check-label" for="flexRadioCheckedDisabled113">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioCheckedDisabled113" id="flexRadioCheckedDisabled113"
+                                                checked disabled>
+                                            <label class="form-check-label" for="flexRadioCheckedDisabled113">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">Software, including operating
+                                system, utilities, applications, and any other executable code, is only obtained from
+                                trusted sources. It is distributed using mechanisms that automatically ensure it is not
+                                altered, for example, files are cryptographically signed or delivered over a channel
+                                that ensures end-to-end file integrity. Current versions of software are initially
+                                installed. Patching and upgrades are performed regularly and as needed. Patches are
+                                automatically verified so that administrators and users cannot be tricked into
+                                installing a malicious update.</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioCheckedDisabled104" id="flexRadioCheckedDisabled104"
+                                                checked disabled>
+                                            <label class="form-check-label" for="flexRadioCheckedDisabled104">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioCheckedDisabled104" id="flexRadioCheckedDisabled104"
+                                                disabled>
+                                            <label class="form-check-label" for="flexRadioCheckedDisabled104">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">This project does not include any
+                                new software. Nothing new is installed on user computers or on servers used by this
+                                system. There are no new web pages with code that runs on the server (for example,
+                                receiving form input) and no new web pages with code that runs on the browser (such as
+                                media players, Java, Active X, JavaScript etc.)</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioYDisabled105" id="flexRadioYDisabled105" disabled>
+                                            <label class="form-check-label" for="flexRadioYDisabled105">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioYDisabled105" id="flexRadioYDisabled105" checked
+                                                disabled>
+                                            <label class="form-check-label" for="flexRadioYDisabled105">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 py-5 d-flex justify-content-center">
+                        <h1 class="display-3">END</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

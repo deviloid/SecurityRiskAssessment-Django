@@ -2,11 +2,38 @@
 {% load static %}
 
 {% block title %}
-Sentinel | Signup
+Register
 {% endblock %}
 
+{% block body %}
+<div class="row">
+    <div class="" id="layer-top">
+        <h1 class="display-4 text-white">Sign Up</h1>
+        <h1 class="display-6 text-white">I am a ...</h1>
+    </div>
+    <div class="col-4 bg-light bg-gradient d-flex justify-content-center align-items-center" style="height: 100vh">
+        <img src="{% static '/images/Sentinel_bl.png' %}" height="300px">
+    </div>
+    <div class="col-4 bg-secondary bg-gradient d-flex justify-content-center align-items-center" style="height: 100vh">
+        <div class="card bg-transparent" style="width: 18rem;">
+            <img class="card-img-top relative-parent" src="{% static 'images/department.png' %}" alt="Card image cap">
+            <div class="card-body relative">
+                <h4 class="display-4">Department</h4>
+            </div>
+        </div>
+    </div>
+    <div class="col-4 bg-dark bg-gradient d-flex justify-content-center align-items-center" style="height: 100vh">
+        <div class="card bg-transparent" style="width: 18rem;">
+            <img class="card-img-top relative-parent" src="{% static 'images/vendor.png' %}" alt="Card image cap">
+            <div class="card-body relative">
+                <h4 class="display-4">Vendor</h4>
+            </div>
+        </div>
+    </div>
+</div>
 
-{% block content %}
+{% endblock %}
+
 
 <body id="body">
     <div class="login-parent-div">
@@ -47,7 +74,7 @@ Sentinel | Signup
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <a href="{% url "login" %}" class="login-form-submit">Login</a>
+                            <a href="{% url " login" %}" class="login-form-submit">Login</a>
                         </td>
                     </tr>
                 </table>
@@ -55,4 +82,3 @@ Sentinel | Signup
         </div>
     </div>
 </body>
-{% endblock %}
