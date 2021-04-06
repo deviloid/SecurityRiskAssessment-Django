@@ -24,9 +24,6 @@ urlpatterns = [
     path('signup/', views.registerPage, name="signup"),
     path('signup/department/', views.deptregisterPage, name='dept_signup'),
     path('signup/vendor/', views.vendregisterPage, name='vend_signup'),
-
     path('accountCreatedSuccess/', views.accountCreatedSuccess, name="accountCreatedSuccess"),
-
     path('', views.home, name="home"),
-    # path('customer/', views.customer, name="customer"),
 ]
