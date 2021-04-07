@@ -26,7 +26,9 @@ SECRET_KEY = "=l^-b#9w*8cs*#rrg)s^7r%_h#px51&*h(tg0#cy3jxn49!inh"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["sentinelsra.azurewebsites.net"]
+ALLOWED_HOSTS = [
+    "40.78.127.209",
+]
 
 AUTH_USER_MODEL = "accounts.Account"
 
