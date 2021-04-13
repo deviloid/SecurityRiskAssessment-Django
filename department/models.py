@@ -20,7 +20,7 @@ class UserTypeDepartment(models.Model):
         ('End-User Requestor', 'End-User Requestor'),
     )    
 
-    name = models.CharField("User Type", max_length=35, null=True, choices=CATEGORY)
+    name = models.CharField(verbose_name="User Type", max_length=35, null=True, choices=CATEGORY)
 
     def __str__(self) -> str:
         return self.name
@@ -39,7 +39,4 @@ class UserDepartment(models.Model):
 
 
     def __str__(self) -> str:
-        if self.userType == None:
-            return self.user.fname + " " + self.user.lname
-        else:
-            return self.user.fname + " " + self.user.lname + " - " + self.userType
+        return self.user.fname + " " + self.user.lname

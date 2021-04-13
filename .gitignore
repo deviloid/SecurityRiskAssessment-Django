@@ -332,3 +332,9 @@ ASALocalRun/
 
 # Local History for Visual Studio
 .localhistory/
+accounts/migrations/
+project/migrations/
+questionnaire/migrations/
+department/migrations/
+vendor/migrations/
+

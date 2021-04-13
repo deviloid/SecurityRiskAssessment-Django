@@ -11,90 +11,106 @@ Login
         <img src="{% static '/images/Sentinel_bl.png' %}" height="300px">
     </div>
     <div class="col-6 bg-dark d-flex justify-content-center align-items-center" style="height: 100vh">
-        <form method="POST" action="">
-            {% csrf_token %}
-            <table>
-                <tr>
-                    <td>
-                        <h1 class="display-3 text-white">Login</h1>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <p>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="d-grid gap-2 col-12 mx-auto">
-                            <div class="input-group input-group-lg">
-                                <input type="text" name="username" placeholder="Username" class="form-control form-control-lg" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" id="form">
-                            </div>
-                            <div class="input-group input-group-lg">
-                                <input type="password" name="password" placeholder="Password" class="form-control form-control-lg" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" id="form">
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <p>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="d-grid gap-2 col-12 mx-auto">
-                            <input type="submit" name="Create User" value="Login" class="btn btn-secondary text-nowrap" style="width: 100%">
-                            <a href="{% url "signup" %}" class="btn btn-primary">Sign Up</a>
-                        </div>
-                    </td>
-                </tr>
-            </table>
-        </form>
-    </div>
-</div>
-
-{% endblock %}
-
-{% comment %} <div class="login-parent-div">
-    <!-- <img src="{% static '/images/auth-bg.jpg' %}" class="auth-bg">  -->
-    <div class="dimmer">
-        <div class="login-logo-div">
-            <img src="{% static '/images/Sentinel_bl.png' %}" class="sentinel-logo">
-        </div>
-        <div class="login-form-div">
-            <form method="POST" action="">
-                {% csrf_token %}
-                <table>
-                    <tr>
-                        <td>
-                            <h1 class="auth-header">Login</h1>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <input type="text" name="username" class="login-form-field" placeholder="Username"
-                                maxlength="150">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <input type="password" name="password" class="login-form-field" placeholder="Password"
-                                maxlength="150">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <input type="submit" name="Create User" class="login-form-submit">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a href="{% url " signup" %}" class="login-form-submit">Sign Up</a>
-                        </td>
-                    </tr>
-                </table>
-            </form>
+        <div class="row row-cols-1 d-flex justify-content-center">
+            <div class="col-12 d-flex justify-content-center">
+                <form method="POST" action="">
+                    {% csrf_token %}
+                    <table>
+                        <tr>
+                            <td>
+                                <h1 class="display-3 text-white">Login</h1>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="d-grid gap-2 col-12 mx-auto">
+                                    <div class="input-group input-group-lg">
+                                        <input type="text" name="username" placeholder="Username"
+                                            class="form-control form-control-lg" aria-label="Sizing example input"
+                                            aria-describedby="inputGroup-sizing-lg">
+                                    </div>
+                                    <div class="input-group input-group-lg">
+                                        <input type="password" name="password" placeholder="Password"
+                                            class="form-control form-control-lg" aria-label="Sizing example input"
+                                            aria-describedby="inputGroup-sizing-lg">
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="d-grid gap-2 col-12 mx-auto">
+                                    <input type="submit" name="Create User" value="Login"
+                                        class="btn btn-primary text-nowrap" style="width: 100%">
+                                    {% comment %} <a href="{% url "signup" %}" class="btn btn-secondary">Sign Up</a> {% endcomment %}
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+            <div class="col-12 d-flex justify-content-center">
+                <p class="lead text-white">Forgot Password? <a href="{% url 'password_reset' %}" style="text-decoration: none">Reset</a></p>
+            </div>
         </div>
     </div>
-</div> {% endcomment %}
+
+    {% endblock %}
+
+    {% comment %} <div class="login-parent-div">
+        <!-- <img src="{% static '/images/auth-bg.jpg' %}" class="auth-bg">  -->
+        <div class="dimmer">
+            <div class="login-logo-div">
+                <img src="{% static '/images/Sentinel_bl.png' %}" class="sentinel-logo">
+            </div>
+            <div class="login-form-div">
+                <form method="POST" action="">
+                    {% csrf_token %}
+                    <table>
+                        <tr>
+                            <td>
+                                <h1 class="auth-header">Login</h1>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="text" name="username" class="login-form-field" placeholder="Username"
+                                    maxlength="150">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="password" name="password" class="login-form-field" placeholder="Password"
+                                    maxlength="150">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="submit" name="Create User" class="login-form-submit">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a href="{% url " signup" %}" class="login-form-submit">Sign Up</a>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div> {% endcomment %}

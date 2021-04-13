@@ -1,50 +1,144 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
-from django.db import transaction
-from department.models import UserDepartment
-from vendor.models import UserVendor
-from.models import Account
+from django.forms.models import ModelForm
+from .models import Account
+from project.models import Project
+from vendor.models import Vendor, UserVendor
+from department.models import Department, UserDepartment
+from django.contrib.auth.forms import PasswordResetForm, SetPasswordForm
 
-class DepartmentSignUpForm(UserCreationForm):
-    password1 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'register-form-field', 'placeholder': 'Password'}))
-    password2 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'register-form-field', 'placeholder': 'Confirm Password'}))
-    
 
-    class Meta(UserCreationForm.Meta):
-        model = Account
-        fields = ['fname', 'lname', 'email', 'password1', 'password2']
-        widgets = {
-            'fname': forms.TextInput(attrs={'class': 'register-form-field', 'placeholder': 'First Name'}),
-            'lname': forms.TextInput(attrs={'class': 'register-form-field', 'placeholder': 'Last Name'}),
-            'email': forms.EmailInput(attrs={'class': 'register-form-field', 'placeholder': 'example@abc.xyz'}),           
+class UserPasswordResetForm(PasswordResetForm):
+    def __init__(self, *args, **kwargs):
+        super(UserPasswordResetForm, self).__init__(*args, **kwargs)
+
+    email = forms.EmailField(
+        label="Test",
+        widget=forms.EmailInput(
+            attrs={
+                "class": "form-control",
+                "placeholder": "Enter your email",
+                "type": "email",
+                "name": "email",
             }
-    
-    @transaction.atomic
-    def save(self):
-        user = super().save(commit=False)
-        user.is_userdepartment = True
-        user.save()
-        udept = UserDepartment.objects.create(user=user)
-        return user
+        ),
+    )
 
-class VendorSignUpForm(UserCreationForm):
 
-    password1 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'register-form-field', 'placeholder': 'Password'}))
-    password2 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'register-form-field', 'placeholder': 'Confirm Password'}))
+class UserPasswordChangeForm(SetPasswordForm):
+    def __init__(self, *args, **kwargs):
+        super(UserPasswordChangeForm, self).__init__(*args, **kwargs)
 
-    class Meta(UserCreationForm.Meta):
-        model = Account
-        fields = ['fname', 'lname', 'email', 'password1', 'password2']
-        widgets = {
-            'fname': forms.TextInput(attrs={'class': 'register-form-field', 'placeholder': 'First Name'}),
-            'lname': forms.TextInput(attrs={'class': 'register-form-field', 'placeholder': 'Last Name'}),
-            'email': forms.EmailInput(attrs={'class': 'register-form-field', 'placeholder': 'example@abc.xyz'}),           
+    new_password1 = forms.CharField(
+        label="Password",
+        widget=forms.PasswordInput(
+            attrs={
+                "class": "form-control",
+                "placeholder": "Password",
             }
-    
-    @transaction.atomic
-    def save(self):
-        user = super().save(commit=False)
-        user.is_uservendor = True
-        user.save()
-        uvendor = UserVendor.objects.create(user=user)
-        return user
+        ),
+    )
+    new_password2 = forms.CharField(
+        label="Conform Password",
+        widget=forms.PasswordInput(
+            attrs={
+                "class": "form-control",
+                "placeholder": "Confirm Password",
+            }
+        ),
+    )
+
+
+class SignUpForm(ModelForm):
+    class Meta:
+        model = Account
+        fields = ["fname", "lname", "email"]
+        widgets = {
+            "fname": forms.TextInput(
+                attrs={"class": "form-control", "placeholder": "First Name"}
+            ),
+            "lname": forms.TextInput(
+                attrs={"class": "form-control", "placeholder": "Last Name"}
+            ),
+            "email": forms.EmailInput(
+                attrs={"class": "form-control", "placeholder": "example@abc.xyz"}
+            ),
+        }
+
+
+class DeptCreateForm(ModelForm):
+
+    department = forms.ModelChoiceField(
+        queryset=Department.objects.all(),
+        widget=forms.Select(attrs={"class": "form-control"}),
+        empty_label="Select Department",
+    )
+
+    class Meta:
+        model = UserDepartment
+        fields = ["department", "phone"]
+        widgets = {
+            "phone": forms.TextInput(
+                attrs={"class": "form-control", "placeholder": "Phone"}
+            )
+        }
+
+
+class VendCreateForm(ModelForm):
+
+    vendor = forms.ModelChoiceField(
+        queryset=Vendor.objects.all(),
+        widget=forms.Select(attrs={"class": "form-control"}),
+        empty_label="Select Vendor",
+    )
+
+    class Meta:
+        model = UserVendor
+        fields = ["vendor", "phone"]
+        widgets = {
+            "phone": forms.TextInput(
+                attrs={"class": "form-control", "placeholder": "Phone"}
+            )
+        }
+
+
+class ProjectCreateForm(ModelForm):
+    risk_analyst = forms.ModelChoiceField(
+        label='Risk Analyst',
+        queryset=Account.objects.filter(is_staff=True),
+        widget=forms.Select(attrs={"class": "form-control"}),
+        empty_label="Select Risk Analyst",
+    )
+    department = forms.ModelChoiceField(
+        queryset=Department.objects.all(),
+        widget=forms.Select(attrs={"class": "form-control"}),
+        empty_label="Select Department",
+    )
+    vendor = forms.ModelChoiceField(
+        queryset=Vendor.objects.all(),
+        widget=forms.Select(attrs={"class": "form-control"}),
+        empty_label="Select Vendor",
+    )
+    dept_mpc = forms.ModelChoiceField(
+        label='Main Project Contact (Dept)',
+        queryset=UserDepartment.objects.all(),
+        widget=forms.Select(attrs={"class": "form-control"}),
+        empty_label="Select Main Project Contact (Dept)",
+    )
+    vend_mpc = forms.ModelChoiceField(
+        label='Main Project Contact (Vendor)',
+        queryset=UserVendor.objects.all(),
+        widget=forms.Select(attrs={"class": "form-control"}),
+        empty_label="Select Main Project Contact (Vendor)",
+    )
+
+    class Meta:
+        model = Project
+        fields = "__all__"
+        widgets = {
+            "name": forms.TextInput(
+                attrs={"class": "form-control", "placeholder": "Project Name"}
+            ),
+            "purpose": forms.Textarea(
+                attrs={"class": "form-control", "placeholder": "Project Purpose"}
+            ),
+        }

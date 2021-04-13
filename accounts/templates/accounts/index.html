@@ -4,13 +4,14 @@
 Dashboard
 {% endblock %}
 
-{% block content %}
-    <div>
-        <div class="utl-btn">
-            Hello!
-        </div>
-        <div class="utl-btn">
-            Hello!
-        </div>
-    </div>
+{% block body %}
+<div class="row" style="height: 59px">
+
+</div>
+<div class="row">
+    <!-- Admin SideBar -->
+    {% include "dashboard/admin-sidebar.html" %}
+
+
+</div>
 {% endblock %}

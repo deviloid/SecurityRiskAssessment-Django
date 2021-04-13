@@ -28,6 +28,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     "40.78.127.209",
+    "localhost",
+    "127.0.0.1",
+    "198.168.0.83",
+    "192.168.0.186",
 ]
 
 AUTH_USER_MODEL = "accounts.Account"
@@ -46,6 +50,7 @@ INSTALLED_APPS = [
     "department",
     "vendor",
     "accounts",
+    "questionnaire",
 ]
 
 MIDDLEWARE = [
@@ -108,13 +113,14 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
 LANGUAGE_CODE = "en-us"
 
-TIME_ZONE = "UTC"
+TIME_ZONE = "MST"
 
 USE_I18N = True
 
@@ -134,3 +140,5 @@ MEDIA_URL = "/images/"
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
+
+EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'sent_emails')

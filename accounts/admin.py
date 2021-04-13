@@ -15,7 +15,7 @@ class AccountAdmin(UserAdmin):
     fieldsets = (
         ('Details',{'fields': ('fname', 'lname', 'email', 'password')}),
         ('Permissions',{'fields': ('is_admin', 'is_staff', 'is_userdepartment', 'is_uservendor')}),
-        ('Logs',{'fields': ('date_joined', 'last_login')}),
+        ('Logs',{'fields': ('has_setpsd', 'date_joined', 'last_login')}),
     )
 
     add_fieldsets = (

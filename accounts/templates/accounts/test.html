@@ -1,0 +1,29 @@
+{% extends 'accounts/base.html' %}
+{% load static %}
+
+{% block title %}
+Form TEST
+{% endblock %}
+
+{% block body %}
+    <div class="row" style="height: 59px">
+    </div>
+    {% include "dashboard/admin-sidebar.html" %}
+
+    <main role="main" class="col-md-10 ml-sm-auto col-lg-10 pt-3 px-4">
+        <div
+            class="row d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+            <div class="col-8">
+        {% for field in form %}
+            {% comment %} {% if field == form.exst_contract %}
+                {% for radio in form.exst_contract %}
+                    {{radio}}
+                {% endfor %}
+            {% else %} {% endcomment %}
+            <p>{{field}}</p>
+            {% comment %} {% endif %} {% endcomment %}
+        {% endfor %}
+    </div>
+    </div>
+</main>
+{% endblock %}
