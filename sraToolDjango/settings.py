@@ -45,12 +45,15 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+
+    "crispy_forms",
+
     # My Apps
-    "project",
+    "product",
     "department",
     "vendor",
     "accounts",
-    "questionnaire",
+    "riskassessment",
 ]
 
 MIDDLEWARE = [
@@ -142,3 +145,5 @@ STATICFILES_DIRS = [
 ]
 
 EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'sent_emails')
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

@@ -1,0 +1,235 @@
+{% extends 'accounts/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+Dashboard | Risk Assessment | {{riskassessment.product.name}}
+{% endblock %}
+
+{% block body %}
+<div class="row" style="height: 59px">
+
+</div>
+<div class="row">
+
+    <!-- Admin SideBar -->
+    {% include "dashboard/admin-sidebar.html" %}
+
+    <main role="main" class="col-md-10 ml-sm-auto col-lg-10 pt-3 px-4">
+        <div
+            class="row d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+            <div class="col-8">
+                <div
+                    class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+                    <h1 class="h2">Risk Assessment - {{riskassessment.product.name}}</h1>
+                    {% comment %} <a href="#" class="btn btn-primary">Add User</a> {% endcomment %}
+                </div>
+                <div class="progress" style="height: 5px;">
+                    <div class="progress-bar" role="progressbar" style="width: {{progress}}%"></div>
+                </div>
+                <br>
+                <div
+                    class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+                    <h1 class="h4">Encryption</h1>
+                </div>
+                <form action="" method="POST" autocomplete="off">
+                    {% csrf_token %}
+                    <div class="form-group row d-none">
+                        <label class="col-3 col-form-label">{{form.riskassessment.name}}</label>
+                        <div class="col-9">
+                            {{form.riskassessment}}
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group row">
+                        <label class="col-12 col-form-label"><strong>How will sensitive data be protected in transit (as
+                                it travels across the network)?</strong></label>
+                    </div>
+                    <br>
+                    <div class="form-group row">
+                        <label class="col-9 col-form-label">Sensitive data will be traveling across one or more external
+                            connections outside of the Company data Center without any protection.</label>
+                        <div class="col-3">
+                            <div>
+                                <div class="input-group mb-3 d-flex justify-content-end">
+                                    {{form.p1q1|as_crispy_field }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group row">
+                        <label class="col-9 col-form-label">All systems and connections storing or processing sensitive
+                            data are within the Company data center, but sensitive data is not encrypted as it moves
+                            from system to system.</label>
+                        <div class="col-3 d-flex justify-content-end">
+                            {{form.p1q2|as_crispy_field }}
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group row">
+                        <label class="col-9 col-form-label">Firewalls, network segmentation, and/or other techniques
+                            limit sensitive traffic to only those systems that are intended to receive it. Other systems
+                            are prevented from connecting, or listening to sensitive traffic. However, sensitive data is
+                            not encrypted in transit.</label>
+                        <div class="col-3 d-flex justify-content-end">
+                            {{form.p1q3|as_crispy_field }}
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group row">
+                        <label class="col-9 col-form-label">Is there a crypto key management system of
+                            certificates?</label>
+                        <div class="col-3">
+                            <div>
+                                <div class="input-group mb-3 d-flex justify-content-end">
+                                    {{form.p1q4|as_crispy_field }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group row">
+                        <label class="col-9 col-form-label">All sensitive data is encrypted as it travels over each
+                            network connection.</label>
+                        <div class="col-3 d-flex justify-content-end">
+                            {{form.p1q5|as_crispy_field }}
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group row">
+                        <label class="col-9 col-form-label">All sensitive data is encrypted as when it is at
+                            rest.</label>
+                        <div class="col-3 d-flex justify-content-end">
+                            {{form.p1q6|as_crispy_field }}
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group row">
+                        <label class="col-9 col-form-label">All* web sites are using https encryption. Servers have
+                            valid https certificates. (The certificates are correctly configured and installed so that
+                            no warnings are seen.)</label>
+                        <div class="col-3">
+                            <div>
+                                <div class="input-group mb-3 d-flex justify-content-end">
+                                    {{form.p1q7|as_crispy_field }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group row">
+                        <label class="col-9 col-form-label">This project has no sensitive data.</label>
+                        <div class="col-3 d-flex justify-content-end">
+                            {{form.p1q8|as_crispy_field }}
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group row">
+                        <label class="col-9 col-form-label">This question is not applicable for this project because all
+                            of the following are true:
+                            <ul>
+                                <li>
+                                    No Company equipment or network connections will be used to transmit sensitive
+                                    data.If a vendor is transmitting or receiving sensitive data, the vendor has
+                                    accepted responsibility for protecting the data by signing a contract that
+                                    includesISO language.
+                                </li>
+                            </ul>
+                        </label>
+                        <div class="col-3 d-flex justify-content-end">
+                            {{form.p1q9|as_crispy_field }}
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group row">
+                        <label class="col-12 col-form-label"><strong>How will sensitive data be protected at rest
+                                (wherever it is stored)?</strong></label>
+                    </div>
+                    <br>
+                    <div class="form-group row">
+                        <label class="col-9 col-form-label">Sensitive data will be stored without any protection, on
+                            devices available to the general public without logging in.</label>
+                        <div class="col-3">
+                            <div>
+                                <div class="input-group mb-3 d-flex justify-content-end">
+                                    {{form.p2q1|as_crispy_field }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group row">
+                        <label class="col-9 col-form-label">Sensitive data will be stored without encryption at rest,
+                            even though PCI or other applicable regulations require it.</label>
+                        <div class="col-3 d-flex justify-content-end">
+                            {{form.p2q2|as_crispy_field }}
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group row">
+                        <label class="col-9 col-form-label">Sensitive data will be stored without encryption, but the
+                            devices require a login, and there is no applicable regulation requiring encryption at
+                            rest.</label>
+                        <div class="col-3 d-flex justify-content-end">
+                            {{form.p2q3|as_crispy_field }}
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group row">
+                        <label class="col-9 col-form-label">All systems storing or processing sensitive data are within
+                            the Company data center, but sensitive data is not encrypted on disk. There is no applicable
+                            regulation requiring encryption at rest.</label>
+                        <div class="col-3 d-flex justify-content-end">
+                            {{form.p2q4|as_crispy_field }}
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group row">
+                        <label class="col-9 col-form-label">Sensitive data is encrypted on disk, but not on backups.
+                            There is no applicable regulation requiring encryption at rest.</label>
+                        <div class="col-3 d-flex justify-content-end">
+                            {{form.p2q5|as_crispy_field }}
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group row">
+                        <label class="col-9 col-form-label">All sensitive data is encrypted at every location where it
+                            is stored, including user devices and backups.</label>
+                        <div class="col-3 d-flex justify-content-end">
+                            {{form.p2q6|as_crispy_field }}
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group row">
+                        <label class="col-9 col-form-label">This question is not applicable for this project because all
+                            of the following are true:
+                            <ul>
+                                <li>
+                                    No Company equipment or network connections will be used to transmit sensitive
+                                    data.If a vendor is transmitting or receiving sensitive data, the vendor has
+                                    accepted responsibility for protecting the data by signing a contract that
+                                    includesISO language.
+                                </li>
+                            </ul>
+                        </label>
+                        <div class="col-3 d-flex justify-content-end">
+                            {{form.p2q7|as_crispy_field }}
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group row {% if inst and inst.score != 0 %} {% else %} d-none {% endif %}">
+                        <label class="col-2 col-form-label">Comment</label>
+                        <div class="col-10 d-flex justify-content-end">
+                            {{form.comment}}
+                        </div>
+                    </div>
+                    <br>
+                    <input type="submit" name="Add Product" value="Next" class="btn btn-primary">
+                    {{form.errors|striptags}}
+                </form>
+            </div>
+        </div>
+    </main>
+</div>
+{% endblock %}

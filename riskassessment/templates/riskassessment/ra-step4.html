@@ -1,0 +1,80 @@
+{% extends 'accounts/base.html' %}
+{% load static %}
+
+{% block title %}
+Dashboard | Risk Assessment | {{riskassessment.product.name}}
+{% endblock %}
+
+{% block body %}
+<div class="row" style="height: 59px">
+
+</div>
+<div class="row">
+
+    <!-- Admin SideBar -->
+    {% include "dashboard/admin-sidebar.html" %}
+
+    <main role="main" class="col-md-10 ml-sm-auto col-lg-10 pt-3 px-4">
+        <div
+            class="row d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+            <div class="col-8">
+                <div
+                    class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+                    <h1 class="h2">Risk Assessment - {{riskassessment.product.name}}</h1>
+                    {% comment %} <a href="#" class="btn btn-primary">Add User</a> {% endcomment %}
+                </div>
+                <div class="progress" style="height: 5px;">
+                    <div class="progress-bar" role="progressbar" style="width: {{progress}}%"></div>
+                </div>
+                <br>
+                <div
+                    class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+                    <h1 class="h4">Availabilty and Criticality</h1>
+                </div>
+                <form action="" method="POST" autocomplete="off">
+                    {% csrf_token %}
+                    <div class="form-group row d-none">
+                        <label for="inputPassword" class="col-3 col-form-label">{{form.riskassessment.label}}</label>
+                        <div class="col-9">
+                            {{form.riskassessment}}
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group row">
+                        <label for="inputPassword" class="col-9 col-form-label">What is the Availability Rating of this
+                            System?</label>
+                        <div class="col-3">
+                            <div>
+                                <div class="input-group mb-3 d-flex justify-content-end">
+                                    {{form.a_rating}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group row">
+                        <label for="inputPassword" class="col-9 col-form-label">System Criticality rating is based on
+                            Sensitivity of Data, and the Availability Rating. Note: All Critical, High, and Medium is
+                            required to log events to Splunk4and set up for monitoring/alerting and must be added to the
+                            centralized asset inventory in the CMDB. Additional information is available on the
+                            Vulnerability Management Website.</label>
+                        <div class="col-3">
+                            {{form.c_rating}}
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group row {% if inst and inst.score != 0 %} {% else %} d-none {% endif %}">
+                        <label class="col-2 col-form-label">Comment</label>
+                        <div class="col-10 d-flex justify-content-end">
+                            {{form.comment}}
+                        </div>
+                    </div>
+                    <br>
+                    <input type="submit" name="Add Product" value="Next" class="btn btn-primary">
+                    {{form.errors|striptags}}
+                </form>
+            </div>
+        </div>
+    </main>
+</div>
+{% endblock %}

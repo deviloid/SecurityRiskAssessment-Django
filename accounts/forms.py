@@ -1,10 +1,13 @@
 from django import forms
-from django.forms.models import ModelForm
+from django.forms.models import ModelForm, model_to_dict
+from django.contrib.auth.forms import PasswordResetForm, SetPasswordForm
+
+from .widgets import RadioSelectButtonGroup
 from .models import Account
-from project.models import Project
+from product.models import Product
 from vendor.models import Vendor, UserVendor
 from department.models import Department, UserDepartment
-from django.contrib.auth.forms import PasswordResetForm, SetPasswordForm
+from riskassessment.models import RiskAssessment
 
 
 class UserPasswordResetForm(PasswordResetForm):
@@ -101,7 +104,7 @@ class VendCreateForm(ModelForm):
         }
 
 
-class ProjectCreateForm(ModelForm):
+class ProductCreateForm(ModelForm):
     risk_analyst = forms.ModelChoiceField(
         label='Risk Analyst',
         queryset=Account.objects.filter(is_staff=True),
@@ -113,16 +116,16 @@ class ProjectCreateForm(ModelForm):
         widget=forms.Select(attrs={"class": "form-control"}),
         empty_label="Select Department",
     )
-    vendor = forms.ModelChoiceField(
-        queryset=Vendor.objects.all(),
-        widget=forms.Select(attrs={"class": "form-control"}),
-        empty_label="Select Vendor",
-    )
     dept_mpc = forms.ModelChoiceField(
         label='Main Project Contact (Dept)',
         queryset=UserDepartment.objects.all(),
         widget=forms.Select(attrs={"class": "form-control"}),
         empty_label="Select Main Project Contact (Dept)",
+    )
+    vendor = forms.ModelChoiceField(
+        queryset=Vendor.objects.all(),
+        widget=forms.Select(attrs={"class": "form-control"}),
+        empty_label="Select Vendor",
     )
     vend_mpc = forms.ModelChoiceField(
         label='Main Project Contact (Vendor)',
@@ -132,8 +135,9 @@ class ProjectCreateForm(ModelForm):
     )
 
     class Meta:
-        model = Project
+        model = Product
         fields = "__all__"
+        exclude = ['slug']
         widgets = {
             "name": forms.TextInput(
                 attrs={"class": "form-control", "placeholder": "Project Name"}
@@ -142,3 +146,40 @@ class ProjectCreateForm(ModelForm):
                 attrs={"class": "form-control", "placeholder": "Project Purpose"}
             ),
         }
+    field_order = ['name', 'purpose', 'risk_analyst', 'department', 'dept_mpc', 'vendor', 'vend_mpc']
+
+
+class DepartmentCreateForm(ModelForm):
+
+    class Meta:
+        model = Department
+        fields = '__all__'
+        widgets = {
+            'name' : forms.TextInput(attrs={'class':'form-control', 'placeholder':'Department Name'})
+        }
+
+
+class VendorCreateForm(ModelForm):
+    CHOICES = [
+        ('Yes','Yes'),
+        ('No','No'),
+        ('Under Negotiation','Under Negotiation')
+    ]
+    exstContract = forms.ChoiceField(choices=CHOICES, widget=RadioSelectButtonGroup(), label='Do you have an existing signed contract with the Company?')
+
+    class Meta:
+        model = Vendor
+        fields = '__all__'
+        widgets = {
+            'name':forms.TextInput(attrs={'class':'form-control', 'placeholder':'Vendor Name'}),
+            'website':forms.TextInput(attrs={'class':'form-control', 'placeholder':'Website'})
+        }
+
+
+class CreateRAForm(ModelForm):
+
+    product = forms.ModelChoiceField(queryset=Product.objects.all(), widget=forms.Select(attrs={'class':'form-control'}), empty_label="Select Product",)
+
+    class Meta:
+        model = RiskAssessment
+        fields = ['product']

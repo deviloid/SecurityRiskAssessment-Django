@@ -1,0 +1,2721 @@
+{% extends 'accounts/base.html' %}
+
+{% block title %}
+Dashboard
+{% endblock %}
+
+{% block body %}
+<div class="row" style="height: 59px">
+
+</div>
+<div class="row d-flex justify-content-center">
+    <!-- Admin SideBar -->
+    {% comment %} {% include "dashboard/admin-sidebar.html" %} {% endcomment %}
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4 d-flex justify-content-center">
+        <div class="col-8 bg-light d-flex justify-content-center">
+                <div class="row d-flex justify-content-center d-print-block">
+                    <div class="col-12 py-5 d-flex justify-content-center">
+                        <h1 class="display-4">{{riskassessment.product.name}}</h1>
+                    </div>
+                    <div class="col-12 d-flex justify-content-center">
+                        <h1 class="display-6">Security Risk Assessment Report</h1>
+                    </div>
+
+                    <!-- Project -->
+                    <span class="text-white print-none" id="ProjectInfo">s</span>
+                    <span class="text-white print-none" id="">s</span>
+                    <div class="col-12 px-5">
+                        <div class="row" style="height: 25px;"></div>
+                        <div class="row">
+                            <div class="col-6">
+                                <button type="button" class="btn btn-primary">Product Information</button>
+                            </div>
+                        </div>
+                        <div class="row" style="height: 30px;"></div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-6 col-form-label">Product Id</label>
+                            <div class="col-sm-6">
+                                <label class="col col-form-label">{{riskassessment.product.id}}</label>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-6 col-form-label">Product Name</label>
+                            <div class="col-sm-6">
+                                <label for="staticEmail" class="col col-form-label">{{riskassessment.product.name}}</label>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-6 col-form-label">Project Purpose</label>
+                            <div class="col-sm-6">
+                                <label for="staticEmail" class="col col-form-label">{{riskassessment.product.purpose}}</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Department -->
+                    <span class="text-white print-none" id="DeptInfo">s</span>
+                    <span class="text-white print-none" id="">s</span>
+                    <div class="col-12 px-5">
+                        <div class="row" style="height: 25px;"></div>
+                        <div class="row">
+                            <div class="col-6">
+                                <button type="button" class="btn btn-primary">Department Information</button>
+                            </div>
+                        </div>
+                        <div class="row" style="height: 30px;"></div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-6 col-form-label">Department Name</label>
+                            <div class="col-sm-6">
+                                <label class="col col-form-label">{{riskassessment.product.department.name}}</label>
+                            </div>
+                        </div>
+                        <hr class="dropdown-divider">
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-6 col-form-label">Department Primary Contact</label>
+                            <div class="col-sm-6">
+                                <label class="col col-form-label">{{riskassessment.product.dept_mpc.department}}</label>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-6 col-form-label"></label>
+                            <div class="col-sm-6">
+                                <label class="col col-form-label">{{riskassessment.product.dept_mpc}}</label>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-6 col-form-label"></label>
+                            <div class="col-sm-6">
+                                <label class="col col-form-label">{{riskassessment.product.dept_mpc.user.email}}</label>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-6 col-form-label"></label>
+                            <div class="col-sm-6">
+                                <label class="col col-form-label">+1 {{riskassessment.product.dept_mpc.phone}}</label>
+                            </div>
+                        </div>
+                        <hr class="dropdown-divider">
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-6 col-form-label">Technical Administrator
+                                Contact</label>
+                            <div class="col-sm-6">
+                                <label class="col col-form-label">{{dept_info.ta_dept}}</label>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-6 col-form-label"></label>
+                            <div class="col-sm-6">
+                                <label class="col col-form-label">{{dept_info.ta_name}}</label>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-6 col-form-label"></label>
+                            <div class="col-sm-6">
+                                <label class="col col-form-label">{{dept_info.ta_email}}</label>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-6 col-form-label"></label>
+                            <div class="col-sm-6">
+                                <label class="col col-form-label">+1 {{dept_info.ta_phone}}</label>
+                            </div>
+                        </div>
+                        <hr class="dropdown-divider">
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-6 col-form-label">End-User Requestor Contact</label>
+                            <div class="col-sm-6">
+                                <label class="col col-form-label">{{dept_info.eur_dept}}</label>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-6 col-form-label"></label>
+                            <div class="col-sm-6">
+                                <label class="col col-form-label">{{dept_info.eur_name}}</label>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-6 col-form-label"></label>
+                            <div class="col-sm-6">
+                                <label class="col col-form-label">{{dept_info.eur_email}}</label>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-6 col-form-label"></label>
+                            <div class="col-sm-6">
+                                <label class="col col-form-label">+1 {{dept_info.eur_phone}}</label>
+                            </div>
+                        </div>
+                        <hr class="dropdown-divider">
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-6 col-form-label">Data Steward</label>
+                            <div class="col-sm-6">
+                                <label class="col col-form-label">{{dept_info.ds_dept}}</label>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-6 col-form-label"></label>
+                            <div class="col-sm-6">
+                                <label class="col col-form-label">{{dept_info.ds_name}}</label>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-6 col-form-label"></label>
+                            <div class="col-sm-6">
+                                <label class="col col-form-label">{{dept_info.ds_email}}</label>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-6 col-form-label"></label>
+                            <div class="col-sm-6">
+                                <label class="col col-form-label">+1 {{dept_info.ds_phone}}</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Vendor -->
+                    <span class="text-white print-none" id="VendInfo">s</span>
+                    <span class="text-white print-none" id="">s</span>
+                    <div class="col-12 px-5">
+                        <div class="row" style="height: 25px;"></div>
+                        <div class="row">
+                            <div class="col-6">
+                                <button type="button" class="btn btn-primary">Vendor Information</button>
+                            </div>
+                        </div>
+                        <div class="row" style="height: 30px;"></div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-6 col-form-label">Vendor Company Name</label>
+                            <div class="col-sm-6">
+                                <label class="col col-form-label">{{riskassessment.product.vendor.name}}</label>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-6 col-form-label">Vendor Website</label>
+                            <div class="col-sm-6">
+                                <label class="col col-form-label">{{riskassessment.product.vendor.website}}</label>
+                            </div>
+                        </div>
+                        <hr class="dropdown-divider">
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-6 col-form-label">Vendor Primary Contact</label>
+                            <div class="col-sm-6">
+                                <label class="col col-form-label">{{riskassessment.product.vend_mpc}}</label>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-6 col-form-label"></label>
+                            <div class="col-sm-6">
+                                <label class="col col-form-label">{{riskassessment.product.vend_mpc.user.email}}</label>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-6 col-form-label"></label>
+                            <div class="col-sm-6">
+                                <label class="col col-form-label">+1 {{riskassessment.product.vend_mpc.phone}}</label>
+                            </div>
+                        </div>
+                        <hr class="dropdown-divider">
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-6 col-form-label">Vendor Technical Contact</label>
+                            <div class="col-sm-6">
+                                <label class="col col-form-label">{{vend_info.tc_name}}</label>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-6 col-form-label"></label>
+                            <div class="col-sm-6">
+                                <label class="col col-form-label">{{vend_info.tc_email}}</label>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-6 col-form-label"></label>
+                            <div class="col-sm-6">
+                                <label class="col col-form-label">+1 {{vend_info.tc_phone}}</label>
+                            </div>
+                        </div>
+                        <hr class="dropdown-divider">
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-6 col-form-label">Does the Comapany have an existing
+                                signed contract with this vendor?</label>
+                            <div class="col-sm-6">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioDisabled" id="flexRadioDisabled" {% if vend_info.exst_contract == "Yes" %}checked{% endif %} disabled>
+                                            <label class="form-check-label" for="flexRadioDisabled">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioDisabled6" id="flexRadioCheckedDisabled6" {% if vend_info.exst_contract == "No" %}checked{% endif %} disabled>
+                                            <label class="form-check-label" for="flexRadioCheckedDisabled6">
+                                                No
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="flexRadioDisabled11" id="flexRadioCheckedDisabled11" {% if vend_info.exst_contract == "Under Negotiation" %}checked{% endif %}
+                                                disabled>
+                                            <label class="form-check-label" for="flexRadioCheckedDisabled11">
+                                                Under Negotiation
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Data Management -->
+                    <span class="text-white print-none" id="DataManagement">s</span>
+                    <span class="text-white print-none" id="">s</span>
+
+                    <div class="col-12 px-5">
+                        <div class="row" style="height: 25px;"></div>
+                        <div class="row">
+                            <div class="col-6">
+                                <button type="button" class="btn btn-primary">Data Management</button>
+                            </div>
+                            <div class="col-6 d-flex justify-content-end">
+                                {% comment %} <h3 class="">Score: 3/5</h3><span class="text-light">S</span> {% endcomment %}
+                                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                    {% if data_mng.eval_score >= 90 %}
+                                    <button type="button" disabled class="btn btn-danger">High</button>
+                                    {% elif data_mng.eval_score < 90 and data_mng.eval_score >= 51 %}
+                                    <button type="button" class="btn btn-warning">Medium</button>
+                                    {% else %}
+                                    <button type="button" disabled class="btn btn-success">Low</button>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="height: 30px;"></div>
+                        <!-- <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-6 col-form-label">Company Data Steward Name</label>
+                            <div class="col-sm-6">
+                                <input type="text" readonly class="form-control-plaintext" id="staticEmail"
+                                    value="FirstName LastName">
+                            </div>
+                        </div> -->
+                        <!-- <hr class="dropdown-divider"> -->
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-2 col-form-label">Regulated Data</label>
+                            <div class="col-sm-10">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="checkbox" value=""
+                                                id="flexCheckDefault" {% if "FERPA" in reg_data %}checked{% endif %}>
+                                            <label class="form-check-label" for="flexCheckDefault">
+                                                FERPA
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="checkbox" value=""
+                                                id="flexCheckDefault" {% if "HIPAA" in reg_data %}checked{% endif %}>
+                                            <label class="form-check-label" for="flexCheckDefault">
+                                                HIPAA
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="checkbox" value=""
+                                                id="flexCheckChecked" {% if "GDPR" in reg_data %}checked{% endif %}>
+                                            <label class="form-check-label" for="flexCheckChecked">
+                                                GDPR
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="checkbox" value=""
+                                                id="flexCheckChecked" {% if "ITAR" in reg_data %}checked{% endif %}>
+                                            <label class="form-check-label" for="flexCheckChecked">
+                                                ITAR
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="checkbox" value=""
+                                                id="flexCheckChecked" {% if "PCI" in reg_data %}checked{% endif %}>
+                                            <label class="form-check-label" for="flexCheckChecked">
+                                                PCI
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="checkbox" value=""
+                                                id="flexCheckChecked"  {% if "PII" in reg_data %}checked{% endif %}>
+                                            <label class="form-check-label" for="flexCheckChecked">
+                                                PII
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-3 col-form-label">Data Classification</label>
+                            <div class="col-sm-9 d-flex justify-content-end">
+                                <div>
+                                    <div class="input-group mb-3">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="checkbox" value=""
+                                                id="flexCheckDefault" {% if "Highly Sensitive" in data_classi %}checked{% endif %}>
+                                            <label class="form-check-label" for="flexCheckDefault">
+                                                Highly Sensitive
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="checkbox" value=""
+                                                id="flexCheckChecked" {% if "Sensitive" in data_classi %}checked{% endif %}>
+                                            <label class="form-check-label" for="flexCheckChecked">
+                                                Sensitive
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="checkbox" value=""
+                                                id="flexCheckChecked" {% if "Internal" in data_classi %}checked{% endif %}>
+                                            <label class="form-check-label" for="flexCheckChecked">
+                                                Internal
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="checkbox" value=""
+                                                id="flexCheckChecked" {% if "Public" in data_classi %}checked{% endif %}>
+                                            <label class="form-check-label" for="flexCheckChecked">
+                                                Public
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="dropdown-divider">
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-10 col-form-label">Number of Records in Data</label>
+                            <div class="col-sm-2">
+                                <label class="col col-form-label">{{data_mng.recs_in_data}}</label>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-6 col-form-label">Are records purged from
+                                Data?</label>
+                            <div class="col-sm-6">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="recs_purgedY" id="recs_purgedY" {% if data_mng.recs_purged == "Yes" %}checked{% endif %}  disabled>
+                                            <label class="form-check-label" for="recs_purgedY">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="recs_purgedN" id="recs_purgedN" {% if data_mng.recs_purged == "No" %}checked{% endif %}  disabled>
+                                            <label class="form-check-label" for="recs_purgedN">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-10 col-form-label">Estimated yearly additional
+                                Records</label>
+                            <div class="col-sm-2">
+                                <label class="col col-form-label">{{data_mng.est_add_recs}}</label>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-7 col-form-label">Is data processing performed
+                                outside the US?</label>
+                            <div class="col-sm-5">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="data_process_outsideY" id="data_process_outsideY" {% if data_mng.data_process_outside == "Yes" %}checked{% endif %}  disabled>
+                                            <label class="form-check-label" for="data_process_outsideY">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="data_process_outsideN" id="data_process_outsideN"  {% if data_mng.data_process_outside == "No" %}checked{% endif %}  
+                                                disabled>
+                                            <label class="form-check-label" for="data_process_outsideN">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-6 col-form-label">Is data stored outside the
+                                US?</label>
+                            <div class="col-sm-6">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="data_stored_outsideY" id="data_stored_outsideY" {% if data_mng.data_stored_outside == "Yes" %}checked{% endif %} disabled>
+                                            <label class="form-check-label" for="data_stored_outsideY">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="data_stored_outsideN" id="data_stored_outsideN" {% if data_mng.data_stored_outside == "No" %}checked{% endif %}
+                                                disabled>
+                                            <label class="form-check-label" for="data_stored_outsideN">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-6 col-form-label">Is any data received (directly or
+                                indirectly by the Company) from individuals outside of the US?</label>
+                            <div class="col-sm-6">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="data_rcvd_outsideY" id="data_rcvd_outsideY" {% if data_mng.data_rcvd_outside == "Yes" %}checked{% endif %} disabled>
+                                            <label class="form-check-label" for="data_rcvd_outsideY">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="data_rcvd_outsideN" id="data_rcvd_outsideN" {% if data_mng.data_rcvd_outside == "No" %}checked{% endif %}
+                                                disabled>
+                                            <label class="form-check-label" for="data_rcvd_outsideN">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-7 col-form-label">Are data or Systems accessible
+                                outside the US?</label>
+                            <div class="col-sm-5">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="data_accss_outsideY" id="data_accss_outsideY" {% if data_mng.data_accss_outside == "Yes" %}checked{% endif %} disabled>
+                                            <label class="form-check-label" for="data_accss_outsideY">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="data_accss_outsideN" id="data_accss_outsideN" {% if data_mng.data_accss_outside == "No" %}checked{% endif %}
+                                                disabled>
+                                            <label class="form-check-label" for="data_accss_outsideN">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Availability & Criticality -->
+                    <span class="text-white print-none" id="AvailabilityCriticality">s</span>
+                    <span class="text-white print-none" id="">s</span>
+
+                    <div class="col-12 px-5">
+                        <div class="row" style="height: 25px;"></div>
+                        <div class="row">
+                            <div class="col-6">
+                                <button type="button" class="btn btn-primary">Availability & Criticality</button>
+                            </div>
+                            <div class="col-6 d-flex justify-content-end">
+                                {% comment %} <h3 class="">Score: 3/5</h3><span class="text-light">S</span> {% endcomment %}
+                                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                    {% if a_c.eval_score >= 90 %}
+                                    <button type="button" disabled class="btn btn-danger">High</button>
+                                    {% elif a_c.eval_score < 90 and a_c.eval_score >= 51 %}
+                                    <button type="button" class="btn btn-warning">Medium</button>
+                                    {% else %}
+                                    <button type="button" disabled class="btn btn-success">Low</button>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="height: 30px;"></div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-7 col-form-label">What is the Availability Rating of
+                                this System?</label>
+                            <div class="col-sm-5">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="a_rating1" id="a_rating1"
+                                                {% if a_c.a_rating == "Tier 1" %}checked{% endif %} disabled>
+                                            <label class="form-check-label" for="a_rating1">
+                                                Tier 1
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="a_rating2" id="a_rating2" {% if a_c.a_rating == "Tier 2" %}checked{% endif %}
+                                                disabled>
+                                            <label class="form-check-label" for="a_rating2">
+                                                Tier 2
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="a_rating3" id="a_rating3" {% if a_c.a_rating == "Tier 3" %}checked{% endif %}
+                                                disabled>
+                                            <label class="form-check-label" for="a_rating3">
+                                                Tier 3
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-7 col-form-label">System Criticality
+                                rating is based on Sensitivity of Data, and the Availability Rating.
+                                Note: All Critical, High, and Medium is required to log events to Splunk and set up for
+                                monitoring/alerting and must be added to the centralized asset inventory in the CMDB.
+                                Additional information is available on the Vulnerability Management Website.</label>
+                            <div class="col-sm-5">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="c_ratingH" id="c_ratingH" {% if a_c.c_rating == "High" %}checked{% endif %} disabled>
+                                            <label class="form-check-label" for="c_ratingH">
+                                                High
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="c_ratingM" id="c_ratingM" {% if a_c.c_rating == "Medium" %}checked{% endif %} disabled>
+                                            <label class="form-check-label" for="c_ratingM">
+                                                Medium
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="c_ratingL" id="c_ratingL" {% if a_c.c_rating == "Low" %}checked{% endif %}
+                                                disabled>
+                                            <label class="form-check-label" for="c_ratingL">
+                                                Low
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Compliance -->
+                    <span class="text-white print-none" id="Compliance">s</span>
+                    <span class="text-white print-none" id="">s</span>
+
+                    <div class="col-12 px-5">
+                        <div class="row" style="height: 25px;"></div>
+                        <div class="row">
+                            <div class="col-6">
+                                <button type="button" class="btn btn-primary">Compliance</button>
+                            </div>
+                            <div class="col-6 d-flex justify-content-end">
+                                {% comment %} <h3 class="">Score: 0/3</h3><span class="text-light">S</span> {% endcomment %}
+                                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                    {% if comp.eval_score >= 90 %}
+                                    <button type="button" disabled class="btn btn-danger">High</button>
+                                    {% elif comp.eval_score < 90 and comp.eval_score >= 51 %}
+                                    <button type="button" disabled class="btn btn-warning">Medium</button>
+                                    {% else %}
+                                    <button type="button" class="btn btn-success">Low</button>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="height: 30px;"></div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">Do all users roles of this System
+                                authenticate using standard Company enterprise "single-sign-on" systems such as Company
+                                WebAuth
+                                or CAS/SAML in alignment with the Company Privileged Account Standard?</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="comp_ssoY" id="comp_ssoY"
+                                                {% if comp.sso == "Yes" %}checked{% endif %} disabled>
+                                            <label class="form-check-label" for="comp_ssoY">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="comp_ssoN" id="comp_ssoN" {% if comp.sso == "No" %}checked{% endif %}
+                                                disabled>
+                                            <label class="form-check-label" for="comp_ssoN">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">Are all system components included
+                                in this project logging in compliance with the Company System Audit Requirements
+                                Standard?</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="audit_req_std_compY" id="audit_req_std_compY" {% if comp.audit_req_std_comp == "Yes" %}checked{% endif %} disabled>
+                                            <label class="form-check-label" for="audit_req_std_compY">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="audit_req_std_compN" id="audit_req_std_compN" {% if comp.audit_req_std_comp == "No" %}checked{% endif %} disabled>
+                                            <label class="form-check-label" for="audit_req_std_compN">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">The vendor provides automated
+                                patching and includes the procedures in an information security policy.</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="auto_patchY" id="auto_patchY"
+                                                {% if comp.auto_patch == "Yes" %}checked{% endif %} disabled>
+                                            <label class="form-check-label" for="auto_patchY">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="auto_patchN" id="auto_patchN" {% if comp.auto_patch == "No" %}checked{% endif %}
+                                                disabled>
+                                            <label class="form-check-label" for="auto_patchN">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- Security Maturity Evidence -->
+                    <span class="text-white print-none" id="SEM">s</span>
+                    <span class="text-white print-none" id="">s</span>
+
+                    <div class="col-12 px-5">
+                        <div class="row" style="height: 25px;"></div>
+                        <div class="row">
+                            <div class="col-6">
+                                <button type="button" class="btn btn-primary">Security Maturity Evidence</button>
+                            </div>
+                            <div class="col-6 d-flex justify-content-end">
+                                {% comment %} <h3 class="">Score: 3/5</h3><span class="text-light">S</span> {% endcomment %}
+                                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                    {% if .eval_score >= 90 %}
+                                    <button type="button" disabled class="btn btn-danger">High</button>
+                                    {% elif .eval_score < 90 and .eval_score >= 51 %}
+                                    <button type="button" disabled class="btn btn-warning">Medium</button>
+                                    {% else %}
+                                    <button type="button" class="btn btn-success">Low</button>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="height: 30px;"></div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">Industry standard cybersecurity
+                                framework(s) attestation of compliance. FedRAMP, ISO 27001/2, CIS Controls, NIST 800-53,
+                                CSA CCM, HITRUST, HECVAT</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="attst_o_compY" id="attst_o_compY"
+                                                {% if sec_mat.attst_o_comp == "Yes" %}checked{% endif %} disabled>
+                                            <label class="form-check-label" for="attst_o_compY">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="attst_o_compN" id="attst_o_compN" {% if sec_mat.attst_o_comp == "No" %}checked{% endif %} 
+                                                disabled>
+                                            <label class="form-check-label" for="attst_o_compN">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <label for="staticEmail" class="col-sm-12 col-form-label">https://uto.asu.edu/security-policies/policy/web-application-security-standard</label>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">Current system’s vendor 3rd party
+                                SOC2 Type 2 reports</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="soc2_reportsY" id="soc2_reportsY" {% if sec_mat.soc2_reports == "Yes" %}checked{% endif %}  disabled>
+                                            <label class="form-check-label" for="soc2_reportsY">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="soc2_reportsN" id="soc2_reportsN" {% if sec_mat.soc2_reports == "No" %}checked{% endif %} disabled>
+                                            <label class="form-check-label" for="soc2_reportsN">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">Annual penetration/vulnerability
+                                scanning results of all system components</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="ann_pen_scan_resultsY" id="ann_pen_scan_resultsY"
+                                                {% if sec_mat.ann_pen_scan_results == "Yes" %}checked{% endif %}  disabled>
+                                            <label class="form-check-label" for="ann_pen_scan_resultsY">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="ann_pen_scan_resultsN" id="ann_pen_scan_resultsN" {% if sec_mat.ann_pen_scan_results == "No" %}checked{% endif %} 
+                                                disabled>
+                                            <label class="form-check-label" for="ann_pen_scan_resultsN">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">Annual web application
+                                vulnerability scan of all system web applications</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="ann_wa_vuln_scanY" id="ann_wa_vuln_scanY"
+                                                {% if sec_mat.ann_wa_vuln_scan == "Yes" %}checked{% endif %}  disabled>
+                                            <label class="form-check-label" for="ann_wa_vuln_scanY">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="ann_wa_vuln_scanN" id="ann_wa_vuln_scanN" {% if sec_mat.ann_wa_vuln_scan == "No" %}checked{% endif %} 
+                                                disabled>
+                                            <label class="form-check-label" for="ann_wa_vuln_scanN">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- Architectural Diagram Requirements -->
+                    <span class="text-white print-none" id="ADR">s</span>
+                    <span class="text-white print-none" id="">s</span>
+
+                    <div class="col-12 px-5">
+                        <div class="row" style="height: 25px;"></div>
+                        <div class="row">
+                            <div class="col-6">
+                                <button type="button" class="btn btn-primary">Integration</button>
+                            </div>
+                            <div class="col-6 d-flex justify-content-end">
+                                {% comment %} <h3 class="">Score: 3/5</h3><span class="text-light">S</span> {% endcomment %}
+                                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                    {% if inte.eval_score >= 90 %}
+                                    <button type="button" disabled class="btn btn-danger">High</button>
+                                    {% elif inte.eval_score < 90 and inte.eval_score >= 51 %}
+                                    <button type="button" disabled class="btn btn-warning">Medium</button>
+                                    {% else %}
+                                    <button type="button" class="btn btn-success">Low</button>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="height: 30px;"></div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-12 col-form-label">Does the technology integrate with
+                                the following Company systems:</label>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">Single Sign-On</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="inte_ssoY" id="inte_ssoY"
+                                                {% if inte.sso == "Yes" %}checked{% endif %} disabled>
+                                            <label class="form-check-label" for="inte_ssoY">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="inte_ssoN" id="inte_ssoN" {% if inte.sso == "No" %}checked{% endif %}
+                                                disabled>
+                                            <label class="form-check-label" for="inte_ssoN">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">Multi-Factor Authentication</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="mfaY" id="mfaY"  {% if inte.mfa == "Yes" %}checked{% endif %}  disabled>
+                                            <label class="form-check-label" for="mfaY">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="mfaN" id="mfaN" {% if inte.mfa == "No" %}checked{% endif %}  disabled>
+                                            <label class="form-check-label" for="mfaN">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">Active Directory Federation
+                                Services</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="adfsY" id="adfsY"
+                                                {% if inte.adfs == "Yes" %}checked{% endif %}  disabled>
+                                            <label class="form-check-label" for="adfsY">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="adfsN" id="adfsN" {% if inte.adfs == "No" %}checked{% endif %} 
+                                                disabled>
+                                            <label class="form-check-label" for="adfsN">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">Complete the Architecture Diagram
+                                Architecture Diagram Criteria</label>
+                            <div class="col-sm-3">
+                                <input type="text" readonly class="form-control-plaintext" id="staticEmail"
+                                    value="https://arizonastateu-my.sharepoint.com/:b:/r/personal/smridha_sundevils_asu_edu/Documents/Docs/Resume_SayantanM.pdf?csf=1&web=1&e=r06qhn">
+                            </div>
+                        </div> -->
+                    </div>
+
+
+                    <!-- Cloud Service Model -->
+                    <span class="text-white print-none" id="CSM">s</span>
+                    <span class="text-white print-none" id="">s</span>
+
+                    <div class="col-12 px-5">
+                        <div class="row" style="height: 25px;"></div>
+                        <div class="row">
+                            <div class="col-6">
+                                <button type="button" class="btn btn-primary">Cloud Service Modelow</button>
+                            </div>
+                            <div class="col-6 d-flex justify-content-end">
+                                {% comment %} <h3 class="">Score: 3/5</h3><span class="text-light">S</span> {% endcomment %}
+                                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                    {% if csm.eval_score >= 90 %}
+                                    <button type="button" disabled class="btn btn-danger">High</button>
+                                    {% elif csm.eval_score < 90 and csm.eval_score >= 51 %}
+                                    <button type="button" disabled class="btn btn-warning">Medium</button>
+                                    {% else %}
+                                    <button type="button" class="btn btn-success">Low</button>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="height: 30px;"></div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">Is this a SaaS solution?</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="saas_solY" id="saas_solY"
+                                                {% if csm.saas_sol == "Yes" %}checked{% endif %}  disabled>
+                                            <label class="form-check-label" for="saas_solY">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="saas_solN" id="saas_solN" {% if csm.saas_sol == "No" %}checked{% endif %} 
+                                                disabled>
+                                            <label class="form-check-label" for="saas_solN">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">Is it hosted in IaaS owned by the
+                                Company?</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="iaas_hostedY" id="iaas_hostedY"  {% if csm.iaas_hosted == "Yes" %}checked{% endif %}  disabled>
+                                            <label class="form-check-label" for="iaas_hostedY">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="iaas_hostedN" id="iaas_hostedN" {% if csm.iaas_hosted == "No" %}checked{% endif %}  disabled>
+                                            <label class="form-check-label" for="iaas_hostedN">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">Complete the Architecture Diagram
+                                Architecture Diagram Criteria</label>
+                            <div class="col-sm-3">
+                                <input type="text" readonly class="form-control-plaintext" id="staticEmail"
+                                    value="https://arizonastateu-my.sharepoint.com/:b:/r/personal/smridha_sundevils_asu_edu/Documents/Docs/Resume_SayantanM.pdf?csf=1&web=1&e=r06qhn">
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">Is the solution built on premises
+                                in the Company's datacenter?</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="on_premY" id="on_premY"
+                                                {% if csm.on_prem == "Yes" %}checked{% endif %}  disabled>
+                                            <label class="form-check-label" for="on_premY">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="on_premN" id="on_premN" {% if csm.on_prem == "No" %}checked{% endif %} 
+                                                disabled>
+                                            <label class="form-check-label" for="on_premN">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+
+                    <!-- Secure Design -->
+                    <span class="text-white print-none" id="SD">s</span>
+                    <span class="text-white print-none" id="">s</span>
+
+                    <div class="col-12 px-5">
+                        <div class="row" style="height: 25px;"></div>
+                        <div class="row">
+                            <div class="col-6">
+                                <button type="button" class="btn btn-primary">Secure Design</button>
+                            </div>
+                            <div class="col-6 d-flex justify-content-end">
+                                {% comment %} <h3 class="">Score: 3/5</h3><span class="text-light">S</span> {% endcomment %}
+                                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                    {% if sd.eval_score >= 90 %}
+                                    <button type="button" disabled class="btn btn-danger">High</button>
+                                    {% elif sd.eval_score < 90 and sd.eval_score >= 51 %}
+                                    <button type="button" disabled class="btn btn-warning">Medium</button>
+                                    {% else %}
+                                    <button type="button" class="btn btn-success">Low</button>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="height: 30px;"></div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-12 col-form-label"><strong>Who is responsible for the
+                                    secure design of the entire system?</strong></label>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">We do not know who is responsible
+                                for the security design of the entire system.</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="sdq1Y" id="sdq1Y"
+                                                {% if sd.q1 == "Yes" %}checked{% endif %} disabled>
+                                            <label class="form-check-label" for="sdq1Y">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="sdq1N" id="sdq1N"{% if sd.q1 == "No" %}checked{% endif %}
+                                                disabled>
+                                            <label class="form-check-label" for="sdq1N">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">Although certain parts may be
+                                designed for security, nobody is responsible for the security design and Company
+                                standards
+                                compliance of the entire system including users and their devices.</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="sdq2Y" id="sdq2Y" {% if sd.q2 == "Yes" %}checked{% endif %} disabled>
+                                            <label class="form-check-label" for="sdq2Y">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="sdq2N" id="sdq2N"{% if sd.q2 == "No" %}checked{% endif %} disabled>
+                                            <label class="form-check-label" for="sdq2N">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">A vendor claims to be responsible
+                                for the security design and Company standards compliance of the entire system, but the
+                                vendor has not signed ISO language, or the scope of the vendor's contracted
+                                responsibility does not cover the entire system including users and their
+                                devices.</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="sdq3Y" id="sdq3Y"
+                                                {% if sd.q3 == "Yes" %}checked{% endif %} disabled>
+                                            <label class="form-check-label" for="sdq3Y">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="sdq3" id="sdq3"{% if sd.q3 == "No" %}checked{% endif %}
+                                                disabled>
+                                            <label class="form-check-label" for="sdq3">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">A single vendor has accepted
+                                responsibility for all of the security design and Company standards compliance, has
+                                signed
+                                ISO language, and the scope of the vendor's contracted responsibility covers the entire
+                                system including users and their devices.However the vendor has not provided evidence of
+                                compliance with the ISO language.</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="sdq4Y" id="sdq4Y"
+                                                {% if sd.q4 == "Yes" %}checked{% endif %} disabled>
+                                            <label class="form-check-label" for="sdq4Y">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="sdq4N" id="sdq4N"{% if sd.q4 == "No" %}checked{% endif %}
+                                                disabled>
+                                            <label class="form-check-label" for="sdq4N">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">A single vendor has accepted
+                                responsibility for all of the security design and Company standards compliance, has
+                                signed
+                                ISO language, and the scope of the vendor's contracted responsibility covers the entire
+                                system including users and their devices.
+                                If the vendor has signed or has intent to sign the ISO contract language ensure you
+                                provide a copy of the following documents from the vendor:
+                                <ul>
+                                    <li>SOC2 Report</li>
+                                    <li>Security Policies or SOPs</li>
+                                </ul>
+                            </label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="sdq5Y" id="sdq5Y" {% if sd.q5 == "Yes" %}checked{% endif %} disabled>
+                                            <label class="form-check-label" for="sdq5Y">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="sdq5N" id="sdq5N"{% if sd.q5 == "No" %}checked{% endif %} disabled>
+                                            <label class="form-check-label" for="sdq5N">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">One or more Company employees have
+                                designed the system with a holistic security perspective from the beginning, selecting
+                                components and/or vendors that meet regulatory requirements and Company
+                                standards.</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="sdq6Y" id="sdq6Y"
+                                                {% if sd.q6 == "Yes" %}checked{% endif %} disabled>
+                                            <label class="form-check-label" for="sdq6Y">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="sdq6N" id="sdq6N"{% if sd.q6 == "No" %}checked{% endif %}
+                                                disabled>
+                                            <label class="form-check-label" for="sdq6N">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- Encryption -->
+                    <span class="text-white print-none" id="Encr">s</span>
+                    <span class="text-white print-none" id="">s</span>
+
+                    <div class="col-12 px-5">
+                        <div class="row" style="height: 25px;"></div>
+                        <div class="row">
+                            <div class="col-6">
+                                <button type="button" class="btn btn-primary">Encryption</button>
+                            </div>
+                            <div class="col-6 d-flex justify-content-end">
+                                {% comment %} <h3 class="">Score: 3/5</h3><span class="text-light">S</span> {% endcomment %}
+                                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                    {% if enc.eval_score >= 90 %}
+                                    <button type="button" disabled class="btn btn-danger">High</button>
+                                    {% elif enc.eval_score < 90 and enc.eval_score >= 51 %}
+                                    <button type="button" class="btn btn-warning">Medium</button>
+                                    {% else %}
+                                    <button type="button" disabled class="btn btn-success">Low</button>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="height: 30px;"></div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-12 col-form-label"><strong>How will sensitive data be
+                                    protected in transit (as it travels across the network)?</strong></label>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">Sensitive data will be traveling
+                                across one or more external connections outside of the Company data Center without any
+                                protection.</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="p1q1Y" id="p1q1Y"
+                                                {% if enc.p1q1 == "Yes" %}checked{% endif %} disabled>
+                                            <label class="form-check-label" for="p1q1Y">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="p1q1N" id="p1q1N" {% if enc.p1q1 == "No" %}checked{% endif %}
+                                                disabled>
+                                            <label class="form-check-label" for="p1q1N">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">All systems and connections storing
+                                or processing sensitive data are within the Company data center, but sensitive data is
+                                not
+                                encrypted as it moves from system to system.</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="p1q2Y" id="p1q2Y" {% if enc.p1q2 == "Yes" %}checked{% endif %} disabled>
+                                            <label class="form-check-label" for="p1q2Y">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="p1q2N" id="p1q2N"{% if enc.p1q2 == "No" %}checked{% endif %} disabled>
+                                            <label class="form-check-label" for="p1q2N">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">Firewalls, network segmentation,
+                                and/or other techniques limit sensitive traffic to only those systems that are intended
+                                to receive it. Other systems are prevented from connecting, or listening to sensitive
+                                traffic. However, sensitive data is not encrypted in transit.</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="p1q3Y" id="p1q3Y"
+                                                {% if enc.p1q3 == "Yes" %}checked{% endif %} disabled>
+                                            <label class="form-check-label" for="p1q3Y">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="p1q3N" id="p1q3N"{% if enc.p1q3 == "No" %}checked{% endif %}
+                                                disabled>
+                                            <label class="form-check-label" for="p1q3N">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">Is there a crypto key management
+                                system of certificates?</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="p1q4Y" id="p1q4Y"
+                                                {% if enc.p1q4 == "Yes" %}checked{% endif %} disabled>
+                                            <label class="form-check-label" for="p1q4Y">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="p1q4N" id="p1q4N"{% if enc.p1q4 == "No" %}checked{% endif %}
+                                                disabled>
+                                            <label class="form-check-label" for="p1q4N">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">All sensitive data is encrypted as
+                                it travels over each network connection.</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="p1q5Y" id="p1q5Y" {% if enc.p1q5 == "Yes" %}checked{% endif %} disabled>
+                                            <label class="form-check-label" for="p1q5Y">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="p1q5N" id="p1q5N"{% if enc.p1q5 == "No" %}checked{% endif %} disabled>
+                                            <label class="form-check-label" for="p1q5N">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">All sensitive data is encrypted as
+                                when it is at rest.</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="p1q6Y" id="p1q6Y"
+                                                {% if enc.p1q6 == "Yes" %}checked{% endif %} disabled>
+                                            <label class="form-check-label" for="p1q6Y">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="p1q6N" id="p1q6N"{% if enc.p1q6 == "No" %}checked{% endif %}
+                                                disabled>
+                                            <label class="form-check-label" for="p1q6N">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">All* web sites are using https
+                                encryption. Servers have valid https certificates. (The certificates are correctly
+                                configured and installed so that no warnings are seen.)</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="p1q7Y" id="p1q7Y"
+                                                {% if enc.p1q7 == "Yes" %}checked{% endif %} disabled>
+                                            <label class="form-check-label" for="p1q7Y">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="p1q7N" id="p1q7N"{% if enc.p1q7 == "No" %}checked{% endif %}
+                                                disabled>
+                                            <label class="form-check-label" for="p1q7N">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">This project has no sensitive
+                                data.</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="p1q8Y" id="p1q8Y"
+                                                {% if enc.p1q8 == "Yes" %}checked{% endif %} disabled>
+                                            <label class="form-check-label" for="p1q8Y">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="p1q8N" id="p1q8N"{% if enc.p1q8 == "No" %}checked{% endif %}
+                                                disabled>
+                                            <label class="form-check-label" for="p1q8N">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">This question is not applicable for
+                                this project because all of the following are true:
+                                <ul>
+                                    <li>No Company equipment or network connections will be used to transmit sensitive
+                                        data.If a vendor is transmitting or receiving sensitive data, the vendor has
+                                        accepted responsibility for protecting the data by signing a contract that
+                                        includesISO language.</li>
+                                </ul>
+                            </label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="p1q9Y" id="p1q9Y" {% if enc.p1q9 == "Yes" %}checked{% endif %} disabled>
+                                            <label class="form-check-label" for="p1q9Y">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="p1q9N" id="p1q9N"{% if enc.p1q9 == "No" %}checked{% endif %} disabled>
+                                            <label class="form-check-label" for="p1q9N">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-12 col-form-label"><strong>How will sensitive data be
+                                    protected at rest (wherever it is stored)?</strong></label>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">Sensitive data will be stored
+                                without any protection, on devices available to the general public without logging
+                                in.</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="p2q1Y" id="p2q1Y"
+                                                {% if enc.p2q1 == "Yes" %}checked{% endif %} disabled>
+                                            <label class="form-check-label" for="p2q1Y">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="p2q1N" id="p2q1N"{% if enc.p2q1 == "No" %}checked{% endif %}
+                                                disabled>
+                                            <label class="form-check-label" for="p2q1N">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">Sensitive data will be stored
+                                without encryption at rest, even though PCI or other applicable regulations require
+                                it.</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="p2q2Y" id="p2q2Y" {% if enc.p2q2 == "Yes" %}checked{% endif %} 
+                                                disabled>
+                                            <label class="form-check-label" for="p2q2Y">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="p2q2N" id="p2q2N"{% if enc.p2q2 == "No" %}checked{% endif %}  disabled>
+                                            <label class="form-check-label" for="p2q2N">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">Sensitive data will be stored
+                                without encryption, but the devices require a login, and there is no applicable
+                                regulation requiring encryption at rest.</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="p2q3Y" id="p2q3Y"
+                                                {% if enc.p2q3 == "Yes" %}checked{% endif %}  disabled>
+                                            <label class="form-check-label" for="p2q3Y">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="p2q3N" id="p2q3N" {% if enc.p2q3 == "No" %}checked{% endif %} 
+                                                disabled>
+                                            <label class="form-check-label" for="p2q3N">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">All systems storing or processing
+                                sensitive data are within the Company data center, but sensitive data is not encrypted
+                                on
+                                disk. There is no applicable regulation requiring encryption at rest.</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="p2q4Y" id="p2q4Y"
+                                                {% if enc.p2q4 == "Yes" %}checked{% endif %}  disabled>
+                                            <label class="form-check-label" for="p2q4Y">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="p2q4N" id="p2q4N"{% if enc.p2q4 == "No" %}checked{% endif %} 
+                                                disabled>
+                                            <label class="form-check-label" for="p2q4N">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">Sensitive data is encrypted on
+                                disk, but not on backups. There is no applicable regulation requiring encryption at
+                                rest.</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="p2q5Y" id="p2q5Y" {% if enc.p2q5 == "Yes" %}checked{% endif %} 
+                                                disabled>
+                                            <label class="form-check-label" for="p2q5Y">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="p2q5N" id="p2q5N"{% if enc.p2q5 == "No" %}checked{% endif %}  disabled>
+                                            <label class="form-check-label" for="p2q5N">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">All sensitive data is encrypted at
+                                every location where it is stored, including user devices and backups.</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="p2q6Y" id="p2q6Y"
+                                                {% if enc.p2q6 == "Yes" %}checked{% endif %}  disabled>
+                                            <label class="form-check-label" for="p2q6Y">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="p2q6N" id="p2q6N" {% if enc.p2q6 == "No" %}checked{% endif %} 
+                                                disabled>
+                                            <label class="form-check-label" for="p2q6N">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">This question is not applicable for
+                                this project because all of the following are true:
+                                <ul>
+                                    <li>No Company equipment or network connections will be used to transmit sensitive
+                                        data.If a vendor is transmitting or receiving sensitive data, the vendor has
+                                        accepted responsibility for protecting the data by signing a contract that
+                                        includesISO language.</li>
+                                </ul>
+                            </label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="p2q7Y" id="p2q7Y"
+                                                {% if enc.p2q7 == "Yes" %}checked{% endif %}  disabled>
+                                            <label class="form-check-label" for="p2q7Y">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="p2q7N" id="p2q7N" {% if enc.p2q7 == "No" %}checked{% endif %} 
+                                                disabled>
+                                            <label class="form-check-label" for="p2q7N">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- Quality Assurance Environment -->
+                    <span class="text-white print-none" id="QAE">s</span>
+                    <span class="text-white print-none" id="">s</span>
+
+                    <div class="col-12 px-5">
+                        <div class="row" style="height: 25px;"></div>
+                        <div class="row">
+                            <div class="col-6">
+                                <button type="button" class="btn btn-primary">Quality Assurance Environment</button>
+                            </div>
+                            <div class="col-6 d-flex justify-content-end">
+                                {% comment %} <h3 class="">Score: 3/5</h3><span class="text-light">S</span> {% endcomment %}
+                                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                    {% if qa.eval_score >= 90 %}
+                                    <button type="button" class="btn btn-danger">High</button>
+                                    {% elif qa.eval_score < 90 and qa.eval_score >= 51 %}
+                                    <button type="button" disabled class="btn btn-warning">Medium</button>
+                                    {% else %}
+                                    <button type="button" disabled class="btn btn-success">Low</button>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="height: 30px;"></div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-12 col-form-label"><strong>Is there a Development or
+                                    QA instance?</strong></label>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">There will be Development or QA
+                                instances of the web site(s).</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="qaq1Y" id="qaq1Y"
+                                                {% if qa.q1 == "Yes" %}checked{% endif %}  disabled>
+                                            <label class="form-check-label" for="qaq1Y">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="qaq1N" id="qaq1N" {% if qa.q1 == "No" %}checked{% endif %} 
+                                                disabled>
+                                            <label class="form-check-label" for="qaq1N">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">Only a Production instance exists.
+                                There is no place to test code or changes without impacting live systems and data - in
+                                the Production instance.</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="qaq2Y" id="qaq2Y" {% if qa.q2 == "Yes" %}checked{% endif %} disabled>
+                                            <label class="form-check-label" for="qaq2Y">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="qaq2N" id="qaq2N" {% if qa.q2 == "No" %}checked{% endif %}  disabled>
+                                            <label class="form-check-label" for="qaq2N">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">Development or QA instance exists,
+                                but it is different from Production to the extent that there could be flaws in one
+                                instance that do not exist in the other instance.</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="qaq3Y" id="qaq3Y" {% if qa.q3 == "Yes" %}checked{% endif %} 
+                                                disabled>
+                                            <label class="form-check-label" for="qaq3Y">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="qaq3N" id="qaq3N"
+                                                {% if qa.q3 == "No" %}checked{% endif %}  disabled>
+                                            <label class="form-check-label" for="qaq3N">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">All sites have QA instances that
+                                are sufficiently identical to Production, that the results of tests in QA can be relied
+                                on to evaluate the Production instance.</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="qaq4Y" id="qaq4Y"
+                                                {% if qa.q4 == "Yes" %}checked{% endif %}  disabled>
+                                            <label class="form-check-label" for="qaq4Y">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="qaq4N" id="qaq4N" {% if qa.q4 == "No" %}checked{% endif %} 
+                                                disabled>
+                                            <label class="form-check-label" for="qaq4N">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">This project has no web
+                                sites.</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="qaq5Y" id="qaq5Y" {% if qa.q5 == "Yes" %}checked{% endif %}  disabled>
+                                            <label class="form-check-label" for="qaq5Y">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="qaq5N" id="qaq5N" {% if qa.q5 == "No" %}checked{% endif %}  disabled>
+                                            <label class="form-check-label" for="qaq5N">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+ 
+                    <!-- Database Servers -->
+                    <span class="text-white print-none" id="DS">s</span>
+                    <span class="text-white print-none" id="">s</span>
+
+                    <div class="col-12 px-5">
+                        <div class="row" style="height: 25px;"></div>
+                        <div class="row">
+                            <div class="col-6">
+                                <button type="button" class="btn btn-primary">Database Servers</button>
+                            </div>
+                            <div class="col-6 d-flex justify-content-end">
+                                {% comment %} <h3 class="">Score: 3/5</h3><span class="text-light">S</span> {% endcomment %}
+                                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                    {% if dbserver.eval_score >= 90 %}
+                                    <button type="button" disabled class="btn btn-danger">High</button>
+                                    {% elif dbserver.eval_score < 90 and dbserver.eval_score >= 51 %}
+                                    <button type="button" disabled class="btn btn-warning">Medium</button>
+                                    {% else %}
+                                    <button type="button" class="btn btn-success">Low</button>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="height: 30px;"></div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-12 col-form-label">Servers that have databases
+                                containing sensitive data should be protected from various types of attacks. A database
+                                server directly connected to the Internet has no defenses except the ID and password
+                                that may be required. A database server directly connected to a web server may loseeven
+                                that ID/password defenseif the web server is compromised.</label>
+                            <label for="staticEmail" class="col-sm-12 col-form-label"><strong>What database protections
+                                    are in place?</strong></label>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">There are one or more databases
+                                with access to sensitive data. The database servers have publicly routable IP addresses
+                                and there is no firewall limiting connections to the database. People from anywhere in
+                                the world can connect directly to the database server.</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="dbq1Y" id="dbq1Y"
+                                                {% if dbserver.q1 == "Yes" %}checked{% endif %} disabled>
+                                            <label class="form-check-label" for="dbq1Y">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="dbq1N" id="dbq1N" {% if dbserver.q1 == "No" %}checked{% endif %}
+                                                disabled>
+                                            <label class="form-check-label" for="dbq1N">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">A database containing sensitive
+                                data is directly accessible by a web server, but the database only accepts requests from
+                                the web server. Other devices cannot make connections to the database.</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="dbq2Y" id="dbq2Y" {% if dbserver.q2 == "Yes" %}checked{% endif %} disabled>
+                                            <label class="form-check-label" for="dbq2Y">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="dbq2N" id="dbq2N" {% if dbserver.q2 == "No" %}checked{% endif %} disabled>
+                                            <label class="form-check-label" for="dbq2N">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">Web servers can connect to database
+                                servers directly, but alternate protections are in place to defend the database from a
+                                web server compromise, such as a Web Application Firewall in front of the web server.
+                                (Describe in the notes how the protective technology protects the database from a web
+                                server compromise.)</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="dbq3Y" id="dbq3Y" {% if dbserver.q3 == "Yes" %}checked{% endif %} 
+                                                disabled>
+                                            <label class="form-check-label" for="dbq3Y">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="dbq3N" id="dbq3N"
+                                                {% if dbserver.q3 == "No" %}checked{% endif %} disabled>
+                                            <label class="form-check-label" for="dbq3N">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">Web servers cannot connect directly
+                                to database servers due to network segmentation, firewall rules, etc. Web servers
+                                interact with database servers through an application server that only permits a white
+                                list of known good transactions (a three tier architecture). Web servers also have
+                                defenses against typical attacks (such as SQL injection) via parameterized queries,
+                                stored procedures, or other techniques that do not pass arbitrary strings to the SQL
+                                command interpreter.</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="dbq4Y" id="dbq4Y"
+                                                {% if dbserver.q4 == "Yes" %}checked{% endif %}  disabled>
+                                            <label class="form-check-label" for="dbq4Y">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="dbq4N" id="dbq4N" {% if dbserver.q4 == "No" %}checked{% endif %} 
+                                                disabled>
+                                            <label class="form-check-label" for="dbq4N">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">None of the systems in this project
+                                have access to a database containing sensitive data.</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="dbq5Y" id="dbq5Y" {% if dbserver.q5 == "Yes" %}checked{% endif %}  disabled>
+                                            <label class="form-check-label" for="dbq5Y">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="dbq5N" id="dbq5N"  {% if dbserver.q5 == "No" %}checked{% endif %}  disabled>
+                                            <label class="form-check-label" for="dbq5N">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">This question is not applicable for
+                                this project because all of the following are true:
+                                <ul>
+                                    <li>No Company equipment or network connections will be used to transmit sensitive
+                                        data.If a vendor is transmitting or receiving sensitive data, the vendor has
+                                        accepted responsibility for protecting the data by signing a contract that
+                                        includesISO language.</li>
+                                </ul>
+                            </label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="dbq6Y" id="dbq6Y" {% if dbserver.q6 == "Yes" %}checked{% endif %}  disabled>
+                                            <label class="form-check-label" for="dbq6Y">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="dbq6N" id="dbq6N"  {% if dbserver.q6 == "No" %}checked{% endif %}  disabled>
+                                            <label class="form-check-label" for="dbq6N">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- Secure Communications -->
+                    <span class="text-white print-none" id="SC">s</span>
+                    <span class="text-white print-none" id="">s</span>
+
+                    <div class="col-12 px-5">
+                        <div class="row" style="height: 25px;"></div>
+                        <div class="row">
+                            <div class="col-6">
+                                <button type="button" class="btn btn-primary">Secure Communications</button>
+                            </div>
+                            <div class="col-6 d-flex justify-content-end">
+                                {% comment %} <h3 class="">Score: 3/5</h3><span class="text-light">S</span> {% endcomment %}
+                                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                    {% if sec_comm.eval_score >= 90 %}
+                                    <button type="button" disabled class="btn btn-danger">High</button>
+                                    {% elif sec_comm.eval_score < 90 and sec_comm.eval_score >= 51 %}
+                                    <button type="button" disabled class="btn btn-warning">Medium</button>
+                                    {% else %}
+                                    <button type="button" class="btn btn-success">Low</button>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="height: 30px;"></div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-12 col-form-label"><strong>How does the components of
+                                    the architecture communicate and authenticate to each other?</strong></label>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">One or more servers initiate or
+                                accept connections with their peers, but do not verify or otherwise restrict which
+                                servers can connect.</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="scomq1Y" id="scomq1Y"
+                                                {% if sec_comm.q1 == "Yes" %}checked{% endif %}  disabled>
+                                            <label class="form-check-label" for="scomq1Y">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="scomq1N" id="scomq1N" {% if sec_comm.q1 == "No" %}checked{% endif %} 
+                                                disabled>
+                                            <label class="form-check-label" for="scomq1N">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">When a server logs in to another
+                                server, a password or other secret is transmitted across a network connection without
+                                encryption.</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="scomq2Y" id="scomq2Y" {% if sec_comm.q2 == "Yes" %}checked{% endif %}  disabled>
+                                            <label class="form-check-label" for="scomq2Y">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="scomq2N" id="scomq2N"  {% if sec_comm.q2 == "No" %}checked{% endif %} 
+                                                disabled>
+                                            <label class="form-check-label" for="scomq2N">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">Firewalls, network segmentation, or
+                                other controls make it impossible for connections to be opened between anything other
+                                than the intended servers. Connections are imited by a "black list" identifying which
+                                addresses are not allowed to connect.</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="scomq3Y" id="scomq3Y" {% if sec_comm.q3 == "Yes" %}checked{% endif %} 
+                                                disabled>
+                                            <label class="form-check-label" for="scomq3Y">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="scomq3N" id="scomq3N"
+                                                {% if sec_comm.q3 == "No" %}checked{% endif %}  disabled>
+                                            <label class="form-check-label" for="scomq3N">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">Firewalls, network segmentation, or
+                                other controls make it impossible for connections to be opened between anything other
+                                than the intended servers. Connections are limited by a "white list" specifically
+                                identifying which addresses are allowed to connect, and denying all others by
+                                default.</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="scomq4Y" id="scomq4Y"
+                                                 {% if sec_comm.q4 == "Yes" %}checked{% endif %}  disabled>
+                                            <label class="form-check-label" for="scomq4Y">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="scomq4N" id="scomq4N" {% if sec_comm.q4 == "No" %}checked{% endif %} 
+                                                disabled>
+                                            <label class="form-check-label" for="scomq4N">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">Servers use credentials to identify
+                                each other, but there are weaknesses (explain in the notes). For example: (A) the
+                                credentials are not unique to one application (B) the credentials are not safely stored,
+                                or (C) it is difficult to change the credentials.</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="scomq5Y" id="scomq5Y" {% if sec_comm.q5 == "Yes" %}checked{% endif %}  disabled>
+                                            <label class="form-check-label" for="scomq5Y">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="scomq5N" id="scomq5N"  {% if sec_comm.q5 == "No" %}checked{% endif %} 
+                                                disabled>
+                                            <label class="form-check-label" for="scomq5N">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">Each server uses a standard
+                                mechanism, such as https, to verify the other server's identity when initiating a
+                                connection to another server. If using https, servers have valid https certificates, and
+                                clients verify certificate validity. (The certificates are correctly configured and
+                                installed so that no warnings are seen.) The listening server authenticates the
+                                requesting server using credentials that are unique to this application. The credentials
+                                are not stored where they can be accessed without authorization. Credentials are
+                                periodically updated, and can be quickly updated if a compromise is suspected.
+                            </label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="scomq6Y" id="scomq6Y" {% if sec_comm.q6 == "Yes" %}checked{% endif %}  disabled>
+                                            <label class="form-check-label" for="scomq6Y">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="scomq6N" id="scomq6N"  {% if sec_comm.q6 == "No" %}checked{% endif %} 
+                                                disabled>
+                                            <label class="form-check-label" for="scomq6N">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">The project does not have more than
+                                one server, so there is no need for servers to authenticate each other.</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="scomq7Y" id="scomq7Y" {% if sec_comm.q7 == "Yes" %}checked{% endif %}  disabled>
+                                            <label class="form-check-label" for="scomq7Y">
+                                            <label class="form-check-label" for="flexRadioYDisabled107">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="scomq7N" id="scomq7N"  {% if sec_comm.q7 == "No" %}checked{% endif %} 
+                                                disabled>
+                                            <label class="form-check-label" for="scomq7N">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">The changes being made as part of
+                                this project will not affect a situation where two or more servers are communicating
+                                with each other, so the question does not apply.</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="scomq8Y" id="scomq8Y" {% if sec_comm.q8 == "Yes" %}checked{% endif %}  disabled>
+                                            <label class="form-check-label" for="scomq8Y">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="scomq8N" id="scomq8N"  {% if sec_comm.q8 == "No" %}checked{% endif %} 
+                                                disabled>
+                                            <label class="form-check-label" for="scomq8N">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- Software Integrity -->
+                    <span class="text-white print-none" id="SI">s</span>
+                    <span class="text-white print-none" id="">s</span>
+
+                    <div class="col-12 px-5">
+                        <div class="row" style="height: 25px;"></div>
+                        <div class="row">
+                            <div class="col-6">
+                                <button type="button" class="btn btn-primary">Software Integrity</button>
+                            </div>
+                            <div class="col-6 d-flex justify-content-end">
+                                {% comment %} <h3 class="">Score: 3/5</h3><span class="text-light">S</span> {% endcomment %}
+                                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                    {% if sw.eval_score >= 90 %}
+                                    <button type="button" class="btn btn-danger">High</button>
+                                    {% elif sw.eval_score < 90 and sw.eval_score >= 51 %}
+                                    <button type="button" class="btn btn-warning">Medium</button>
+                                    {% else %}
+                                    <button type="button" class="btn btn-success">Low</button>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="height: 30px;"></div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-12 col-form-label">Whoever writes your software gains
+                                control of your computer, sensitive data, and identity. Thus it is important to be sure
+                                the software comes from sources you trust. Verify the origin of software before
+                                installing it, and keep it up to date if security fixes have been released.</label>
+                            <label for="staticEmail" class="col-sm-12 col-form-label">Current versions should be
+                                originally installed, upgrades should be applied when available, and security patches
+                                should be applied promptly. During original installation or subsequent updates, controls
+                                should be in place to ensure that all software comes from trustworthy authors, and has
+                                not been tampered with along the way.</label>
+                            <label for="staticEmail" class="col-sm-12 col-form-label"><strong>Are current versions of
+                                    software being deployed? Will upgrades and patches be promptly
+                                    applied?</strong></label>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">Some systems run outdated versions
+                                of their operating system, utilities, or installed applications. Or, systems are
+                                initially deployed with current software, but nothing will be in place to keep them
+                                current in the future.</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="swq1Y" id="swq1Y"
+                                                {% if sw.q1 == "Yes" %}checked{% endif %}  disabled>
+                                            <label class="form-check-label" for="swq1Y">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="swq1N" id="swq1N" {% if sw.q1 == "No" %}checked{% endif %} 
+                                                disabled>
+                                            <label class="form-check-label" for="swq1N">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">There is a capability in place to
+                                distribute the most recent software version or updates, but it does not have controls to
+                                protect against fake (malicious) updates.</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="swq2Y" id="swq2Y" {% if sw.q2 == "Yes" %}checked{% endif %}  disabled>
+                                            <label class="form-check-label" for="swq2Y">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="swq2N" id="swq2N"  {% if sw.q2 == "No" %}checked{% endif %} 
+                                                disabled>
+                                            <label class="form-check-label" for="swq2N">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">Initial install files and/or
+                                updates carry a signature (e.g. a hash or checksum) to verify file integrity, but the
+                                file must be (and will be) manually checked against a trusted list of valid
+                                signatures.</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="swq3Y" id="swq3Y" {% if sw.q3 == "Yes" %}checked{% endif %} 
+                                                disabled>
+                                            <label class="form-check-label" for="swq3Y">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="swq3N" id="swq3N"
+                                                {% if sw.q3 == "No" %}checked{% endif %}  disabled>
+                                            <label class="form-check-label" for="swq3N">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">Software, including operating
+                                system, utilities, applications, and any other executable code, is only obtained from
+                                trusted sources. It is distributed using mechanisms that automatically ensure it is not
+                                altered, for example, files are cryptographically signed or delivered over a channel
+                                that ensures end-to-end file integrity. Current versions of software are initially
+                                installed. Patching and upgrades are performed regularly and as needed. Patches are
+                                automatically verified so that administrators and users cannot be tricked into
+                                installing a malicious update.</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="swq4Y" id="swq4Y"
+                                                {% if sw.q4 == "Yes" %}checked{% endif %}  disabled>
+                                            <label class="form-check-label" for="swq4Y">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="swq4N" id="swq4N" {% if sw.q4 == "No" %}checked{% endif %} 
+                                                disabled>
+                                            <label class="form-check-label" for="swq4N">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-9 col-form-label">This project does not include any
+                                new software. Nothing new is installed on user computers or on servers used by this
+                                system. There are no new web pages with code that runs on the server (for example,
+                                receiving form input) and no new web pages with code that runs on the browser (such as
+                                media players, Java, Active X, JavaScript etc.)</label>
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="swq5Y" id="swq5Y" {% if sw.q5 == "Yes" %}checked{% endif %}  disabled>
+                                            <label class="form-check-label" for="swq5Y">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" disabled type="radio"
+                                                name="swq5N" id="swq5N"  {% if sw.q5 == "No" %}checked{% endif %} 
+                                                disabled>
+                                            <label class="form-check-label" for="swq5N">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 py-5 d-flex justify-content-center">
+                        <h1 class="display-3">END</h1>
+                    </div>
+                </div>
+            </div>
+    </main>
+</div>
+{% endblock %}

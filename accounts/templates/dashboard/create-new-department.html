@@ -1,0 +1,50 @@
+{% extends 'accounts/base.html' %}
+{% load static %}
+
+{% block title %}
+Dashboard | Add Department
+{% endblock %}
+
+{% block body %}
+<div class="row" style="height: 59px">
+
+</div>
+<div class="row">
+                
+    <!-- Admin SideBar -->
+    {% include "dashboard/admin-sidebar.html" %}
+
+    <main role="main" class="col-md-10 ml-sm-auto col-lg-10 pt-3 px-4">
+        <div
+            class="row d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+            <div class="col-8">
+                <div
+                    class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+                    <h1 class="h2">Add Department</h1>
+                    {% comment %} <a href="#" class="btn btn-primary">Add User</a> {% endcomment %}
+                </div>
+                    <form action="" method="POST" autocomplete="off">
+                        {% csrf_token %}
+                        {% for field in form %}
+
+                        <div class="form-group row">
+                            <label for="inputPassword" class="col-3 col-form-label">{{field.label}}</label>
+                            <div class="col-9">
+                                {{field}}
+                            </div>
+                        </div>
+                        <br>
+
+                        {% endfor %}
+                        <input type="submit" name="Add Product" value="Add Product" class="btn btn-primary">
+                        {{userform.errors|striptags}}
+                        {{user_info.errors|striptags}}
+                    </form>
+
+            </div>
+        </div>
+
+
+    </main>
+</div>
+{% endblock %}

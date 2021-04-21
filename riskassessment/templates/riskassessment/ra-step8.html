@@ -1,0 +1,94 @@
+{% extends 'accounts/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+Dashboard | Risk Assessment | {{riskassessment.product.name}}
+{% endblock %}
+
+{% block body %}
+<div class="row" style="height: 59px">
+
+</div>
+<div class="row">
+
+    <!-- Admin SideBar -->
+    {% include "dashboard/admin-sidebar.html" %}
+
+    <main role="main" class="col-md-10 ml-sm-auto col-lg-10 pt-3 px-4">
+        <div
+            class="row d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+            <div class="col-8">
+                <div
+                    class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+                    <h1 class="h2">Risk Assessment - {{riskassessment.product.name}}</h1>
+                    {% comment %} <a href="#" class="btn btn-primary">Add User</a> {% endcomment %}
+                </div>
+                <div class="progress" style="height: 5px;">
+                    <div class="progress-bar" role="progressbar" style="width: {{progress}}%"></div>
+                </div>
+                <br>
+                <div
+                    class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+                    <h1 class="h4">Cloud Service Model</h1>
+                </div>
+                <form action="" method="POST" autocomplete="off">
+                    {% csrf_token %}
+                    <div class="form-group row d-none">
+                        <label class="col-3 col-form-label">{{form.riskassessment.name}}</label>
+                        <div class="col-9">
+                            {{form.riskassessment}}
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group row">
+                        <label class="col-9 col-form-label">Is this a SaaS solution?</label>
+                        <div class="col-3">
+                            <div>
+                                <div class="input-group mb-3 d-flex justify-content-end">
+                                    {{form.saas_sol|as_crispy_field }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group row">
+                        <label class="col-9 col-form-label">Is it hosted in IaaS owned by the Company?</label>
+                        <div class="col-3 d-flex justify-content-end">
+                            {{form.iaas_hosted|as_crispy_field }}
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group row">
+                        <label class="col-8 col-form-label">Complete the Architecture Diagram Architecture Diagram
+                            Criteria
+                        </label>
+                        <div class="col-sm-4">
+                            <input type="text" readonly class="form-control-plaintext"
+                                value="https://arizonastateu-my.sharepoint.com/:b:/r/personal/smridha_sundevils_asu_edu/Documents/Docs/Resume_SayantanM.pdf?csf=1&web=1&e=r06qhn">
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group row">
+                        <label class="col-9 col-form-label">Is the solution built on premises in the Company's
+                            datacenter?</label>
+                        <div class="col-3 d-flex justify-content-end">
+                            {{form.on_prem|as_crispy_field }}
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group row {% if inst and inst.score != 0 %} {% else %} d-none {% endif %}">
+                        <label class="col-2 col-form-label">Comment</label>
+                        <div class="col-10 d-flex justify-content-end">
+                            {{form.comment}}
+                        </div>
+                    </div>
+                    <br>
+                    <input type="submit" name="Add Product" value="Next" class="btn btn-primary">
+                    {{form.errors|striptags}}
+                </form>
+            </div>
+        </div>
+    </main>
+</div>
+{% endblock %}

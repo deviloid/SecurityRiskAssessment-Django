@@ -1,0 +1,133 @@
+{% extends 'accounts/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+Dashboard | Risk Assessment | {{riskassessment.product.name}}
+{% endblock %}
+
+{% block body %}
+<div class="row" style="height: 59px">
+
+</div>
+<div class="row">
+
+    <!-- Admin SideBar -->
+    {% include "dashboard/admin-sidebar.html" %}
+
+    <main role="main" class="col-md-10 ml-sm-auto col-lg-10 pt-3 px-4">
+        <div
+            class="row d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+            <div class="col-8">
+                <div
+                    class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+                    <h1 class="h2">Risk Assessment - {{riskassessment.product.name}}</h1>
+                    {% comment %} <a href="#" class="btn btn-primary">Add User</a> {% endcomment %}
+                </div>
+                <div class="progress" style="height: 5px;">
+                    <div class="progress-bar" role="progressbar" style="width: {{progress}}%"></div>
+                </div>
+                <br>
+                <div
+                    class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+                    <h1 class="h4">Secure Design</h1>
+                </div>
+                <form action="" method="POST" autocomplete="off">
+                    {% csrf_token %}
+                    <div class="form-group row d-none">
+                        <label class="col-3 col-form-label">{{form.riskassessment.name}}</label>
+                        <div class="col-9">
+                            {{form.riskassessment}}
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group row">
+                        <label class="col-12 col-form-label"><strong>Who is responsible for the secure design of the entire system?</strong></label>
+                    </div>
+                    <br>
+                    <div class="form-group row">
+                        <label class="col-9 col-form-label">We do not know who is responsible for the security design of
+                            the entire system.</label>
+                        <div class="col-3">
+                            <div>
+                                <div class="input-group mb-3 d-flex justify-content-end">
+                                    {{form.q1|as_crispy_field }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group row">
+                        <label class="col-9 col-form-label">Although certain parts may be designed for security, nobody
+                            is responsible for the security design and Company standards compliance of the entire system
+                            including users and their devices.</label>
+                        <div class="col-3 d-flex justify-content-end">
+                            {{form.q2|as_crispy_field }}
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group row">
+                        <label class="col-9 col-form-label">A vendor claims to be responsible for the security design
+                            and Company standards compliance of the entire system, but the vendor has not signed ISO
+                            language, or the scope of the vendor's contracted responsibility does not cover the entire
+                            system including users and their devices.</label>
+                        <div class="col-3 d-flex justify-content-end">
+                            {{form.q3|as_crispy_field }}
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group row">
+                        <label class="col-9 col-form-label">A single vendor has accepted responsibility for all of the
+                            security design and Company standards compliance, has signed ISO language, and the scope of
+                            the vendor's contracted responsibility covers the entire system including users and their
+                            devices.However the vendor has not provided evidence of compliance with the ISO
+                            language.</label>
+                        <div class="col-3 d-flex justify-content-end">
+                            {{form.q4|as_crispy_field }}
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group row">
+                        <label class="col-9 col-form-label">A single vendor has accepted responsibility for all of the
+                            security design and Company standards compliance, has signed ISO language, and the scope of
+                            the vendor's contracted responsibility covers the entire system including users and their
+                            devices. If the vendor has signed or has intent to sign the ISO contract language ensure you
+                            provide a copy of the following documents from the vendor:
+                            <ul>
+                                <li>
+                                    SOC2 Report
+                                </li>
+                                <li>
+                                    Security Policies or SOPs
+                                </li>
+                            </ul>
+                        </label>
+                        <div class="col-3 d-flex justify-content-end">
+                            {{form.q5|as_crispy_field }}
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group row">
+                        <label class="col-9 col-form-label">One or more Company employees have designed the system with
+                            a holistic security perspective from the beginning, selecting components and/or vendors that
+                            meet regulatory requirements and Company standards.</label>
+                        <div class="col-3 d-flex justify-content-end">
+                            {{form.q6|as_crispy_field }}
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group row {% if inst and inst.score != 0 %} {% else %} d-none {% endif %}">
+                        <label class="col-2 col-form-label">Comment</label>
+                        <div class="col-10 d-flex justify-content-end">
+                            {{form.comment}}
+                        </div>
+                    </div>
+                    <br>
+                    <input type="submit" name="Add Product" value="Next" class="btn btn-primary">
+                    {{form.errors|striptags}}
+                </form>
+            </div>
+        </div>
+    </main>
+</div>
+{% endblock %}

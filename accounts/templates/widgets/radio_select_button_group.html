@@ -1,0 +1,16 @@
+<div>
+    <div class="input-group mb-3 d-flex justify-content-end">
+    {% for group, options, index in widget.optgroups %}
+        {% for option in options %}
+            <div{% if widget.attrs.id %} id="{{ widget.attrs.id }}"{% endif %} class="form-check" data-toggle="buttons">
+                    <label class="form-check-label {% if option.attrs.checked %} active{% endif %}" id="{{ widget.attrs.id }}">
+                    <input type="{{ option.type }}" name="{{ option.name }}" id="{{ option.attrs.id }}"{% if option.value != None %} value="{{ option.value|stringformat:'s' }}"{% if option.attrs.checked %} checked="checked"{% endif %}{% endif %}{% if widget.required %} required{% endif %} class="form-check-input" > 
+                        {{ option.label }}
+                    </label>
+            </div>
+            <div class="form-check">
+            </div>
+        {% endfor %}
+    {% endfor %}
+    </div>
+</div>

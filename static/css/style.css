@@ -19,10 +19,14 @@
     transform: translate(-50%, -50%) !important;
     z-index: 10 !important;
     left: 50% !important;
-    top: 50% !important; 
-    color: white !important;  
+    top: 50% !important;
+    color: white !important;
 }
 
 .relative-parent {
     background-color: rgba(0, 0, 0, 0.5);
+}
+
+ul.form-check-input {
+    list-style: none;
 }

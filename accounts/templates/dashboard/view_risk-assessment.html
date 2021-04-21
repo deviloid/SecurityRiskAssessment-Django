@@ -1,0 +1,250 @@
+{% extends 'accounts/base.html' %}
+{% block title %}
+Dashboard
+{% endblock %}
+
+{% block body %}
+<div class="row" style="height: 59px">
+
+</div>
+<div class="row">
+    <!-- Admin SideBar -->
+    {% include "dashboard/admin-sidebar.html" %}
+
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+            <h1 class="h1">Risk Assessment - {{prod.name}}</h1>
+            {% if ra.evaluated == True %}
+                <a href="{% url 'GenReport' slug=ra.product.slug p_id=ra.product.id ra_id=ra.id  %}" class="btn btn-success">View Report</a>
+            {% else %}
+                <a href="{% url 'EvaluateRiskAssessment' ra_id=ra.id  %}" class="btn btn-primary">Evaluate</a>
+            {% endif %}
+        </div>
+        <div class="pb-2 mb-3 border-bottom">
+            <div class="row row-col-2">
+                <div class="col">
+                    <h1 class="h2">Product Details</h1>
+                    <hr class="dropdown-divider">
+                    <div>
+                        <div class="row">
+                            <label class="col-sm-3 col-form-label"><strong>Product
+                                    Name</strong></label>
+                            <div class="col-sm-9">
+                                <label class="col col-form-label">{{prod.name}}</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-3 col-form-label"><strong>Product
+                                    Purpose</strong></label>
+                            <div class="col-sm-9">
+                                <label class="col col-form-label">{{prod.purpose}}</label>
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="dropdown-divider">
+                    <h1 class="h2">Risk Assessment</h1>
+                    <hr class="dropdown-divider">
+                    <div>
+                        <div class="row">
+                            <label class="col-5 col-form-label"><strong>Department Information</strong></label>
+                            <div class="col-sm-7 pb-2 d-flex justify-content-between">
+                                <label class="col col-form-label">Filled</label> <a
+                                        href="{% url 'step1' slug=ra.product.slug p_id=ra.product.id ra_id=ra.id %}"
+                                        class="btn btn-primary">Edit</a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-5 col-form-label"><strong>Vendor Information</strong></label>
+                            <div class="col-sm-7 pb-2 d-flex justify-content-between">
+                                <label class="col col-form-label">Filled</label> <a
+                                        href="{% url 'step2' slug=ra.product.slug p_id=ra.product.id ra_id=ra.id %}"
+                                        class="btn btn-primary">Edit</a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-5 col-form-label"><strong>Data
+                                    Management</strong></label>
+                            <div class="col-sm-7 pb-2 d-flex justify-content-between">
+                                <label class="col col-form-label">{{data_mng}}</label> <a
+                                        href="{% url 'step3' slug=ra.product.slug p_id=ra.product.id ra_id=ra.id %}"
+                                        class="btn btn-primary">{% if data_mng == "Not Filled" %}Start{% elif data_mng == "Filled" %} Edit{% endif %}</a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-5 col-form-label"><strong>Availability &
+                                    Criticality</strong></label>
+                            <div class="col-sm-7 pb-2 d-flex justify-content-between">
+                                <label class="col col-form-label">{{a_c}}</label> <a
+                                        href="{% url 'step4' slug=ra.product.slug p_id=ra.product.id ra_id=ra.id %}"
+                                        class="btn btn-primary">{% if a_c == "Not Filled" %}Start{% elif a_c == "Filled" %} Edit{% endif %}</a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-5 col-form-label"><strong>Compliance</strong></label>
+                            <div class="col-sm-7 pb-2 d-flex justify-content-between">
+                                <label class="col col-form-label">{{comp}}</label>
+                                {% comment %} <label class="col col-form-label">{{comp_score}}</label> {% endcomment %}
+                                
+                                <a href="{% url 'step5' slug=ra.product.slug p_id=ra.product.id ra_id=ra.id %}"
+                                        class="btn btn-primary">{% if comp == "Not Filled" %}Start{% elif comp == "Filled" %} Edit{% endif %}</a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-5 col-form-label"><strong>Security Maturity
+                                    Evidence</strong></label>
+                            <div class="col-sm-7 pb-2 d-flex justify-content-between">
+                                <label class="col col-form-label">{{sec_mat}}</label> <a
+                                        href="{% url 'step6' slug=ra.product.slug p_id=ra.product.id ra_id=ra.id %}"
+                                        class="btn btn-primary">{% if sec_mat == "Not Filled" %}Start{% elif sec_mat == "Filled" %} Edit{% endif %}</a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-5 col-form-label"><strong>Integration</strong></label>
+                            <div class="col-sm-7 pb-2 d-flex justify-content-between">
+                                <label class="col col-form-label">{{inte}}</label> <a
+                                        href="{% url 'step7' slug=ra.product.slug p_id=ra.product.id ra_id=ra.id %}"
+                                        class="btn btn-primary">{% if inte == "Not Filled" %}Start{% elif inte == "Filled" %} Edit{% endif %}</a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-5 col-form-label"><strong>Cloud Service
+                                    Model</strong></label>
+                            <div class="col-sm-7 pb-2 d-flex justify-content-between">
+                                <label class="col col-form-label">{{csm}}</label> <a
+                                        href="{% url 'step8' slug=ra.product.slug p_id=ra.product.id ra_id=ra.id %}"
+                                        class="btn btn-primary">{% if csm == "Not Filled" %}Start{% elif csm == "Filled" %} Edit{% endif %}</a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-5 col-form-label"><strong>Secure Design</strong></label>
+                            <div class="col-sm-7 pb-2 d-flex justify-content-between">
+                                <label class="col col-form-label">{{sd}}</label> <a
+                                        href="{% url 'step9' slug=ra.product.slug p_id=ra.product.id ra_id=ra.id %}"
+                                        class="btn btn-primary">{% if sd == "Not Filled" %}Start{% elif sd == "Filled" %} Edit{% endif %}</a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-5 col-form-label"><strong>Encryption</strong></label>
+                            <div class="col-sm-7 pb-2 d-flex justify-content-between">
+                                <label class="col col-form-label">{{enc}}</label> <a
+                                        href="{% url 'step10' slug=ra.product.slug p_id=ra.product.id ra_id=ra.id %}"
+                                        class="btn btn-primary">{% if enc == "Not Filled" %}Start{% elif enc == "Filled" %} Edit{% endif %}</a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-5 col-form-label"><strong>Quality Assurance
+                                    Environment</strong></label>
+                            <div class="col-sm-7 pb-2 d-flex justify-content-between">
+                                <label class="col col-form-label">{{qa}}</label> <a
+                                        href="{% url 'step11' slug=ra.product.slug p_id=ra.product.id ra_id=ra.id %}"
+                                        class="btn btn-primary">{% if qa == "Not Filled" %}Start{% elif qa == "Filled" %} Edit{% endif %}</a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-5 col-form-label"><strong>Database
+                                    Servers</strong></label>
+                            <div class="col-sm-7 pb-2 d-flex justify-content-between">
+                                <label class="col col-form-label">{{dbserver}}</label> <a
+                                        href="{% url 'step12' slug=ra.product.slug p_id=ra.product.id ra_id=ra.id %}"
+                                        class="btn btn-primary">{% if dbserver == "Not Filled" %}Start{% elif dbserver == "Filled" %} Edit{% endif %}</a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-5 col-form-label"><strong>Secure
+                                    Communications</strong></label>
+                            <div class="col-sm-7 pb-2 d-flex justify-content-between">
+                                <label class="col col-form-label">{{sec_comm}}</label> <a
+                                        href="{% url 'step13' slug=ra.product.slug p_id=ra.product.id ra_id=ra.id %}"
+                                        class="btn btn-primary">{% if sec_comm == "Not Filled" %}Start{% elif sec_comm == "Filled" %} Edit{% endif %}</a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-5 col-form-label"><strong>Software
+                                    Integrity</strong></label>
+                            <div class="col-sm-7 pb-2 d-flex justify-content-between">
+                                <label class="col col-form-label">{{sw_inte}}</label> <a
+                                        href="{% url 'step14' slug=ra.product.slug p_id=ra.product.id ra_id=ra.id %}"
+                                        class="btn btn-primary">{% if sw_inte == "Not Filled" %}Start{% elif sw_inte == "Filled" %} Edit{% endif %}</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <h1 class="h2">Users</h1>
+                    <hr class="dropdown-divider">
+                    <div class="mb-1 row py-1">
+                        <label class="col-sm-6 col-form-label"><strong>Risk Analyst</strong></label>
+                        <div class="col-sm-6">
+                            <label class="col-sm-6 col-form-label">{{prod.risk_analyst}}</label>
+                        </div>
+                    </div>
+                    <hr class="dropdown-divider">
+                    <div class="row">
+                        <label class="col-sm-6 col-form-label"><strong>Main Project Contact
+                                (Dept)</strong></label>
+                        <div class="col-sm-6">
+                            <label class="col-sm-6 col-form-label">{{prod.dept_mpc}}</label>
+                            <label class="col-sm-6 col-form-label">+1 {{prod.dept_mpc.phone}}</label>
+                            <label class="col-sm-6 col-form-label"><a
+                                    href="mailto:{{prod.dept_mpc.user.email}}">{{prod.dept_mpc.user.email}}</a></label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-sm-6 col-form-label"><strong>Technical Administrator
+                                Contact</strong></label>
+                        <div class="col-sm-6">
+                            <label class="col-sm-6 col-form-label">{{dept_info.ta_name}}</label>
+                            <label class="col-sm-6 col-form-label">+1 {{dept_info.ta_phone}}</label>
+                            <label class="col-sm-6 col-form-label"><a
+                                    href="mailto:{{dept_info.ta_email}}">{{dept_info.ta_email}}</a></label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-sm-6 col-form-label"><strong>End-User Requestor
+                                Contact</strong></label>
+                        <div class="col-sm-6">
+                            <label class="col-sm-6 col-form-label">{{dept_info.eur_name}}</label>
+                            <label class="col-sm-6 col-form-label">+1 {{dept_info.eur_phone}}</label>
+                            <label class="col-sm-6 col-form-label"><a
+                                    href="mailto:{{dept_info.eur_email}}">{{dept_info.eur_email}}</a></label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-sm-6 col-form-label"><strong>Data Steward</strong></label>
+                        <div class="col-sm-6">
+                            <label class="col-sm-6 col-form-label">{{dept_info.ds_name}}</label>
+                            <label class="col-sm-6 col-form-label">+1 {{dept_info.ds_phone}}</label>
+                            <label class="col-sm-6 col-form-label"><a
+                                    href="mailto:{{dept_info.ds_email}}">{{dept_info.ds_email}}</a></label>
+                        </div>
+                    </div>
+                    <hr class="dropdown-divider">
+                    <div class="row">
+                        <label class="col-sm-6 col-form-label"><strong>Main Project Contact
+                                (Vendor)</strong></label>
+                        <div class="col-sm-6">
+                            <label class="col-sm-6 col-form-label">{{prod.vend_mpc}}</label>
+                            <label class="col-sm-6 col-form-label">+1 {{prod.vend_mpc.phone}}</label>
+                            <label class="col-sm-6 col-form-label"><a
+                                    href="mailto:{{prod.vend_mpc.user.email}}">{{prod.vend_mpc.user.email}}</a></label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-sm-6 col-form-label"><strong>Technical
+                                Contact</strong></label>
+                        <div class="col-sm-6">
+                            <label class="col-sm-6 col-form-label">{{vend_info.tc_name}}</label>
+                            <label class="col-sm-6 col-form-label">+1 {{vend_info.tc_phone}}</label>
+                            <label class="col-sm-6 col-form-label"><a
+                                    href="mailto:{{vend_info.tc_email}}">{{vend_info.tc_email}}</a></label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </main>
+</div>
+{% endblock %}

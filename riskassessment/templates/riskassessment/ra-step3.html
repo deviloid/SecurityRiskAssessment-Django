@@ -1,0 +1,126 @@
+{% extends 'accounts/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+Dashboard | Risk Assessment | {{riskassessment.product.name}}
+{% endblock %}
+
+{% block body %}
+<div class="row" style="height: 59px">
+
+</div>
+<div class="row">
+
+    <!-- Admin SideBar -->
+    {% include "dashboard/admin-sidebar.html" %}
+
+    <main role="main" class="col-md-10 ml-sm-auto col-lg-10 pt-3 px-4">
+        <div
+            class="row d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+            <div class="col-8">
+                <div
+                    class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+                    <h1 class="h2">Risk Assessment - {{riskassessment.product.name}}</h1>
+                    {% comment %} <a href="#" class="btn btn-primary">Add User</a> {% endcomment %}
+                </div>
+                <div class="progress" style="height: 5px;">
+                    <div class="progress-bar" role="progressbar" style="width: {{progress}}%"></div>
+                </div>
+                <br>
+                <div
+                    class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+                    <h1 class="h4">Data Management</h1>
+                </div>
+                <form action="" method="POST" autocomplete="off">
+                    {% csrf_token %}
+                    <div class="form-group row d-none">
+                        <label class="col-3 col-form-label">{{form.riskassessment.name}}</label>
+                        <div class="col-9">
+                            {{form.riskassessment}}
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group row">
+                        <label class="col-6 col-form-label">Regulated Data</label>
+                        <div class="col-6">
+                            <div>
+                                <div class="inp d-flex justify-content-endut-group mb-3 d-flex justify-content-end">
+                                    {{form.reg_data|as_crispy_field }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group row">
+                        <label class="col-6 col-form-label">Data Classification</label>
+                        <div class="col-6 d-flex justify-content-end">
+                            {{form.data_classi|as_crispy_field }}
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group row">
+                        <label class="col-8 col-form-label">Number of Records in Data</label>
+                        <div class="col-4">
+                            {{form.recs_in_data}}
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group row">
+                        <label class="col-8 col-form-label">Are records purged from Data?</label>
+                        <div class="col-4 d-flex justify-content-end">
+                            {{form.recs_purged|as_crispy_field }}
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group row">
+                        <label class="col-8 col-form-label">Estimated yearly additional Records</label>
+                        <div class="col-4">
+                            {{form.est_add_recs}}
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group row">
+                        <label class="col-8 col-form-label">Is data processing performed outside the US?</label>
+                        <div class="col-4 d-flex justify-content-end">
+                            {{form.data_process_outside|as_crispy_field }}
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group row">
+                        <label class="col-8 col-form-label">Is data stored outside the US?</label>
+                        <div class="col-4 d-flex justify-content-end">
+                            {{form.data_stored_outside|as_crispy_field }}
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group row">
+                        <label class="col-8 col-form-label">Is any data received (directly or indirectly by the Company)
+                            from individuals outside of the US?</label>
+                        <div class="col-4 d-flex justify-content-end">
+                            {{form.data_rcvd_outside|as_crispy_field }}
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group row">
+                        <label class="col-8 col-form-label">Are data or Systems accessible outside the US?</label>
+                        <div class="col-4 d-flex justify-content-end">
+                            {{form.data_accss_outside|as_crispy_field }}
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group row {% if inst and inst.score != 0 %} {% else %} d-none {% endif %}">
+                        <label class="col-2 col-form-label">Comment</label>
+                        <div class="col-10 d-flex justify-content-end">
+                            {{form.comment}}
+                        </div>
+                    </div>
+                    <br>
+                    <input type="submit" name="Add Product" value="Next" class="btn btn-primary">
+                    {{form.errors|striptags}}
+                </form>
+            </div>
+        </div>
+    </main>
+</div>
+{% endblock %}

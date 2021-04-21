@@ -1,0 +1,134 @@
+{% extends 'accounts/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+Dashboard | Risk Assessment | {{riskassessment.product.name}}
+{% endblock %}
+
+{% block body %}
+<div class="row" style="height: 59px">
+
+</div>
+<div class="row">
+
+    <!-- Admin SideBar -->
+    {% include "dashboard/admin-sidebar.html" %}
+
+    <main role="main" class="col-md-10 ml-sm-auto col-lg-10 pt-3 px-4">
+        <div
+            class="row d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+            <div class="col-8">
+                <div
+                    class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+                    <h1 class="h2">Risk Assessment - {{riskassessment.product.name}}</h1>
+                    {% comment %} <a href="#" class="btn btn-primary">Add User</a> {% endcomment %}
+                </div>
+                <div class="progress" style="height: 5px;">
+                    <div class="progress-bar" role="progressbar" style="width: {{progress}}%"></div>
+                </div>
+                <br>
+                <div
+                    class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+                    <h1 class="h4">Software Integrity</h1>
+                </div>
+                <form action="" method="POST" autocomplete="off">
+                    {% csrf_token %}
+                    <div class="form-group row d-none">
+                        <label class="col-3 col-form-label">{{form.riskassessment.name}}</label>
+                        <div class="col-9">
+                            {{form.riskassessment}}
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group row">
+                        <label class="col-12 col-form-label">
+                            <p>
+                                Whoever writes your software gains control of your computer, sensitive data, and
+                                identity. Thus it is important to be sure the software comes from sources you trust.
+                                Verify the origin of software before installing it, and keep it up to date if security
+                                fixes have been released.
+                            </p>
+                            <p>
+                                Current versions should be originally installed, upgrades should be applied when
+                                available, and security patches should be applied promptly. During original installation
+                                or subsequent updates, controls should be in place to ensure that all software comes
+                                from trustworthy authors, and has not been tampered with along the way.
+                            </p>
+                            <strong>
+                                Are current versions of software being deployed? Will upgrades and patches be promptly
+                                applied?
+                            </strong>
+                        </label>
+                    </div>
+                    <br>
+                    <div class="form-group row">
+                        <label class="col-9 col-form-label">Some systems run outdated versions of their operating
+                            system, utilities, or installed applications. Or, systems are initially deployed with
+                            current software, but nothing will be in place to keep them current in the future.</label>
+                        <div class="col-3">
+                            <div>
+                                <div class="inp d-flex justify-content-endut-group mb-3 d-flex justify-content-end">
+                                    {{form.q1|as_crispy_field }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group row">
+                        <label class="col-9 col-form-label">There is a capability in place to distribute the most recent
+                            software version or updates, but it does not have controls to protect against fake
+                            (malicious) updates.</label>
+                        <div class="col-3 d-flex justify-content-end">
+                            {{form.q2|as_crispy_field }}
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group row">
+                        <label class="col-9 col-form-label">Initial install files and/or updates carry a signature (e.g.
+                            a hash or checksum) to verify file integrity, but the file must be (and will be) manually
+                            checked against a trusted list of valid signatures.</label>
+                        <div class="col-3 d-flex justify-content-end">
+                            {{form.q3|as_crispy_field }}
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group row">
+                        <label class="col-9 col-form-label">Software, including operating system, utilities,
+                            applications, and any other executable code, is only obtained from trusted sources. It is
+                            distributed using mechanisms that automatically ensure it is not altered, for example, files
+                            are cryptographically signed or delivered over a channel that ensures end-to-end file
+                            integrity. Current versions of software are initially installed. Patching and upgrades are
+                            performed regularly and as needed. Patches are automatically verified so that administrators
+                            and users cannot be tricked into installing a malicious update.</label>
+                        <div class="col-3 d-flex justify-content-end">
+                            {{form.q4|as_crispy_field }}
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group row">
+                        <label class="col-9 col-form-label">This project does not include any new software. Nothing new
+                            is installed on user computers or on servers used by this system. There are no new web pages
+                            with code that runs on the server (for example, receiving form input) and no new web pages
+                            with code that runs on the browser (such as media players, Java, Active X, JavaScript
+                            etc.)</label>
+                        <div class="col-3 d-flex justify-content-end">
+                            {{form.q5|as_crispy_field }}
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group row {% if inst and inst.score != 0 %} {% else %} d-none {% endif %}">
+                        <label class="col-2 col-form-label">Comment</label>
+                        <div class="col-10 d-flex justify-content-end">
+                            {{form.comment}}
+                        </div>
+                    </div>
+                    <br>
+                    <input type="submit" name="Add Product" value="Submit" class="btn btn-primary">
+                    {{form.errors|striptags}}
+                </form>
+            </div>
+        </div>
+    </main>
+</div>
+{% endblock %}

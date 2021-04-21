@@ -14,16 +14,12 @@ Form TEST
         <div
             class="row d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
             <div class="col-8">
-        {% for field in form %}
-            {% comment %} {% if field == form.exst_contract %}
-                {% for radio in form.exst_contract %}
-                    {{radio}}
+                {% for field in form %}
+                    {% if field.name != 'product' %}
+                        <p>{{field.label}}</p>
+                    {% endif %}
                 {% endfor %}
-            {% else %} {% endcomment %}
-            <p>{{field}}</p>
-            {% comment %} {% endif %} {% endcomment %}
-        {% endfor %}
-    </div>
-    </div>
-</main>
+            </div>
+        </div>
+    </main>
 {% endblock %}

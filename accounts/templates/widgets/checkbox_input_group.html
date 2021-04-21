@@ -1,0 +1,69 @@
+<div>
+    <div class="input-group mb-3 d-flex justify-content-end">
+        {% for group, options, index in widget.optgroups %}
+        {% for option in options %}
+        <div{% if widget.attrs.id %} id="{{ widget.attrs.id }}" {% endif %} class="form-check" data-toggle="buttons">
+            <label class="form-check-label {% if option.attrs.checked %} active{% endif %}" for="{{ widget.attrs.id }}">
+                <input type="checkbox" name="{{ option.name }}" id="{{ option.attrs.id }}" 
+                    value="{{ option.value|stringformat:'s' }}" class="form-check-input">
+                {{ option.label }}
+            </label>
+
+    </div>
+    <div class="form-check">
+    </div>
+    {% endfor %}
+    {% endfor %}
+</div>
+</div>
+{% comment %}
+<div>
+    <div class="input-group mb-3 d-flex justify-content-end">
+        <div class="form-check">
+            <input class="form-check-input" disabled type="checkbox" value="" id="flexCheckDefault">
+            <label class="form-check-label" for="flexCheckDefault">
+                FERPA
+            </label>
+        </div>
+        <div class="form-check">
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" disabled type="checkbox" value="" id="flexCheckDefault">
+            <label class="form-check-label" for="flexCheckDefault">
+                HIPAA
+            </label>
+        </div>
+        <div class="form-check">
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" disabled type="checkbox" value="" id="flexCheckChecked">
+            <label class="form-check-label" for="flexCheckChecked">
+                GDPR
+            </label>
+        </div>
+        <div class="form-check">
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" disabled type="checkbox" value="" id="flexCheckChecked">
+            <label class="form-check-label" for="flexCheckChecked">
+                ITAR
+            </label>
+        </div>
+        <div class="form-check">
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" disabled type="checkbox" value="" id="flexCheckChecked" checked>
+            <label class="form-check-label" for="flexCheckChecked">
+                PCI
+            </label>
+        </div>
+        <div class="form-check">
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" disabled type="checkbox" value="" id="flexCheckChecked">
+            <label class="form-check-label" for="flexCheckChecked">
+                PII
+            </label>
+        </div>
+    </div>
+</div> {% endcomment %}

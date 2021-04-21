@@ -63,9 +63,10 @@ Dashboard | Users
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th class="col-md-4" scope="col">Name</th>
-                                    <th class="col-md-4" scope="col">Email</th>
-                                    <th class="col-md-4" scope="col">Phone</th>
+                                    <th class="col-md" scope="col">Name</th>
+                                    <th class="col-md" scope="col">Email</th>
+                                    <th class="col-md" scope="col">Phone</th>
+                                    <th class="col-md" scope="col">Department</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -74,6 +75,7 @@ Dashboard | Users
                                     <th scope="row" class="{% if dept_user.user.has_setpsd == False %} text-danger {% endif %}">{{dept_user.user.fname}} {{dept_user.user.lname}}</th>
                                     <td><a href="mailto:{{dept_user.user.email}}" style="text-decoration: none">{{dept_user.user.email}}</a></td>
                                     <td>+1 {{dept_user.phone}}</td>
+                                    <td>{{dept_user.department}}</td>
                                 </tr>
                                 {% endfor %}
                             </tbody>
@@ -97,9 +99,10 @@ Dashboard | Users
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th class="col-md-4" scope="col">Name</th>
-                                    <th class="col-md-4" scope="col">Email</th>
-                                    <th class="col-md-4" scope="col">Phone</th>
+                                    <th class="col-md" scope="col">Name</th>
+                                    <th class="col-md" scope="col">Email</th>
+                                    <th class="col-md" scope="col">Phone</th>
+                                    <th class="col-md" scope="col">Vendor</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -108,6 +111,7 @@ Dashboard | Users
                                     <th scope="row" class="{% if dept_user.user.has_setpsd == False %} text-danger {% endif %}">{{vend_user.user.fname}} {{vend_user.user.lname}}</th>
                                     <td><a href="mailto:{{vend_user.user.email}}" style="text-decoration: none">{{vend_user.user.email}}</a></td>
                                     <td>+1 {{vend_user.phone}}</td>
+                                    <td> {{vend_user.vendor}}</td>
                                 </tr>
                                 {% endfor %}
                             </tbody>

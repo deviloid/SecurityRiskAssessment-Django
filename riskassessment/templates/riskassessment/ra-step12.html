@@ -1,0 +1,141 @@
+{% extends 'accounts/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+Dashboard | Risk Assessment | {{riskassessment.product.name}}
+{% endblock %}
+
+{% block body %}
+<div class="row" style="height: 59px">
+
+</div>
+<div class="row">
+
+    <!-- Admin SideBar -->
+    {% include "dashboard/admin-sidebar.html" %}
+
+    <main role="main" class="col-md-10 ml-sm-auto col-lg-10 pt-3 px-4">
+        <div
+            class="row d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+            <div class="col-8">
+                <div
+                    class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+                    <h1 class="h2">Risk Assessment - {{riskassessment.product.name}}</h1>
+                    {% comment %} <a href="#" class="btn btn-primary">Add User</a> {% endcomment %}
+                </div>
+                <div class="progress" style="height: 5px;">
+                    <div class="progress-bar" role="progressbar" style="width: {{progress}}%"></div>
+                </div>
+                <br>
+                <div
+                    class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+                    <h1 class="h4">Database Servers</h1>
+                </div>
+                <form action="" method="POST" autocomplete="off">
+                    {% csrf_token %}
+                    <div class="form-group row d-none">
+                        <label class="col-3 col-form-label">{{form.riskassessment.name}}</label>
+                        <div class="col-9">
+                            {{form.riskassessment}}
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group row">
+                        <label class="col-12 col-form-label">
+                            <p>Servers that have databases containing sensitive data should be protected from various
+                                types
+                                of attacks. A database server directly connected to the Internet has no defenses except
+                                the
+                                ID and password that may be required. A database server directly connected to a web
+                                server
+                                may loseeven that ID/password defenseif the web server is compromised.</p>
+                            <strong>What database protections are in place?</strong>
+                        </label>
+                    </div>
+                    <br>
+                    <div class="form-group row">
+                        <label class="col-9 col-form-label">There are one or more databases with access to sensitive
+                            data. The database servers have publicly routable IP addresses and there is no firewall
+                            limiting connections to the database. People from anywhere in the world can connect directly
+                            to the database server.</label>
+                        <div class="col-3">
+                            <div>
+                                <div class="inp d-flex justify-content-endut-group mb-3 d-flex justify-content-end">
+                                    {{form.q1|as_crispy_field }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group row">
+                        <label class="col-9 col-form-label">A database containing sensitive data is directly accessible
+                            by a web server, but the database only accepts requests from the web server. Other devices
+                            cannot make connections to the database.</label>
+                        <div class="col-3 d-flex justify-content-end">
+                            {{form.q2|as_crispy_field }}
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group row">
+                        <label class="col-9 col-form-label">Web servers can connect to database servers directly, but
+                            alternate protections are in place to defend the database from a web server compromise, such
+                            as a Web Application Firewall in front of the web server. (Describe in the notes how the
+                            protective technology protects the database from a web server compromise.)</label>
+                        <div class="col-3 d-flex justify-content-end">
+                            {{form.q3|as_crispy_field }}
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group row">
+                        <label class="col-9 col-form-label">Web servers cannot connect directly to database servers due
+                            to network segmentation, firewall rules, etc. Web servers interact with database servers
+                            through an application server that only permits a white list of known good transactions (a
+                            three tier architecture). Web servers also have defenses against typical attacks (such as
+                            SQL injection) via parameterized queries, stored procedures, or other techniques that do not
+                            pass arbitrary strings to the SQL command interpreter.</label>
+                        <div class="col-3 d-flex justify-content-end">
+                            {{form.q4|as_crispy_field }}
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group row">
+                        <label class="col-9 col-form-label">None of the systems in this project have access to a
+                            database containing sensitive data.</label>
+                        <div class="col-3 d-flex justify-content-end">
+                            {{form.q5|as_crispy_field }}
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group row">
+                        <label class="col-9 col-form-label">
+                            This question is not applicable for this project because all of the following are true:
+                            <ul>
+                                <li>
+                                    No Company equipment or network connections will be used to transmit sensitive
+                                    data.If a vendor is transmitting or receiving sensitive data, the vendor has
+                                    accepted responsibility for protecting the data by signing a contract that
+                                    includesISO language.
+                                </li>
+                            </ul>
+                        </label>
+                        <div class="col-3 d-flex justify-content-end">
+                            {{form.q6|as_crispy_field }}
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group row {% if inst and inst.score != 0 %} {% else %} d-none {% endif %}">
+                        <label class="col-2 col-form-label">Comment</label>
+                        <div class="col-10 d-flex justify-content-end">
+                            {{form.comment}}
+                        </div>
+                    </div>
+                    <br>
+                    <input type="submit" name="Add Product" value="Next" class="btn btn-primary">
+                    {{form.errors|striptags}}
+                </form>
+            </div>
+        </div>
+    </main>
+</div>
+{% endblock %}
