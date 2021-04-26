@@ -337,4 +337,5 @@ project/migrations/
 questionnaire/migrations/
 department/migrations/
 vendor/migrations/
+db.sqlite3
 
