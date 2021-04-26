@@ -179,21 +179,21 @@ def UsersView(request):
 
 
 @login_required(login_url="login")
-def ProjectsView(request):
-    projects = Product.objects.all()
+def ProductsView(request):
+    products = Product.objects.all().order_by("name")
 
-    context = {"projects": projects}
+    context = {"products": products}
     return render(request, "dashboard/dashboard-products.html", context)
 
 
 @login_required(login_url="login")
-def AddProject(request):
+def AddProduct(request):
     form = ProductCreateForm()
     if request.method == "POST":
         form = ProductCreateForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect("ProjectsView")
+            return redirect("ProductsView")
 
     context = {
         "form": form,
@@ -201,20 +201,62 @@ def AddProject(request):
     return render(request, "dashboard/create-new-product.html", context)
 
 
+@login_required(login_url="login")
+def ViewProduct(request, pk, slug):
+    
+    product = Product.objects.get(id=pk, slug=slug)
+    departments = RiskAssessment.objects.filter(product_id=product.id)
+
+    context = {
+        "product":product,
+        "departments":departments
+    }
+    return render(request, "dashboard/view_product.html", context)
+
+
+@login_required(login_url="login")
 def DepartmentView(request):
 
-    departments = Department.objects.all().order_by("id")
+    departments = Department.objects.all().order_by("name")
 
     context = {"departments": departments}
     return render(request, "dashboard/dashboard-department.html", context)
 
 
+@login_required(login_url="login")
+def ViewDepartment(request, slug):
+
+    department = Department.objects.get(slug=slug)
+    users = UserDepartment.objects.filter(department_id=department.id)
+
+    context = {
+        "users":users,
+        "department":department
+    }
+    return render(request, "dashboard/view_department.html", context)
+
+
 def VendorView(request):
 
-    vendors = Vendor.objects.all().order_by("id")
+    vendors = Vendor.objects.all().order_by("name")
 
     context = {"vendors": vendors}
     return render(request, "dashboard/dashboard-vendor.html", context)
+
+
+@login_required(login_url="login")
+def ViewVendor(request, slug):
+
+    vendor = Vendor.objects.get(slug=slug)
+    products = Product.objects.filter(vendor_id=vendor.id)
+    users = UserVendor.objects.filter(vendor_id=vendor.id)
+
+    context = {
+        "users":users,
+        "products":products,
+        "vendor":vendor
+    }
+    return render(request, "dashboard/view_vendor.html", context)
 
 
 @login_required(login_url="login")
@@ -269,7 +311,7 @@ def AddRiskAssessment(request):
             pk2 = ra.id
             slug = ra.product.slug
             print(pk)
-            return redirect("RiskAssessmentDetail")
+            return redirect("step1", p_id = pk, ra_id = pk2, slug = slug)
 
     context = {"form": form}
 
@@ -904,6 +946,19 @@ def RiskAssessmentDetail(request, p_id, slug, ra_id):
     prod = Product.objects.get(id=ra.product_id)
     dept_info = DeptInfo.objects.get(riskassessment_id=ra_id)
     vend_info = VendInfo.objects.get(riskassessment_id=ra_id)
+
+    data_mng_score = -1
+    a_c_score = -1
+    comp_score = -1
+    sec_mat_score = -1
+    inte_score = -1
+    csm_score = -1
+    sd_score = -1
+    enc_score = -1
+    qa_score = -1
+    dbserver_score = -1
+    sec_comm_score = -1
+    sw_inte_score = -1
 
     data_mng = DataManagement.objects.filter(riskassessment_id=ra_id)
     if data_mng.count() == 0:

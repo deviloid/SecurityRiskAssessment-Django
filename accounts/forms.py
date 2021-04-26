@@ -78,10 +78,13 @@ class DeptCreateForm(ModelForm):
 
     class Meta:
         model = UserDepartment
-        fields = ["department", "phone"]
+        fields = ["department", "title", "phone"]
         widgets = {
             "phone": forms.TextInput(
                 attrs={"class": "form-control", "placeholder": "Phone"}
+            ),
+            "title": forms.TextInput(
+                attrs={"class": "form-control", "placeholder": "Title"}
             )
         }
 
@@ -105,33 +108,10 @@ class VendCreateForm(ModelForm):
 
 
 class ProductCreateForm(ModelForm):
-    risk_analyst = forms.ModelChoiceField(
-        label='Risk Analyst',
-        queryset=Account.objects.filter(is_staff=True),
-        widget=forms.Select(attrs={"class": "form-control"}),
-        empty_label="Select Risk Analyst",
-    )
-    department = forms.ModelChoiceField(
-        queryset=Department.objects.all(),
-        widget=forms.Select(attrs={"class": "form-control"}),
-        empty_label="Select Department",
-    )
-    dept_mpc = forms.ModelChoiceField(
-        label='Main Project Contact (Dept)',
-        queryset=UserDepartment.objects.all(),
-        widget=forms.Select(attrs={"class": "form-control"}),
-        empty_label="Select Main Project Contact (Dept)",
-    )
     vendor = forms.ModelChoiceField(
         queryset=Vendor.objects.all(),
         widget=forms.Select(attrs={"class": "form-control"}),
         empty_label="Select Vendor",
-    )
-    vend_mpc = forms.ModelChoiceField(
-        label='Main Project Contact (Vendor)',
-        queryset=UserVendor.objects.all(),
-        widget=forms.Select(attrs={"class": "form-control"}),
-        empty_label="Select Main Project Contact (Vendor)",
     )
 
     class Meta:
@@ -140,13 +120,20 @@ class ProductCreateForm(ModelForm):
         exclude = ['slug']
         widgets = {
             "name": forms.TextInput(
-                attrs={"class": "form-control", "placeholder": "Project Name"}
+                attrs={"class": "form-control", "placeholder": "Product Name"}
             ),
             "purpose": forms.Textarea(
-                attrs={"class": "form-control", "placeholder": "Project Purpose"}
+                attrs={"class": "form-control", "placeholder": "Product Purpose"}
+            ),
+            "tech_phone": forms.TextInput(
+                attrs={"class": "form-control", "placeholder": "Technical Support Phone Number"}
+            ),
+            "link": forms.TextInput(
+                attrs={"class": "form-control", "placeholder": "Product Link"}
             ),
         }
-    field_order = ['name', 'purpose', 'risk_analyst', 'department', 'dept_mpc', 'vendor', 'vend_mpc']
+
+    field_order = ['name', 'purpose', 'vendor', 'tech_phone', 'link',]
 
 
 class DepartmentCreateForm(ModelForm):
@@ -155,7 +142,8 @@ class DepartmentCreateForm(ModelForm):
         model = Department
         fields = '__all__'
         widgets = {
-            'name' : forms.TextInput(attrs={'class':'form-control', 'placeholder':'Department Name'})
+            'name' : forms.TextInput(attrs={'class':'form-control', 'placeholder':'Department Name'}),
+            'location' : forms.TextInput(attrs={'class':'form-control', 'placeholder':'Department Location'})
         }
 
 
@@ -179,6 +167,7 @@ class VendorCreateForm(ModelForm):
 class CreateRAForm(ModelForm):
 
     product = forms.ModelChoiceField(queryset=Product.objects.all(), widget=forms.Select(attrs={'class':'form-control'}), empty_label="Select Product",)
+    department = forms.ModelChoiceField(queryset=Department.objects.all(), widget=forms.Select(attrs={'class':'form-control'}), empty_label="Select Department",)
 
     class Meta:
         model = RiskAssessment

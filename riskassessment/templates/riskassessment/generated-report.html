@@ -287,11 +287,11 @@ Dashboard
                                 {% comment %} <h3 class="">Score: 3/5</h3><span class="text-light">S</span> {% endcomment %}
                                 <div class="btn-group" role="group" aria-label="Basic mixed styles example">
                                     {% if data_mng.eval_score >= 90 %}
-                                    <button type="button" disabled class="btn btn-danger">High</button>
+                                    <button type="button" class="btn btn-danger">High</button>
                                     {% elif data_mng.eval_score < 90 and data_mng.eval_score >= 51 %}
                                     <button type="button" class="btn btn-warning">Medium</button>
                                     {% else %}
-                                    <button type="button" disabled class="btn btn-success">Low</button>
+                                    <button type="button" class="btn btn-success">Low</button>
                                     {% endif %}
                                 </div>
                             </div>
@@ -573,11 +573,11 @@ Dashboard
                                 {% comment %} <h3 class="">Score: 3/5</h3><span class="text-light">S</span> {% endcomment %}
                                 <div class="btn-group" role="group" aria-label="Basic mixed styles example">
                                     {% if a_c.eval_score >= 90 %}
-                                    <button type="button" disabled class="btn btn-danger">High</button>
+                                    <button type="button" class="btn btn-danger">High</button>
                                     {% elif a_c.eval_score < 90 and a_c.eval_score >= 51 %}
                                     <button type="button" class="btn btn-warning">Medium</button>
                                     {% else %}
-                                    <button type="button" disabled class="btn btn-success">Low</button>
+                                    <button type="button" class="btn btn-success">Low</button>
                                     {% endif %}
                                 </div>
                             </div>
@@ -676,9 +676,9 @@ Dashboard
                                 {% comment %} <h3 class="">Score: 0/3</h3><span class="text-light">S</span> {% endcomment %}
                                 <div class="btn-group" role="group" aria-label="Basic mixed styles example">
                                     {% if comp.eval_score >= 90 %}
-                                    <button type="button" disabled class="btn btn-danger">High</button>
+                                    <button type="button" class="btn btn-danger">High</button>
                                     {% elif comp.eval_score < 90 and comp.eval_score >= 51 %}
-                                    <button type="button" disabled class="btn btn-warning">Medium</button>
+                                    <button type="button" class="btn btn-warning">Medium</button>
                                     {% else %}
                                     <button type="button" class="btn btn-success">Low</button>
                                     {% endif %}
@@ -788,9 +788,9 @@ Dashboard
                                 {% comment %} <h3 class="">Score: 3/5</h3><span class="text-light">S</span> {% endcomment %}
                                 <div class="btn-group" role="group" aria-label="Basic mixed styles example">
                                     {% if .eval_score >= 90 %}
-                                    <button type="button" disabled class="btn btn-danger">High</button>
+                                    <button type="button" class="btn btn-danger">High</button>
                                     {% elif .eval_score < 90 and .eval_score >= 51 %}
-                                    <button type="button" disabled class="btn btn-warning">Medium</button>
+                                    <button type="button" class="btn btn-warning">Medium</button>
                                     {% else %}
                                     <button type="button" class="btn btn-success">Low</button>
                                     {% endif %}
@@ -927,9 +927,9 @@ Dashboard
                                 {% comment %} <h3 class="">Score: 3/5</h3><span class="text-light">S</span> {% endcomment %}
                                 <div class="btn-group" role="group" aria-label="Basic mixed styles example">
                                     {% if inte.eval_score >= 90 %}
-                                    <button type="button" disabled class="btn btn-danger">High</button>
+                                    <button type="button" class="btn btn-danger">High</button>
                                     {% elif inte.eval_score < 90 and inte.eval_score >= 51 %}
-                                    <button type="button" disabled class="btn btn-warning">Medium</button>
+                                    <button type="button" class="btn btn-warning">Medium</button>
                                     {% else %}
                                     <button type="button" class="btn btn-success">Low</button>
                                     {% endif %}
@@ -1046,9 +1046,9 @@ Dashboard
                                 {% comment %} <h3 class="">Score: 3/5</h3><span class="text-light">S</span> {% endcomment %}
                                 <div class="btn-group" role="group" aria-label="Basic mixed styles example">
                                     {% if csm.eval_score >= 90 %}
-                                    <button type="button" disabled class="btn btn-danger">High</button>
+                                    <button type="button" class="btn btn-danger">High</button>
                                     {% elif csm.eval_score < 90 and csm.eval_score >= 51 %}
-                                    <button type="button" disabled class="btn btn-warning">Medium</button>
+                                    <button type="button" class="btn btn-warning">Medium</button>
                                     {% else %}
                                     <button type="button" class="btn btn-success">Low</button>
                                     {% endif %}
@@ -1113,6 +1113,7 @@ Dashboard
                             <label for="staticEmail" class="col-sm-9 col-form-label">Complete the Architecture Diagram
                                 Architecture Diagram Criteria</label>
                             <div class="col-sm-3">
+                            <label for="staticEmail" class="col-sm-9 col-form-label"></label>
                                 <input type="text" readonly class="form-control-plaintext" id="staticEmail"
                                     value="https://arizonastateu-my.sharepoint.com/:b:/r/personal/smridha_sundevils_asu_edu/Documents/Docs/Resume_SayantanM.pdf?csf=1&web=1&e=r06qhn">
                             </div>
@@ -1162,9 +1163,9 @@ Dashboard
                                 {% comment %} <h3 class="">Score: 3/5</h3><span class="text-light">S</span> {% endcomment %}
                                 <div class="btn-group" role="group" aria-label="Basic mixed styles example">
                                     {% if sd.eval_score >= 90 %}
-                                    <button type="button" disabled class="btn btn-danger">High</button>
+                                    <button type="button" class="btn btn-danger">High</button>
                                     {% elif sd.eval_score < 90 and sd.eval_score >= 51 %}
-                                    <button type="button" disabled class="btn btn-warning">Medium</button>
+                                    <button type="button" class="btn btn-warning">Medium</button>
                                     {% else %}
                                     <button type="button" class="btn btn-success">Low</button>
                                     {% endif %}
@@ -1378,11 +1379,11 @@ Dashboard
                                 {% comment %} <h3 class="">Score: 3/5</h3><span class="text-light">S</span> {% endcomment %}
                                 <div class="btn-group" role="group" aria-label="Basic mixed styles example">
                                     {% if enc.eval_score >= 90 %}
-                                    <button type="button" disabled class="btn btn-danger">High</button>
+                                    <button type="button" class="btn btn-danger">High</button>
                                     {% elif enc.eval_score < 90 and enc.eval_score >= 51 %}
                                     <button type="button" class="btn btn-warning">Medium</button>
                                     {% else %}
-                                    <button type="button" disabled class="btn btn-success">Low</button>
+                                    <button type="button" class="btn btn-success">Low</button>
                                     {% endif %}
                                 </div>
                             </div>
@@ -1881,9 +1882,9 @@ Dashboard
                                     {% if qa.eval_score >= 90 %}
                                     <button type="button" class="btn btn-danger">High</button>
                                     {% elif qa.eval_score < 90 and qa.eval_score >= 51 %}
-                                    <button type="button" disabled class="btn btn-warning">Medium</button>
+                                    <button type="button" class="btn btn-warning">Medium</button>
                                     {% else %}
-                                    <button type="button" disabled class="btn btn-success">Low</button>
+                                    <button type="button" class="btn btn-success">Low</button>
                                     {% endif %}
                                 </div>
                             </div>
@@ -2049,9 +2050,9 @@ Dashboard
                                 {% comment %} <h3 class="">Score: 3/5</h3><span class="text-light">S</span> {% endcomment %}
                                 <div class="btn-group" role="group" aria-label="Basic mixed styles example">
                                     {% if dbserver.eval_score >= 90 %}
-                                    <button type="button" disabled class="btn btn-danger">High</button>
+                                    <button type="button" class="btn btn-danger">High</button>
                                     {% elif dbserver.eval_score < 90 and dbserver.eval_score >= 51 %}
-                                    <button type="button" disabled class="btn btn-warning">Medium</button>
+                                    <button type="button" class="btn btn-warning">Medium</button>
                                     {% else %}
                                     <button type="button" class="btn btn-success">Low</button>
                                     {% endif %}
@@ -2265,9 +2266,9 @@ Dashboard
                                 {% comment %} <h3 class="">Score: 3/5</h3><span class="text-light">S</span> {% endcomment %}
                                 <div class="btn-group" role="group" aria-label="Basic mixed styles example">
                                     {% if sec_comm.eval_score >= 90 %}
-                                    <button type="button" disabled class="btn btn-danger">High</button>
+                                    <button type="button" class="btn btn-danger">High</button>
                                     {% elif sec_comm.eval_score < 90 and sec_comm.eval_score >= 51 %}
-                                    <button type="button" disabled class="btn btn-warning">Medium</button>
+                                    <button type="button" class="btn btn-warning">Medium</button>
                                     {% else %}
                                     <button type="button" class="btn btn-success">Low</button>
                                     {% endif %}

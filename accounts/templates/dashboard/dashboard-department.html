@@ -27,13 +27,15 @@ Dashboard | Departments
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th class="col-md-2" scope="col">Name</th>
+                                    <th class="col-md-4" scope="col">Name</th>
+                                    <th class="col-md-8" scope="col">Location</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {% for department in departments %}
                                 <tr>
-                                    <th scope="row">{{department.name}}</th>
+                                    <th scope="row"><a href="{% url "ViewDepartment" slug=department.slug %}" style="text-decoration:none">{{department.name}}</a></th>
+                                    <td scope="row">{{department.location}}</td>
                                 </tr>
                                 {% endfor %}
                             </tbody>

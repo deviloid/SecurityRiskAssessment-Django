@@ -36,7 +36,7 @@ Dashboard | Vendors
                             <tbody>
                                 {% for vendor in vendors %}
                                 <tr>
-                                    <th scope="row">{{vendor.name}}</th>
+                                    <th scope="row"><a href="{% url "ViewVendor" slug=vendor.slug %}" style="text-decoration:none">{{vendor.name}}</a></th>
                                     <td><a href="{{vendor.website}}" style="text-decoration: none">{{vendor.website|strip_http}}</a></td>
                                     <td>{{vendor.exstContract}}</td>
                                 </tr>

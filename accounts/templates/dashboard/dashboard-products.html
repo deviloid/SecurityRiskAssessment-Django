@@ -19,31 +19,32 @@ Dashboard | Products
                 <div
                     class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
                     <h1 class="h2">Products</h1>
-                    <a href="{% url 'AddProject' %}" class="btn btn-primary">Add</a>
+                    <a href="{% url 'AddProduct' %}" class="btn btn-primary">Add</a>
                 </div>
                 <div class="row d-flex align-items-center justify-content-center">
                     <div class="col-md-12">
-                        {% if projects %}
+                        {% if products %}
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th class="col-md-2" scope="col">Name</th>
-                                    <th class="col-md-2" scope="col">Risk Analyst</th>
-                                    <th class="col-md-2" scope="col">Department</th>
-                                    <th class="col-md-2" scope="col"><span data-bs-toggle="tooltip" data-bs-placement="top" title="Main Project Contact" style="text-decoration: underline">MPC</span> (Dept)</th>
+                                    <th class="col-md-5" scope="col">Name</th>
                                     <th class="col-md-2" scope="col">Vendor</th>
-                                    <th class="col-md-2" scope="col"><span data-bs-toggle="tooltip" data-bs-placement="top" title="Main Project Contact" style="text-decoration: underline">MPC</span> (Vendor)</th>
+                                    <!-- <th class="col-md-2" scope="col">Department</th> -->
+                                    <th class="col-md-2" scope="col">
+                                        <!-- <span data-bs-toggle="tooltip" data-bs-placement="top" title="Main Product Contact" style="text-decoration: underline"></span> -->Tech
+                                        Support
+                                    </th>
+                                    <th class="col-md-3" scope="col">Link</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {% for project in projects %}
+                                {% for product in products %}
                                 <tr>
-                                    <th scope="row">{{project.name}}</th>
-                                    <td>{{project.risk_analyst.fname}} {{project.risk_analyst.lname}}</td>
-                                    <td>{{project.department}}</td>
-                                    <td>{{project.dept_mpc}} {{project.dept_mpc.lname}}</td>
-                                    <td>{{project.vendor}}</td>
-                                    <td>{{project.vend_mpc}}</td>
+                                    <th scope="row"><a href="{% url "ViewProduct" slug=product.slug pk=product.id %}" style="text-decoration: none">{{product.name}}</a></th>
+                                    <td>{{product.vendor}}</td>
+                                    <td>+1 {{product.tech_phone}}</td>
+                                    <td><a href="{{product.link}}"
+                                            style="text-decoration: none">{{product.link|truncatechars:35 }}</a></td>
                                 </tr>
                                 {% endfor %}
                             </tbody>

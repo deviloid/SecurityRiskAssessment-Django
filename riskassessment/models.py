@@ -1,4 +1,3 @@
-import riskassessment
 from django.db import models
 from django.db.models.deletion import DO_NOTHING
 from product.models import Product
@@ -8,9 +7,10 @@ from vendor.models import UserVendor
 # Create your models here.
 class RiskAssessment(models.Model):
     product = models.ForeignKey(Product, verbose_name='Product', on_delete=DO_NOTHING)
-    total_score = models.CharField(verbose_name='Assessment Score', max_length=6, default=None, blank=True, null=True)
+    department = models.ForeignKey(Department, verbose_name="Department", null=True, blank=True, on_delete=DO_NOTHING)
     date = models.DateField(verbose_name='Date Added', auto_now_add=True)
     steps_complete = models.IntegerField(verbose_name="Steps Completed", default=0)
+    total_score = models.CharField(verbose_name='Assessment Score', max_length=6, default=None, blank=True, null=True)
     evaluated = models.BooleanField(verbose_name="Evaluated?", default=False)
     approved = models.BooleanField(verbose_name="Approved?", default=False)
 

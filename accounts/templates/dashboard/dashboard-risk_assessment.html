@@ -29,17 +29,17 @@ Dashboard | Risk Assessments
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th class="col-md-4" scope="col">Product</th>
+                                    <th class="col-md-5" scope="col">Product</th>
                                     <th class="col-md-2" scope="col">Score</th>
-                                    <th class="col-md-2" scope="col">Date Added</th>
-                                    <th class="col-md-2" scope="col">Steps Completed (out of 14)</th>
-                                    <th class="col-md-2" scope="col">Actions</th>
+                                    <th class="col-md-1" scope="col">Date Added</th>
+                                    <th class="col-md-2" scope="col"><div class="d-flex justify-content-center">Steps Completed (out of 14)</div></th>
+                                    <th class="col-md-2" scope="col"><div class="d-flex justify-content-center">Actions</div></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {% for riskassessment in riskassessments %}
                                 <tr>
-                                    <th scope="row">{% if riskassessment.steps_complete > 2 %}<a
+                                    <th scope="row">{% if riskassessment.steps_complete >= 2 %}<a
                                             href="{% url 'RiskAssessmentDetail' slug=riskassessment.product.slug p_id=riskassessment.product.id ra_id=riskassessment.id %}"
                                             style="text-decoration: none">{% endif %}{{riskassessment.product}}{% if riskassessment.steps_complete > 2 %}</a>{% endif %}</th>
 
@@ -107,7 +107,7 @@ Dashboard | Risk Assessments
                                             <a href="{% url 'step14' slug=riskassessment.product.slug p_id=riskassessment.product.id ra_id=riskassessment.id %}"
                                                 class="btn btn-primary" style="width: 75%">Continue</a>
                                             {% else %}
-                                            <a href="{% url 'EvaluateRiskAssessment' ra_id=riskassessment.id %}" class="btn btn-success" style="width: 75%">Evaluate</a>
+                                            <a href="{% url 'RiskAssessmentDetail' slug=riskassessment.product.slug p_id=riskassessment.product.id ra_id=riskassessment.id %}" class="btn btn-success" style="width: 75%">Evaluate</a>
                                             {% endif %}
                                         </div>
                                     </td>

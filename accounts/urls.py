@@ -27,26 +27,35 @@ urlpatterns = [
     path('logout/', views.logoutUser, name="logout"),
     path('signup/', views.registerPage, name="signup"),
     path('accountCreatedSuccess/', views.accountCreatedSuccess, name="accountCreatedSuccess"),
+
+
     path('dashboard/', views.dashboard, name="dashboard"),
+
+
     path('dashboard/users/', views.UsersView, name="usersView"),
     path('dashboard/users/register-dept-user/', views.deptregisterPage, name='register-dept-user'),
     path('dashboard/users/register-vend-user/', views.vendregisterPage, name='register-vend-user'),
-    path('dashboard/projects/', views.ProjectsView, name="ProjectsView"),
-    path('dashboard/projects/create-new-project/', views.AddProject, name='AddProject'),
+
+
+    path('dashboard/products/', views.ProductsView, name="ProductsView"),
+    path('dashboard/products/create-new-project/', views.AddProduct, name='AddProduct'),
+    path('dashboard/products/<str:slug>/<str:pk>/view', views.ViewProduct, name='ViewProduct'),
+
+
     path('dashboard/department/', views.DepartmentView, name="DepartmentView"),
+    path('dashboard/department/<str:slug>/view', views.ViewDepartment, name="ViewDepartment"),
     path('dashboard/department/add', views.AddDepartment, name="AddDepartment"),
+
+
     path('dashboard/vendor/', views.VendorView, name="VendorView"),
+    path('dashboard/vendor/<str:slug>/view', views.ViewVendor, name="ViewVendor"),
     path('dashboard/vendor/add', views.AddVendor, name="AddVendor"),
+
+
     path('dashboard/risk-assessments/', views.RiskAssessmentsView, name="RiskAssessmentsView"),
     path('dashboard/risk-assessments/add', views.AddRiskAssessment, name="AddRiskAssessment"),
     path('dashboard/risk-assessments/evaluate/<str:ra_id>', views.score_evaluate, name="EvaluateRiskAssessment"),
     
-    #PasswordReset
-    path('password_reset/', auth_views.PasswordResetView.as_view(template_name='registration/password_reset_form.html', form_class=UserPasswordResetForm),name='password_reset'),
-    path('password_reset/done/', auth_views.PasswordResetDoneView.as_view(), name='password_reset_done'),
-    path('reset/<uidb64>/<token>/',
-        auth_views.PasswordResetConfirmView.as_view(template_name='registration/password_reset_confirm.html', form_class=UserPasswordChangeForm, success_url=reverse_lazy('password_reset_complete')), name='password_reset_confirm'),
-    path('reset/done/', auth_views.PasswordResetCompleteView.as_view(), name='password_reset_complete'),
 
     path('dashboard/risk-assessments/<str:slug>/<str:p_id>/<str:ra_id>/view', views.RiskAssessmentDetail, name='RiskAssessmentDetail'),
     path('dashboard/risk-assessments/<str:slug>/<str:p_id>/<str:ra_id>/1/14', views.RA_step1, name='step1'),
@@ -63,6 +72,15 @@ urlpatterns = [
     path('dashboard/risk-assessments/<str:slug>/<str:p_id>/<str:ra_id>/12/14', views.RA_step12, name='step12'),
     path('dashboard/risk-assessments/<str:slug>/<str:p_id>/<str:ra_id>/13/14', views.RA_step13, name='step13'),
     path('dashboard/risk-assessments/<str:slug>/<str:p_id>/<str:ra_id>/14/14', views.RA_step14, name='step14'),
+
+
+    #PasswordReset
+    path('password_reset/', auth_views.PasswordResetView.as_view(template_name='registration/password_reset_form.html', form_class=UserPasswordResetForm),name='password_reset'),
+    path('password_reset/done/', auth_views.PasswordResetDoneView.as_view(), name='password_reset_done'),
+    path('reset/<uidb64>/<token>/',
+        auth_views.PasswordResetConfirmView.as_view(template_name='registration/password_reset_confirm.html', form_class=UserPasswordChangeForm, success_url=reverse_lazy('password_reset_complete')), name='password_reset_confirm'),
+    path('reset/done/', auth_views.PasswordResetCompleteView.as_view(), name='password_reset_complete'),
+
     # path('dashboard/risk-assessments/redirect/<str:slug>/<str:p_id>/<str:ra_id>/<str:step>/', views.ra_step_redirect, name='ra_step_redirect'),
     # url(r'^password_reset/$', auth_views.PasswordResetView.as_view(), name='password_reset'),
     # url(r'^password_reset/done/$', auth_views.PasswordResetDoneView.as_view(), name='password_reset_done'),
