@@ -337,9 +337,9 @@ project/migrations/
 questionnaire/migrations/
 department/migrations/
 vendor/migrations/
-db.sqlite3
 gunicorn.service
 nano.save
 nano.save.1
 nano.save.2
 static/all/
+db.sqlite3
