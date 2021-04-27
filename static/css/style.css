@@ -27,6 +27,11 @@
     background-color: rgba(0, 0, 0, 0.5);
 }
 
-ul.form-check-input {
-    list-style: none;
+.btn.btn-score{
+    width: 100px;
+    font-weight: bold;
 }
+
+ion-icon {
+    font-size: 18px;
+  }

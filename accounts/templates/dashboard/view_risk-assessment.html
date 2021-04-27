@@ -14,11 +14,12 @@ Dashboard
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
 
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-            <h1 class="h1">Risk Assessment - {{prod.name}}</h1>
+            <h1 class="h1">Risk Assessment - {{prod.name}} - {{ra.date}}</h1>
             {% if ra.evaluated == True %}
-                <a href="{% url 'GenReport' slug=ra.product.slug p_id=ra.product.id ra_id=ra.id  %}" class="btn btn-success">View Report</a>
+            <a href="{% url 'GenReport' slug=ra.product.slug p_id=ra.product.id ra_id=ra.id  %}"
+                class="btn btn-success d-flex align-items-center justify-content-between"><ion-icon name="eye-outline"></ion-icon> View Report</a>
             {% else %}
-                <a href="{% url 'EvaluateRiskAssessment' ra_id=ra.id  %}" class="btn btn-primary">Evaluate</a>
+            <a href="{% url 'EvaluateRiskAssessment' ra_id=ra.id  %}" class="btn btn-primary">Evaluate</a>
             {% endif %}
         </div>
         <div class="pb-2 mb-3 border-bottom">
@@ -31,14 +32,18 @@ Dashboard
                             <label class="col-sm-3 col-form-label"><strong>Product
                                     Name</strong></label>
                             <div class="col-sm-9">
-                                <label class="col col-form-label">{{prod.name}}</label>
+                                <div>
+                                    <label class="col col-form-label">{{prod.name}}</label>
+                                </div>
                             </div>
                         </div>
                         <div class="row">
                             <label class="col-sm-3 col-form-label"><strong>Product
                                     Purpose</strong></label>
                             <div class="col-sm-9">
-                                <label class="col col-form-label">{{prod.purpose}}</label>
+                                <div>
+                                    <label class="col col-form-label">{{prod.purpose}}</label>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -49,123 +54,404 @@ Dashboard
                         <div class="row">
                             <label class="col-5 col-form-label"><strong>Department Information</strong></label>
                             <div class="col-sm-7 pb-2 d-flex justify-content-between">
-                                <label class="col col-form-label">Filled</label> <a
-                                        href="{% url 'step1' slug=ra.product.slug p_id=ra.product.id ra_id=ra.id %}"
-                                        class="btn btn-primary">Edit</a>
+                                <label class="col col-form-label"><span style="color: green"><ion-icon name="checkmark-done-outline"></ion-icon></span> Filled</label>
+                                <a href="{% url 'step1' slug=ra.product.slug p_id=ra.product.id ra_id=ra.id %}"
+                                    class="btn btn-primary d-flex align-items-center"><ion-icon name="create-outline"></ion-icon>Edit</a>
                             </div>
                         </div>
                         <div class="row">
                             <label class="col-5 col-form-label"><strong>Vendor Information</strong></label>
                             <div class="col-sm-7 pb-2 d-flex justify-content-between">
-                                <label class="col col-form-label">Filled</label> <a
-                                        href="{% url 'step2' slug=ra.product.slug p_id=ra.product.id ra_id=ra.id %}"
-                                        class="btn btn-primary">Edit</a>
+                                <label class="col col-form-label"><span style="color: green"><ion-icon name="checkmark-done-outline"></ion-icon></span> Filled</label>
+                                <a href="{% url 'step2' slug=ra.product.slug p_id=ra.product.id ra_id=ra.id %}"
+                                    class="btn btn-primary d-flex align-items-center"><ion-icon name="create-outline"></ion-icon>Edit</a>
                             </div>
                         </div>
                         <div class="row">
                             <label class="col-5 col-form-label"><strong>Data
                                     Management</strong></label>
                             <div class="col-sm-7 pb-2 d-flex justify-content-between">
-                                <label class="col col-form-label">{{data_mng}}</label> <a
-                                        href="{% url 'step3' slug=ra.product.slug p_id=ra.product.id ra_id=ra.id %}"
-                                        class="btn btn-primary">{% if data_mng == "Not Filled" %}Start{% elif data_mng == "Filled" %} Edit{% endif %}</a>
+                                <div>
+                                    <label class="col col-form-label">
+                                        {% if data_mng == "Filled" %}
+                                        <span style="color: green">
+                                            <ion-icon name="checkmark-done-outline"></ion-icon>
+                                        {% else %}
+                                        <span style="color: red">
+                                            <ion-icon name="close-outline"></ion-icon>
+                                        {% endif %}
+                                        </span>
+                                        {{data_mng}}
+                                    </label>
+                                </div>    
+                                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                    {% if data_mng_score != -1 %}
+                                    {% if data_mng_score >= 90 %}
+                                    <button type="button" class="btn btn-danger btn-score">High</button>
+                                    {% elif data_mng_score < 90 and data_mng_score >= 51 %}
+                                        <button type="button" class="btn btn-warning btn-score">Medium</button>
+                                        {% else %}
+                                        <button type="button" class="btn btn-success btn-score">Low</button>
+                                        {% endif %}
+                                        {% endif %}
+                                </div>
+                                <div>
+                                    <a href="{% url 'step3' slug=ra.product.slug p_id=ra.product.id ra_id=ra.id %}"
+                                        class="btn btn-primary d-flex align-items-center"><ion-icon name="create-outline"></ion-icon> {% if data_mng == "Not Filled" %}Start{% elif data_mng == "Filled" %} Edit{% endif %}</a>
+                                </div>
                             </div>
                         </div>
                         <div class="row">
                             <label class="col-5 col-form-label"><strong>Availability &
                                     Criticality</strong></label>
                             <div class="col-sm-7 pb-2 d-flex justify-content-between">
-                                <label class="col col-form-label">{{a_c}}</label> <a
-                                        href="{% url 'step4' slug=ra.product.slug p_id=ra.product.id ra_id=ra.id %}"
-                                        class="btn btn-primary">{% if a_c == "Not Filled" %}Start{% elif a_c == "Filled" %} Edit{% endif %}</a>
+                                <div>
+                                    <label class="col col-form-label">
+                                        {% if a_c == "Filled" %}
+                                        <span style="color: green">
+                                            <ion-icon name="checkmark-done-outline"></ion-icon>
+                                        {% else %}
+                                        <span style="color: red">
+                                            <ion-icon name="close-outline"></ion-icon>
+                                        {% endif %}
+                                        </span>
+                                        {{a_c}}
+                                    </label>
+                                </div>
+                                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                    {% if a_c_score != -1 %}
+                                    {% if a_c_score >= 90 %}
+                                    <button type="button" class="btn btn-danger btn-score">High</button>
+                                    {% elif a_c_score < 90 and a_c_score >= 51 %}
+                                        <button type="button" class="btn btn-warning btn-score">Medium</button>
+                                        {% else %}
+                                        <button type="button" class="btn btn-success btn-score">Low</button>
+                                        {% endif %}
+                                        {% endif %}
+                                </div>
+                                <a href="{% url 'step4' slug=ra.product.slug p_id=ra.product.id ra_id=ra.id %}"
+                                    class="btn btn-primary d-flex align-items-center"><ion-icon name="create-outline"></ion-icon> {% if a_c == "Not Filled" %}Start{% elif a_c == "Filled" %} Edit{% endif %}</a>
                             </div>
                         </div>
                         <div class="row">
                             <label class="col-5 col-form-label"><strong>Compliance</strong></label>
                             <div class="col-sm-7 pb-2 d-flex justify-content-between">
-                                <label class="col col-form-label">{{comp}}</label>
-                                {% comment %} <label class="col col-form-label">{{comp_score}}</label> {% endcomment %}
-                                
+                                <div>
+                                    <label class="col col-form-label">
+                                        {% if comp == "Filled" %}
+                                        <span style="color: green">
+                                            <ion-icon name="checkmark-done-outline"></ion-icon>
+                                        {% else %}
+                                        <span style="color: red">
+                                            <ion-icon name="close-outline"></ion-icon>
+                                        {% endif %}
+                                        </span>
+                                        {{comp}}
+                                    </label>
+                                </div>
+                                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                    {% if comp_score != -1 %}
+                                    {% if comp_score >= 90 %}
+                                    <button type="button" class="btn btn-danger btn-score">High</button>
+                                    {% elif comp_score < 90 and comp_score >= 51 %}
+                                        <button type="button" class="btn btn-warning btn-score">Medium</button>
+                                        {% else %}
+                                        <button type="button" class="btn btn-success btn-score">Low</button>
+                                        {% endif %}
+                                        {% endif %}
+                                </div>
                                 <a href="{% url 'step5' slug=ra.product.slug p_id=ra.product.id ra_id=ra.id %}"
-                                        class="btn btn-primary">{% if comp == "Not Filled" %}Start{% elif comp == "Filled" %} Edit{% endif %}</a>
+                                    class="btn btn-primary d-flex align-items-center"><ion-icon name="create-outline"></ion-icon> {% if comp == "Not Filled" %}Start{% elif comp == "Filled" %} Edit{% endif %}</a>
                             </div>
                         </div>
                         <div class="row">
                             <label class="col-5 col-form-label"><strong>Security Maturity
                                     Evidence</strong></label>
                             <div class="col-sm-7 pb-2 d-flex justify-content-between">
-                                <label class="col col-form-label">{{sec_mat}}</label> <a
-                                        href="{% url 'step6' slug=ra.product.slug p_id=ra.product.id ra_id=ra.id %}"
-                                        class="btn btn-primary">{% if sec_mat == "Not Filled" %}Start{% elif sec_mat == "Filled" %} Edit{% endif %}</a>
+                                <div>
+                                    <label class="col col-form-label">
+                                        {% if sec_mat == "Filled" %}
+                                        <span style="color: green">
+                                            <ion-icon name="checkmark-done-outline"></ion-icon>
+                                        {% else %}
+                                        <span style="color: red">
+                                            <ion-icon name="close-outline"></ion-icon>
+                                        {% endif %}
+                                        </span>
+                                        {{sec_mat}}
+                                    </label>
+                                </div>
+                                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                    {% if sec_mat_score != -1 %}
+                                    {% if sec_mat_score >= 90 %}
+                                    <button type="button" class="btn btn-danger btn-score">High</button>
+                                    {% elif sec_mat_score < 90 and sec_mat_score >= 51 %}
+                                        <button type="button" class="btn btn-warning btn-score">Medium</button>
+                                        {% else %}
+                                        <button type="button" class="btn btn-success btn-score">Low</button>
+                                        {% endif %}
+                                        {% endif %}
+                                </div>
+                                <a href="{% url 'step6' slug=ra.product.slug p_id=ra.product.id ra_id=ra.id %}"
+                                    class="btn btn-primary d-flex align-items-center"><ion-icon name="create-outline"></ion-icon> {% if sec_mat == "Not Filled" %}Start{% elif sec_mat == "Filled" %} Edit{% endif %}</a>
                             </div>
                         </div>
                         <div class="row">
                             <label class="col-5 col-form-label"><strong>Integration</strong></label>
                             <div class="col-sm-7 pb-2 d-flex justify-content-between">
-                                <label class="col col-form-label">{{inte}}</label> <a
-                                        href="{% url 'step7' slug=ra.product.slug p_id=ra.product.id ra_id=ra.id %}"
-                                        class="btn btn-primary">{% if inte == "Not Filled" %}Start{% elif inte == "Filled" %} Edit{% endif %}</a>
+                                <div>
+                                    <label class="col col-form-label">
+                                        {% if inte == "Filled" %}
+                                        <span style="color: green">
+                                            <ion-icon name="checkmark-done-outline"></ion-icon>
+                                        {% else %}
+                                        <span style="color: red">
+                                            <ion-icon name="close-outline"></ion-icon>
+                                        {% endif %}
+                                        </span>
+                                        {{inte}}
+                                    </label>
+                                </div>
+                                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                    {% if inte_score != -1 %}
+                                    {% if inte_score >= 90 %}
+                                    <button type="button" class="btn btn-danger btn-score">High</button>
+                                    {% elif inte_score < 90 and inte_score >= 51 %}
+                                        <button type="button" class="btn btn-warning btn-score">Medium</button>
+                                        {% else %}
+                                        <button type="button" class="btn btn-success btn-score">Low</button>
+                                        {% endif %}
+                                        {% endif %}
+                                </div>
+                                <a href="{% url 'step7' slug=ra.product.slug p_id=ra.product.id ra_id=ra.id %}"
+                                    class="btn btn-primary d-flex align-items-center"><ion-icon name="create-outline"></ion-icon> {% if inte == "Not Filled" %}Start{% elif inte == "Filled" %} Edit{% endif %}</a>
                             </div>
                         </div>
                         <div class="row">
                             <label class="col-5 col-form-label"><strong>Cloud Service
                                     Model</strong></label>
                             <div class="col-sm-7 pb-2 d-flex justify-content-between">
-                                <label class="col col-form-label">{{csm}}</label> <a
-                                        href="{% url 'step8' slug=ra.product.slug p_id=ra.product.id ra_id=ra.id %}"
-                                        class="btn btn-primary">{% if csm == "Not Filled" %}Start{% elif csm == "Filled" %} Edit{% endif %}</a>
+                                <div>
+                                    <label class="col col-form-label">
+                                        {% if csm == "Filled" %}
+                                        <span style="color: green">
+                                            <ion-icon name="checkmark-done-outline"></ion-icon>
+                                        {% else %}
+                                        <span style="color: red">
+                                            <ion-icon name="close-outline"></ion-icon>
+                                        {% endif %}
+                                        </span>
+                                        {{csm}}
+                                    </label>
+                                </div>
+                                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                    {% if csm_score != -1 %}
+                                    {% if csm_score >= 90 %}
+                                    <button type="button" class="btn btn-danger btn-score">High</button>
+                                    {% elif csm_score < 90 and csm_score >= 51 %}
+                                        <button type="button" class="btn btn-warning btn-score">Medium</button>
+                                        {% else %}
+                                        <button type="button" class="btn btn-success btn-score">Low</button>
+                                        {% endif %}
+                                        {% endif %}
+                                </div>
+                                <a href="{% url 'step8' slug=ra.product.slug p_id=ra.product.id ra_id=ra.id %}"
+                                    class="btn btn-primary d-flex align-items-center"><ion-icon name="create-outline"></ion-icon> {% if csm == "Not Filled" %}Start{% elif csm == "Filled" %}
+                                    Edit{% endif %}</a>
                             </div>
                         </div>
                         <div class="row">
                             <label class="col-5 col-form-label"><strong>Secure Design</strong></label>
                             <div class="col-sm-7 pb-2 d-flex justify-content-between">
-                                <label class="col col-form-label">{{sd}}</label> <a
-                                        href="{% url 'step9' slug=ra.product.slug p_id=ra.product.id ra_id=ra.id %}"
-                                        class="btn btn-primary">{% if sd == "Not Filled" %}Start{% elif sd == "Filled" %} Edit{% endif %}</a>
+                                <div>
+                                    <label class="col col-form-label">
+                                        {% if sd == "Filled" %}
+                                        <span style="color: green">
+                                            <ion-icon name="checkmark-done-outline"></ion-icon>
+                                        {% else %}
+                                        <span style="color: red">
+                                            <ion-icon name="close-outline"></ion-icon>
+                                        {% endif %}
+                                        </span>
+                                        {{sd}}
+                                    </label>
+                                </div>
+                                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                    {% if sd_score != -1 %}
+                                    {% if sd_score >= 90 %}
+                                    <button type="button" class="btn btn-danger btn-score">High</button>
+                                    {% elif sd_score < 90 and sd_score >= 51 %}
+                                        <button type="button" class="btn btn-warning btn-score">Medium</button>
+                                        {% else %}
+                                        <button type="button" class="btn btn-success btn-score">Low</button>
+                                        {% endif %}
+                                        {% endif %}
+                                </div>
+                                <a href="{% url 'step9' slug=ra.product.slug p_id=ra.product.id ra_id=ra.id %}"
+                                    class="btn btn-primary d-flex align-items-center"><ion-icon name="create-outline"></ion-icon> {% if sd == "Not Filled" %}Start{% elif sd == "Filled" %}
+                                    Edit{% endif %}</a>
                             </div>
                         </div>
                         <div class="row">
                             <label class="col-5 col-form-label"><strong>Encryption</strong></label>
                             <div class="col-sm-7 pb-2 d-flex justify-content-between">
-                                <label class="col col-form-label">{{enc}}</label> <a
-                                        href="{% url 'step10' slug=ra.product.slug p_id=ra.product.id ra_id=ra.id %}"
-                                        class="btn btn-primary">{% if enc == "Not Filled" %}Start{% elif enc == "Filled" %} Edit{% endif %}</a>
+                                <div>
+                                    <label class="col col-form-label">
+                                        {% if enc == "Filled" %}
+                                        <span style="color: green">
+                                            <ion-icon name="checkmark-done-outline"></ion-icon>
+                                        {% else %}
+                                        <span style="color: red">
+                                            <ion-icon name="close-outline"></ion-icon>
+                                        {% endif %}
+                                        </span>
+                                        {{enc}}
+                                    </label>
+                                </div>
+                                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                    {% if enc_score != -1 %}
+                                    {% if enc_score >= 90 %}
+                                    <button type="button" class="btn btn-danger btn-score">High</button>
+                                    {% elif enc_score < 90 and enc_score >= 51 %}
+                                        <button type="button" class="btn btn-warning btn-score">Medium</button>
+                                        {% else %}
+                                        <button type="button" class="btn btn-success btn-score">Low</button>
+                                        {% endif %}
+                                        {% endif %}
+                                </div>
+                                <a href="{% url 'step10' slug=ra.product.slug p_id=ra.product.id ra_id=ra.id %}"
+                                    class="btn btn-primary d-flex align-items-center"><ion-icon name="create-outline"></ion-icon> {% if enc == "Not Filled" %}Start{% elif enc == "Filled" %}
+                                    Edit{% endif %}</a>
                             </div>
                         </div>
                         <div class="row">
                             <label class="col-5 col-form-label"><strong>Quality Assurance
                                     Environment</strong></label>
                             <div class="col-sm-7 pb-2 d-flex justify-content-between">
-                                <label class="col col-form-label">{{qa}}</label> <a
-                                        href="{% url 'step11' slug=ra.product.slug p_id=ra.product.id ra_id=ra.id %}"
-                                        class="btn btn-primary">{% if qa == "Not Filled" %}Start{% elif qa == "Filled" %} Edit{% endif %}</a>
+                                <div>
+                                    <label class="col col-form-label">
+                                        {% if qa == "Filled" %}
+                                        <span style="color: green">
+                                            <ion-icon name="checkmark-done-outline"></ion-icon>
+                                        {% else %}
+                                        <span style="color: red">
+                                            <ion-icon name="close-outline"></ion-icon>
+                                        {% endif %}
+                                        </span>
+                                        {{qa}}
+                                    </label>
+                                </div>
+                                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                    {% if qa_score != -1 %}
+                                    {% if qa_score >= 90 %}
+                                    <button type="button" class="btn btn-danger btn-score">High</button>
+                                    {% elif qa_score < 90 and qa_score >= 51 %}
+                                        <button type="button" class="btn btn-warning btn-score">Medium</button>
+                                        {% else %}
+                                        <button type="button" class="btn btn-success btn-score">Low</button>
+                                        {% endif %}
+                                        {% endif %}
+                                </div>
+                                <a href="{% url 'step11' slug=ra.product.slug p_id=ra.product.id ra_id=ra.id %}"
+                                    class="btn btn-primary d-flex align-items-center"><ion-icon name="create-outline"></ion-icon> {% if qa == "Not Filled" %}Start{% elif qa == "Filled" %}
+                                    Edit{% endif %}</a>
                             </div>
                         </div>
                         <div class="row">
                             <label class="col-5 col-form-label"><strong>Database
                                     Servers</strong></label>
                             <div class="col-sm-7 pb-2 d-flex justify-content-between">
-                                <label class="col col-form-label">{{dbserver}}</label> <a
-                                        href="{% url 'step12' slug=ra.product.slug p_id=ra.product.id ra_id=ra.id %}"
-                                        class="btn btn-primary">{% if dbserver == "Not Filled" %}Start{% elif dbserver == "Filled" %} Edit{% endif %}</a>
+                                <div>
+                                    <label class="col col-form-label">
+                                    
+                                        {% if dbserver == "Filled" %}
+                                        <span style="color: green">
+                                            <ion-icon name="checkmark-done-outline"></ion-icon>
+                                        {% else %}
+                                        <span style="color: red">
+                                            <ion-icon name="close-outline"></ion-icon>
+                                        {% endif %}
+                                        </span>
+                                        {{dbserver}}
+                                    </label>
+                                </div>
+                                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                    {% if dbserver_score != -1 %}
+                                    {% if dbserver_score >= 90 %}
+                                    <button type="button" class="btn btn-danger btn-score">High</button>
+                                    {% elif dbserver_score < 90 and dbserver_score >= 51 %}
+                                        <button type="button" class="btn btn-warning btn-score">Medium</button>
+                                        {% else %}
+                                        <button type="button" class="btn btn-success btn-score">Low</button>
+                                        {% endif %}
+                                        {% endif %}
+                                </div>
+                                <a href="{% url 'step12' slug=ra.product.slug p_id=ra.product.id ra_id=ra.id %}"
+                                    class="btn btn-primary d-flex align-items-center"><ion-icon name="create-outline"></ion-icon> {% if dbserver == "Not Filled" %}Start{% elif dbserver == "Filled" %} Edit{% endif %}</a>
                             </div>
                         </div>
                         <div class="row">
                             <label class="col-5 col-form-label"><strong>Secure
                                     Communications</strong></label>
                             <div class="col-sm-7 pb-2 d-flex justify-content-between">
-                                <label class="col col-form-label">{{sec_comm}}</label> <a
-                                        href="{% url 'step13' slug=ra.product.slug p_id=ra.product.id ra_id=ra.id %}"
-                                        class="btn btn-primary">{% if sec_comm == "Not Filled" %}Start{% elif sec_comm == "Filled" %} Edit{% endif %}</a>
+                                <div>
+                                    <label class="col col-form-label">
+                                        {% if sec_comm == "Filled" %}
+                                        <span style="color: green">
+                                            <ion-icon name="checkmark-done-outline"></ion-icon>
+                                        {% else %}
+                                        <span style="color: red">
+                                            <ion-icon name="close-outline"></ion-icon>
+                                        {% endif %}
+                                        </span>
+                                        {{sec_comm}}
+                                    </label>
+                                </div>
+                                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                    {% if sec_comm_score != -1 %}
+                                    {% if sec_comm_score >= 90 %}
+                                    <button type="button" class="btn btn-danger btn-score">High</button>
+                                    {% elif sec_comm_score < 90 and sec_comm_score >= 51 %}
+                                        <button type="button" class="btn btn-warning btn-score">Medium</button>
+                                        {% else %}
+                                        <button type="button" class="btn btn-success btn-score">Low</button>
+                                        {% endif %}
+                                        {% endif %}
+                                </div>
+                                <a href="{% url 'step13' slug=ra.product.slug p_id=ra.product.id ra_id=ra.id %}"
+                                    class="btn btn-primary d-flex align-items-center"><ion-icon name="create-outline"></ion-icon> {% if sec_comm == "Not Filled" %}Start{% elif sec_comm == "Filled" %} Edit{% endif %}</a>
                             </div>
                         </div>
                         <div class="row">
                             <label class="col-5 col-form-label"><strong>Software
                                     Integrity</strong></label>
                             <div class="col-sm-7 pb-2 d-flex justify-content-between">
-                                <label class="col col-form-label">{{sw_inte}}</label> <a
-                                        href="{% url 'step14' slug=ra.product.slug p_id=ra.product.id ra_id=ra.id %}"
-                                        class="btn btn-primary">{% if sw_inte == "Not Filled" %}Start{% elif sw_inte == "Filled" %} Edit{% endif %}</a>
+                                <div>
+                                    <label class="col col-form-label">
+                                        {% if sw_inte == "Filled" %}
+                                        <span style="color: green">
+                                            <ion-icon name="checkmark-done-outline"></ion-icon>
+                                        {% else %}
+                                        <span style="color: red">
+                                            <ion-icon name="close-outline"></ion-icon>
+                                        {% endif %}
+                                        </span>
+                                        {{sw_inte}}
+                                    </label>
+                                </div>
+                                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                    {% if sw_inte_score != -1 %}
+                                    {% if sw_inte_score >= 90 %}
+                                    <button type="button" class="btn btn-danger btn-score">High</button>
+                                    {% elif sw_inte_score < 90 and sw_inte_score >= 51 %}
+                                        <button type="button" class="btn btn-warning btn-score">Medium</button>
+                                        {% else %}
+                                        <button type="button" class="btn btn-success btn-score">Low</button>
+                                        {% endif %}
+                                        {% endif %}
+                                </div>
+                                <a href="{% url 'step14' slug=ra.product.slug p_id=ra.product.id ra_id=ra.id %}"
+                                    class="btn btn-primary d-flex align-items-center"><ion-icon name="create-outline"></ion-icon> {% if sw_inte == "Not Filled" %}Start{% elif sw_inte == "Filled" %} Edit{% endif %}</a>
                             </div>
                         </div>
                     </div>
@@ -247,4 +533,8 @@ Dashboard
 
     </main>
 </div>
+{% endblock %}
+
+{% block js %}
+<script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
 {% endblock %}

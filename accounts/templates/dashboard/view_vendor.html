@@ -1,0 +1,68 @@
+{% extends 'accounts/base.html' %}
+
+{% block title %}
+Dashboard | Vendor | {{vendor.name}}
+{% endblock %}
+
+{% block body %}
+<div class="row" style="height: 59px">
+
+</div>
+<div class="row">
+    <!-- Admin SideBar -->
+    {% include "dashboard/admin-sidebar.html" %}
+
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+        <div
+            class="row d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+            <div class="col">
+                <div
+                    class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+                    <h1 class="h2">{{vendor.name}}</h1>
+                </div>
+                <div class="row row-col-2">
+                    <div class="col">
+                        <h1 class="h3">Vendor Details</h1>
+                        <hr class="dropdown-divider">
+                        <div class="row">
+                            <label class="col-3 col-form-label"><strong>Vendor Location</strong></label>
+                            <label class="col-9 col-form-label">{{vendor.location}}</label>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <h1 class="h3">Vendor Users</h1>
+                        <hr class="dropdown-divider">
+                        <div class="row">
+                            <div class="col-md-12">
+                                {% if users %}
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th class="col-md-4" scope="col">Name</th>
+                                            <th class="col-md-4" scope="col">Phone</th>
+                                            <th class="col-md-4" scope="col">Email</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for user in users %}
+                                        <tr>
+                                            <th scope="row">{{user.user.fname}} {{user.user.lname}}</th>
+                                            <td scope="row">{{user.phone}}</td>
+                                            <td scope="row"><a href="mailto:{{user.user.email}}" style="text-decoration: none">{{user.user.email}}<a></td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                                {% else %}
+                                <h1 class="display-6 d-flex align-items-center justify-content-center">No Vendor Users
+                                    exist.</h1>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+{% endblock %}
