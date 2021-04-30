@@ -16,6 +16,8 @@ class RiskAssessment(models.Model):
     ra_number = models.CharField(verbose_name="RA Number", max_length=8, blank=True, null=True)
     department = models.ForeignKey(Department, verbose_name="Department", null=True, blank=True, on_delete=DO_NOTHING)
     date = models.DateField(verbose_name='Date Added', auto_now_add=True)
+    approved_by = models.ForeignKey(Account, verbose_name="Approved By", blank=True, on_delete=DO_NOTHING, related_name="RA_Approved_By", null=True)
+    approve_date = models.DateField(verbose_name="Date Approved", blank=True, null=True, auto_now=True)
     steps_complete = models.IntegerField(verbose_name="Steps Completed", default=0)
     total_score = models.CharField(verbose_name='Assessment Score', max_length=6, default=None, blank=True, null=True)
     evaluated = models.BooleanField(verbose_name="Evaluated?", default=False)

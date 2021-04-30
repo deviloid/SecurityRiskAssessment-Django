@@ -35,6 +35,7 @@ urlpatterns = [
     path('dashboard/users/', views.UsersView, name="usersView"),
     path('dashboard/users/register-dept-user/', views.deptregisterPage, name='register-dept-user'),
     path('dashboard/users/register-vend-user/', views.vendregisterPage, name='register-vend-user'),
+    path('dashboard/users/register-ra/', views.RARegisterPage, name='register-ra'),
 
 
     path('dashboard/products/', views.ProductsView, name="ProductsView"),

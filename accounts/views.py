@@ -1,11 +1,8 @@
-from django.http.response import HttpResponse
+from datetime import datetime, timezone
 from riskassessment.models import *
-from django.db import reset_queries
-from django.shortcuts import render, redirect, HttpResponseRedirect
+from django.shortcuts import render, redirect
 
 # from django.http import HttpResponse
-from django.contrib import messages
-from django.views.generic import CreateView
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .decorators import unauthenticated_user
@@ -14,22 +11,7 @@ from department.models import Department, UserDepartment
 from vendor.models import UserVendor, Vendor
 from product.models import Product
 from .forms import *
-from riskassessment.forms import (
-    AvailabiltyCriticalityForm,
-    CloudServiceForm,
-    ComplianceForm,
-    DatabaseServersForm,
-    DeptInfoForm,
-    EncryptionForm,
-    IntegrationForm,
-    QAEnvironmentForm,
-    SecMatEvidenceForm,
-    SWIntegrityForm,
-    SecureCommsForm,
-    SecureDesignForm,
-    VendInfoForm,
-    DataManagementForm,
-)
+from riskassessment.forms import *
 
 # from .forms import DepartmentSignUpForm, VendorSignUpForm
 
@@ -56,6 +38,24 @@ def dashboard(request):
 def accountCreatedSuccess(request):
     context = {"val": True}
     return render(request, "accounts/accountCreated.html", context)
+
+
+@login_required(login_url="login")
+def RARegisterPage(request):
+    userform = SignUpForm()
+    user_type = "Risk Analyst"
+    if request.method == "POST":
+        userform = SignUpForm(request.POST)
+        if userform.is_valid():
+            user = userform.save(commit=False)
+            user.is_staff = True
+            password = Account.objects.make_random_password()
+            user.set_password(password)
+            userform.save()
+            return redirect("usersView")
+
+    context = {"userform": userform,  "user_type": user_type}
+    return render(request, "dashboard/create-new-ra.html", context)
 
 
 @login_required(login_url="login")
@@ -1360,6 +1360,7 @@ def ApproveRA(request, ra_id, slug, p_id):
     if request.user.is_staff and not request.user.is_superuser:
         ra = RiskAssessment.objects.get(id=ra_id)
         ra.approved = True
+        ra.approved_by = request.user
         ra.save()
         return redirect("ClosedRiskAssessmentsView")
     

@@ -21,30 +21,71 @@ Dashboard
                         <h1 class="display-6">Security Risk Assessment Report</h1>
                     </div>
 
+
+                    <!-- Project -->
+                    <span class="text-white print-none" id="RiskAssessment">s</span>
+                    {% comment %} <span class="text-white print-none" id="">s</span> {% endcomment %}
+                    <div class="col-12 px-5">
+                        <div class="row" style="height: 10px;"></div>
+                        <div class="row">
+                            <div class="col-6">
+                                <button type="button" class="btn btn-primary">Risk Assessment Information</button>
+                            </div>
+                        </div>
+                        <div class="row" style="height: 15px;"></div>
+                        <div class="mb-0 row py-0">
+                            <label for="staticEmail" class="col-sm-6 col-form-label">Risk Analyst</label>
+                            <div class="col-sm-6">
+                                <label class="col col-form-label">{{riskassessment.ra}}</label>
+                            </div>
+                        </div>
+                        <div class="mb-0 row py-0">
+                            <label for="staticEmail" class="col-sm-6 col-form-label">Date Created</label>
+                            <div class="col-sm-6">
+                                <label for="staticEmail" class="col col-form-label">{{riskassessment.date}}</label>
+                            </div>
+                        </div>
+                        {% if riskassessment.approved == True %}
+                            <div class="mb-0 row py-0">
+                                <label for="staticEmail" class="col-sm-6 col-form-label">Approved By</label>
+                                <div class="col-sm-6">
+                                    <label for="staticEmail" class="col col-form-label">{{riskassessment.approved_by}}</label>
+                                </div>
+                            </div>
+                            <div class="mb-0 row py-0">
+                                <label for="staticEmail" class="col-sm-6 col-form-label">Date Approved</label>
+                                <div class="col-sm-6">
+                                    <label for="staticEmail" class="col col-form-label">{{riskassessment.approve_date}}</label>
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+
+
                     <!-- Project -->
                     <span class="text-white print-none" id="ProjectInfo">s</span>
-                    <span class="text-white print-none" id="">s</span>
+                    {% comment %} <span class="text-white print-none" id="">s</span> {% endcomment %}
                     <div class="col-12 px-5">
-                        <div class="row" style="height: 25px;"></div>
+                        <div class="row" style="height: 10px;"></div>
                         <div class="row">
                             <div class="col-6">
                                 <button type="button" class="btn btn-primary">Product Information</button>
                             </div>
                         </div>
-                        <div class="row" style="height: 30px;"></div>
-                        <div class="mb-3 row py-1">
+                        <div class="row" style="height: 15px;"></div>
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-6 col-form-label">Product Id</label>
                             <div class="col-sm-6">
                                 <label class="col col-form-label">{{riskassessment.product.id}}</label>
                             </div>
                         </div>
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-6 col-form-label">Product Name</label>
                             <div class="col-sm-6">
                                 <label for="staticEmail" class="col col-form-label">{{riskassessment.product.name}}</label>
                             </div>
                         </div>
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-6 col-form-label">Project Purpose</label>
                             <div class="col-sm-6">
                                 <label for="staticEmail" class="col col-form-label">{{riskassessment.product.purpose}}</label>
@@ -54,117 +95,117 @@ Dashboard
 
                     <!-- Department -->
                     <span class="text-white print-none" id="DeptInfo">s</span>
-                    <span class="text-white print-none" id="">s</span>
+                    {% comment %} <span class="text-white print-none" id="">s</span> {% endcomment %}
                     <div class="col-12 px-5">
-                        <div class="row" style="height: 25px;"></div>
+                        <div class="row" style="height: 10px;"></div>
                         <div class="row">
                             <div class="col-6">
                                 <button type="button" class="btn btn-primary">Department Information</button>
                             </div>
                         </div>
-                        <div class="row" style="height: 30px;"></div>
-                        <div class="mb-3 row py-1">
+                        <div class="row" style="height: 15px;"></div>
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-6 col-form-label">Department Name</label>
                             <div class="col-sm-6">
                                 <label class="col col-form-label">{{riskassessment.department.name}}</label>
                             </div>
                         </div>
                         <hr class="dropdown-divider">
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-6 col-form-label">Department Primary Contact</label>
                             <div class="col-sm-6">
                                 <label class="col col-form-label">{{dept_info.mpc.department}}</label>
                             </div>
                         </div>
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-6 col-form-label"></label>
                             <div class="col-sm-6">
                                 <label class="col col-form-label">{{dept_info.mpc.user.fname}} {{dept_info.mpc.user.lname}}</label>
                             </div>
                         </div>
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-6 col-form-label"></label>
                             <div class="col-sm-6">
                                 <label class="col col-form-label">{{dept_info.mpc.user.email}}</label>
                             </div>
                         </div>
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-6 col-form-label"></label>
                             <div class="col-sm-6">
                                 <label class="col col-form-label">+1 {{dept_info.mpc.phone}}</label>
                             </div>
                         </div>
                         <hr class="dropdown-divider">
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-6 col-form-label">Technical Administrator
                                 Contact</label>
                             <div class="col-sm-6">
                                 <label class="col col-form-label">{{dept_info.ta_dept}}</label>
                             </div>
                         </div>
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-6 col-form-label"></label>
                             <div class="col-sm-6">
                                 <label class="col col-form-label">{{dept_info.ta_name}}</label>
                             </div>
                         </div>
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-6 col-form-label"></label>
                             <div class="col-sm-6">
                                 <label class="col col-form-label">{{dept_info.ta_email}}</label>
                             </div>
                         </div>
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-6 col-form-label"></label>
                             <div class="col-sm-6">
                                 <label class="col col-form-label">+1 {{dept_info.ta_phone}}</label>
                             </div>
                         </div>
                         <hr class="dropdown-divider">
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-6 col-form-label">End-User Requestor Contact</label>
                             <div class="col-sm-6">
                                 <label class="col col-form-label">{{dept_info.eur_dept}}</label>
                             </div>
                         </div>
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-6 col-form-label"></label>
                             <div class="col-sm-6">
                                 <label class="col col-form-label">{{dept_info.eur_name}}</label>
                             </div>
                         </div>
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-6 col-form-label"></label>
                             <div class="col-sm-6">
                                 <label class="col col-form-label">{{dept_info.eur_email}}</label>
                             </div>
                         </div>
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-6 col-form-label"></label>
                             <div class="col-sm-6">
                                 <label class="col col-form-label">+1 {{dept_info.eur_phone}}</label>
                             </div>
                         </div>
                         <hr class="dropdown-divider">
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-6 col-form-label">Data Steward</label>
                             <div class="col-sm-6">
                                 <label class="col col-form-label">{{dept_info.ds_dept}}</label>
                             </div>
                         </div>
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-6 col-form-label"></label>
                             <div class="col-sm-6">
                                 <label class="col col-form-label">{{dept_info.ds_name}}</label>
                             </div>
                         </div>
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-6 col-form-label"></label>
                             <div class="col-sm-6">
                                 <label class="col col-form-label">{{dept_info.ds_email}}</label>
                             </div>
                         </div>
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-6 col-form-label"></label>
                             <div class="col-sm-6">
                                 <label class="col col-form-label">+1 {{dept_info.ds_phone}}</label>
@@ -174,72 +215,72 @@ Dashboard
 
                     <!-- Vendor -->
                     <span class="text-white print-none" id="VendInfo">s</span>
-                    <span class="text-white print-none" id="">s</span>
+                    {% comment %} <span class="text-white print-none" id="">s</span> {% endcomment %}
                     <div class="col-12 px-5">
-                        <div class="row" style="height: 25px;"></div>
+                        <div class="row" style="height: 10px;"></div>
                         <div class="row">
                             <div class="col-6">
                                 <button type="button" class="btn btn-primary">Vendor Information</button>
                             </div>
                         </div>
-                        <div class="row" style="height: 30px;"></div>
-                        <div class="mb-3 row py-1">
+                        <div class="row" style="height: 15px;"></div>
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-6 col-form-label">Vendor Company Name</label>
                             <div class="col-sm-6">
                                 <label class="col col-form-label">{{riskassessment.product.vendor.name}}</label>
                             </div>
                         </div>
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-6 col-form-label">Vendor Website</label>
                             <div class="col-sm-6">
                                 <label class="col col-form-label">{{riskassessment.product.vendor.website}}</label>
                             </div>
                         </div>
                         <hr class="dropdown-divider">
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-6 col-form-label">Vendor Primary Contact</label>
                             <div class="col-sm-6">
-                                <label class="col col-form-label">{{vend_info.mpc.user.fname}} {{vend_info.mpc.user.lname}}</label>
+                                <label class="col col-form-label">{{vend_info.mpc_name}}</label>
                             </div>
                         </div>
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-6 col-form-label"></label>
                             <div class="col-sm-6">
-                                <label class="col col-form-label">{{vend_info.mpc.user.email}}</label>
+                                <label class="col col-form-label">{{vend_info.mpc_email}}</label>
                             </div>
                         </div>
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-6 col-form-label"></label>
                             <div class="col-sm-6">
-                                <label class="col col-form-label">+1 {{vend_info.mpc.phone}}</label>
+                                <label class="col col-form-label">+1 {{vend_info.mpc_phone}}</label>
                             </div>
                         </div>
                         <hr class="dropdown-divider">
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-6 col-form-label">Vendor Technical Contact</label>
                             <div class="col-sm-6">
                                 <label class="col col-form-label">{{vend_info.tc_name}}</label>
                             </div>
                         </div>
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-6 col-form-label"></label>
                             <div class="col-sm-6">
                                 <label class="col col-form-label">{{vend_info.tc_email}}</label>
                             </div>
                         </div>
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-6 col-form-label"></label>
                             <div class="col-sm-6">
                                 <label class="col col-form-label">+1 {{vend_info.tc_phone}}</label>
                             </div>
                         </div>
                         <hr class="dropdown-divider">
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-6 col-form-label">Does the Comapany have an existing
                                 signed contract with this vendor?</label>
                             <div class="col-sm-6">
                                 <div>
-                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                    <div class="input-group mb-0 d-flex justify-content-end">
                                         <div class="form-check">
                                             <input class="form-check-input" disabled type="radio"
                                                 name="flexRadioDisabled" id="flexRadioDisabled" {% if vend_info.exst_contract == "Yes" %}checked{% endif %} disabled>
@@ -275,10 +316,10 @@ Dashboard
 
                     <!-- Data Management -->
                     <span class="text-white print-none" id="DataManagement">s</span>
-                    <span class="text-white print-none" id="">s</span>
+                    {% comment %} <span class="text-white print-none" id="">s</span> {% endcomment %}
 
                     <div class="col-12 px-5">
-                        <div class="row" style="height: 25px;"></div>
+                        <div class="row" style="height: 10px;"></div>
                         <div class="row">
                             <div class="col-6">
                                 <button type="button" class="btn btn-primary">Data Management</button>
@@ -296,8 +337,8 @@ Dashboard
                                 </div>
                             </div>
                         </div>
-                        <div class="row" style="height: 30px;"></div>
-                        <!-- <div class="mb-3 row py-1">
+                        <div class="row" style="height: 10px;"></div>
+                        <!-- <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-6 col-form-label">Company Data Steward Name</label>
                             <div class="col-sm-6">
                                 <input type="text" readonly class="form-control-plaintext" id="staticEmail"
@@ -305,11 +346,11 @@ Dashboard
                             </div>
                         </div> -->
                         <!-- <hr class="dropdown-divider"> -->
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-2 col-form-label">Regulated Data</label>
                             <div class="col-sm-10">
                                 <div>
-                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                    <div class="input-group mb-0 d-flex justify-content-end">
                                         <div class="form-check">
                                             <input class="form-check-input" disabled type="checkbox" value=""
                                                 id="flexCheckDefault" {% if "FERPA" in reg_data %}checked{% endif %}>
@@ -366,11 +407,11 @@ Dashboard
                                 </div>
                             </div>
                         </div>
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-3 col-form-label">Data Classification</label>
                             <div class="col-sm-9 d-flex justify-content-end">
                                 <div>
-                                    <div class="input-group mb-3">
+                                    <div class="input-group mb-0">
                                         <div class="form-check">
                                             <input class="form-check-input" disabled type="checkbox" value=""
                                                 id="flexCheckDefault" {% if "Highly Sensitive" in data_classi %}checked{% endif %}>
@@ -410,18 +451,18 @@ Dashboard
                             </div>
                         </div>
                         <hr class="dropdown-divider">
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-10 col-form-label">Number of Records in Data</label>
                             <div class="col-sm-2">
                                 <label class="col col-form-label">{{data_mng.recs_in_data}}</label>
                             </div>
                         </div>
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-6 col-form-label">Are records purged from
                                 Data?</label>
                             <div class="col-sm-6">
                                 <div>
-                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                    <div class="input-group mb-0 d-flex justify-content-end">
                                         <div class="form-check">
                                             <input class="form-check-input" disabled type="radio"
                                                 name="recs_purgedY" id="recs_purgedY" {% if data_mng.recs_purged == "Yes" %}checked{% endif %}  disabled>
@@ -442,19 +483,19 @@ Dashboard
                                 </div>
                             </div>
                         </div>
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-10 col-form-label">Estimated yearly additional
                                 Records</label>
                             <div class="col-sm-2">
                                 <label class="col col-form-label">{{data_mng.est_add_recs}}</label>
                             </div>
                         </div>
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-7 col-form-label">Is data processing performed
                                 outside the US?</label>
                             <div class="col-sm-5">
                                 <div>
-                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                    <div class="input-group mb-0 d-flex justify-content-end">
                                         <div class="form-check">
                                             <input class="form-check-input" disabled type="radio"
                                                 name="data_process_outsideY" id="data_process_outsideY" {% if data_mng.data_process_outside == "Yes" %}checked{% endif %}  disabled>
@@ -476,12 +517,12 @@ Dashboard
                                 </div>
                             </div>
                         </div>
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-6 col-form-label">Is data stored outside the
                                 US?</label>
                             <div class="col-sm-6">
                                 <div>
-                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                    <div class="input-group mb-0 d-flex justify-content-end">
                                         <div class="form-check">
                                             <input class="form-check-input" disabled type="radio"
                                                 name="data_stored_outsideY" id="data_stored_outsideY" {% if data_mng.data_stored_outside == "Yes" %}checked{% endif %} disabled>
@@ -503,12 +544,12 @@ Dashboard
                                 </div>
                             </div>
                         </div>
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-6 col-form-label">Is any data received (directly or
                                 indirectly by the Company) from individuals outside of the US?</label>
                             <div class="col-sm-6">
                                 <div>
-                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                    <div class="input-group mb-0 d-flex justify-content-end">
                                         <div class="form-check">
                                             <input class="form-check-input" disabled type="radio"
                                                 name="data_rcvd_outsideY" id="data_rcvd_outsideY" {% if data_mng.data_rcvd_outside == "Yes" %}checked{% endif %} disabled>
@@ -530,12 +571,12 @@ Dashboard
                                 </div>
                             </div>
                         </div>
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-7 col-form-label">Are data or Systems accessible
                                 outside the US?</label>
                             <div class="col-sm-5">
                                 <div>
-                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                    <div class="input-group mb-0 d-flex justify-content-end">
                                         <div class="form-check">
                                             <input class="form-check-input" disabled type="radio"
                                                 name="data_accss_outsideY" id="data_accss_outsideY" {% if data_mng.data_accss_outside == "Yes" %}checked{% endif %} disabled>
@@ -558,7 +599,7 @@ Dashboard
                             </div>
                         </div>
                         {% if data_mng.comment %}
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-12 col-form-label"><strong>RA Comments</strong></label>
                             <div class="col-sm-12">
                                 <input type="text" readonly class="form-control-plaintext" id="staticEmail"
@@ -570,10 +611,10 @@ Dashboard
 
                     <!-- Availability & Criticality -->
                     <span class="text-white print-none" id="AvailabilityCriticality">s</span>
-                    <span class="text-white print-none" id="">s</span>
+                    {% comment %} <span class="text-white print-none" id="">s</span> {% endcomment %}
 
                     <div class="col-12 px-5">
-                        <div class="row" style="height: 25px;"></div>
+                        <div class="row" style="height: 10px;"></div>
                         <div class="row">
                             <div class="col-6">
                                 <button type="button" class="btn btn-primary">Availability & Criticality</button>
@@ -591,13 +632,13 @@ Dashboard
                                 </div>
                             </div>
                         </div>
-                        <div class="row" style="height: 30px;"></div>
-                        <div class="mb-3 row py-1">
+                        <div class="row" style="height: 15px;"></div>
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-7 col-form-label">What is the Availability Rating of
                                 this System?</label>
                             <div class="col-sm-5">
                                 <div>
-                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                    <div class="input-group mb-0 d-flex justify-content-end">
                                         <div class="form-check">
                                             <input class="form-check-input" disabled type="radio"
                                                 name="a_rating1" id="a_rating1"
@@ -630,7 +671,7 @@ Dashboard
                                 </div>
                             </div>
                         </div>
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-7 col-form-label">System Criticality
                                 rating is based on Sensitivity of Data, and the Availability Rating.
                                 Note: All Critical, High, and Medium is required to log events to Splunk and set up for
@@ -638,7 +679,7 @@ Dashboard
                                 Additional information is available on the Vulnerability Management Website.</label>
                             <div class="col-sm-5">
                                 <div>
-                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                    <div class="input-group mb-0 d-flex justify-content-end">
                                         <div class="form-check">
                                             <input class="form-check-input" disabled type="radio"
                                                 name="c_ratingH" id="c_ratingH" {% if a_c.c_rating == "High" %}checked{% endif %} disabled>
@@ -670,7 +711,7 @@ Dashboard
                             </div>
                         </div>
                         {% if a_c.comment %}
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-12 col-form-label"><strong>RA Comments</strong></label>
                             <div class="col-sm-12">
                                 <input type="text" readonly class="form-control-plaintext" id="staticEmail"
@@ -682,10 +723,10 @@ Dashboard
 
                     <!-- Compliance -->
                     <span class="text-white print-none" id="Compliance">s</span>
-                    <span class="text-white print-none" id="">s</span>
+                    {% comment %} <span class="text-white print-none" id="">s</span> {% endcomment %}
 
                     <div class="col-12 px-5">
-                        <div class="row" style="height: 25px;"></div>
+                        <div class="row" style="height: 10px;"></div>
                         <div class="row">
                             <div class="col-6">
                                 <button type="button" class="btn btn-primary">Compliance</button>
@@ -703,15 +744,15 @@ Dashboard
                                 </div>
                             </div>
                         </div>
-                        <div class="row" style="height: 30px;"></div>
-                        <div class="mb-3 row py-1">
+                        <div class="row" style="height: 15px;"></div>
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-9 col-form-label">Do all users roles of this System
                                 authenticate using standard Company enterprise "single-sign-on" systems such as Company
                                 WebAuth
                                 or CAS/SAML in alignment with the Company Privileged Account Standard?</label>
                             <div class="col-sm-3">
                                 <div>
-                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                    <div class="input-group mb-0 d-flex justify-content-end">
                                         <div class="form-check">
                                             <input class="form-check-input" disabled type="radio"
                                                 name="comp_ssoY" id="comp_ssoY"
@@ -734,13 +775,13 @@ Dashboard
                                 </div>
                             </div>
                         </div>
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-9 col-form-label">Are all system components included
                                 in this project logging in compliance with the Company System Audit Requirements
                                 Standard?</label>
                             <div class="col-sm-3">
                                 <div>
-                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                    <div class="input-group mb-0 d-flex justify-content-end">
                                         <div class="form-check">
                                             <input class="form-check-input" disabled type="radio"
                                                 name="audit_req_std_compY" id="audit_req_std_compY" {% if comp.audit_req_std_comp == "Yes" %}checked{% endif %} disabled>
@@ -761,12 +802,12 @@ Dashboard
                                 </div>
                             </div>
                         </div>
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-9 col-form-label">The vendor provides automated
                                 patching and includes the procedures in an information security policy.</label>
                             <div class="col-sm-3">
                                 <div>
-                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                    <div class="input-group mb-0 d-flex justify-content-end">
                                         <div class="form-check">
                                             <input class="form-check-input" disabled type="radio"
                                                 name="auto_patchY" id="auto_patchY"
@@ -790,7 +831,7 @@ Dashboard
                             </div>
                         </div>
                         {% if comp.comment %}
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-12 col-form-label"><strong>RA Comments</strong></label>
                             <div class="col-sm-12">
                                 <input type="text" readonly class="form-control-plaintext" id="staticEmail"
@@ -803,10 +844,10 @@ Dashboard
 
                     <!-- Security Maturity Evidence -->
                     <span class="text-white print-none" id="SEM">s</span>
-                    <span class="text-white print-none" id="">s</span>
+                    {% comment %} <span class="text-white print-none" id="">s</span> {% endcomment %}
 
                     <div class="col-12 px-5">
-                        <div class="row" style="height: 25px;"></div>
+                        <div class="row" style="height: 10px;"></div>
                         <div class="row">
                             <div class="col-6">
                                 <button type="button" class="btn btn-primary">Security Maturity Evidence</button>
@@ -824,14 +865,14 @@ Dashboard
                                 </div>
                             </div>
                         </div>
-                        <div class="row" style="height: 30px;"></div>
-                        <div class="mb-3 row py-1">
+                        <div class="row" style="height: 15px;"></div>
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-9 col-form-label">Industry standard cybersecurity
                                 framework(s) attestation of compliance. FedRAMP, ISO 27001/2, CIS Controls, NIST 800-53,
                                 CSA CCM, HITRUST, HECVAT</label>
                             <div class="col-sm-3">
                                 <div>
-                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                    <div class="input-group mb-0 d-flex justify-content-end">
                                         <div class="form-check">
                                             <input class="form-check-input" disabled type="radio"
                                                 name="attst_o_compY" id="attst_o_compY"
@@ -855,12 +896,12 @@ Dashboard
                             </div>
                             <label for="staticEmail" class="col-sm-12 col-form-label">https://uto.asu.edu/security-policies/policy/web-application-security-standard</label>
                         </div>
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-9 col-form-label">Current system’s vendor 3rd party
                                 SOC2 Type 2 reports</label>
                             <div class="col-sm-3">
                                 <div>
-                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                    <div class="input-group mb-0 d-flex justify-content-end">
                                         <div class="form-check">
                                             <input class="form-check-input" disabled type="radio"
                                                 name="soc2_reportsY" id="soc2_reportsY" {% if sec_mat.soc2_reports == "Yes" %}checked{% endif %}  disabled>
@@ -881,12 +922,12 @@ Dashboard
                                 </div>
                             </div>
                         </div>
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-9 col-form-label">Annual penetration/vulnerability
                                 scanning results of all system components</label>
                             <div class="col-sm-3">
                                 <div>
-                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                    <div class="input-group mb-0 d-flex justify-content-end">
                                         <div class="form-check">
                                             <input class="form-check-input" disabled type="radio"
                                                 name="ann_pen_scan_resultsY" id="ann_pen_scan_resultsY"
@@ -909,12 +950,12 @@ Dashboard
                                 </div>
                             </div>
                         </div>
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-9 col-form-label">Annual web application
                                 vulnerability scan of all system web applications</label>
                             <div class="col-sm-3">
                                 <div>
-                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                    <div class="input-group mb-0 d-flex justify-content-end">
                                         <div class="form-check">
                                             <input class="form-check-input" disabled type="radio"
                                                 name="ann_wa_vuln_scanY" id="ann_wa_vuln_scanY"
@@ -938,7 +979,7 @@ Dashboard
                             </div>
                         </div>
                         {% if sec_mat.comment %}
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-12 col-form-label"><strong>RA Comments</strong></label>
                             <div class="col-sm-12">
                                 <input type="text" readonly class="form-control-plaintext" id="staticEmail"
@@ -951,10 +992,10 @@ Dashboard
 
                     <!-- Architectural Diagram Requirements -->
                     <span class="text-white print-none" id="ADR">s</span>
-                    <span class="text-white print-none" id="">s</span>
+                    {% comment %} <span class="text-white print-none" id="">s</span> {% endcomment %}
 
                     <div class="col-12 px-5">
-                        <div class="row" style="height: 25px;"></div>
+                        <div class="row" style="height: 10px;"></div>
                         <div class="row">
                             <div class="col-6">
                                 <button type="button" class="btn btn-primary">Integration</button>
@@ -972,16 +1013,16 @@ Dashboard
                                 </div>
                             </div>
                         </div>
-                        <div class="row" style="height: 30px;"></div>
-                        <div class="mb-3 row py-1">
+                        <div class="row" style="height: 15px;"></div>
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-12 col-form-label">Does the technology integrate with
                                 the following Company systems:</label>
                         </div>
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-9 col-form-label">Single Sign-On</label>
                             <div class="col-sm-3">
                                 <div>
-                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                    <div class="input-group mb-0 d-flex justify-content-end">
                                         <div class="form-check">
                                             <input class="form-check-input" disabled type="radio"
                                                 name="inte_ssoY" id="inte_ssoY"
@@ -1004,11 +1045,11 @@ Dashboard
                                 </div>
                             </div>
                         </div>
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-9 col-form-label">Multi-Factor Authentication</label>
                             <div class="col-sm-3">
                                 <div>
-                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                    <div class="input-group mb-0 d-flex justify-content-end">
                                         <div class="form-check">
                                             <input class="form-check-input" disabled type="radio"
                                                 name="mfaY" id="mfaY"  {% if inte.mfa == "Yes" %}checked{% endif %}  disabled>
@@ -1029,12 +1070,12 @@ Dashboard
                                 </div>
                             </div>
                         </div>
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-9 col-form-label">Active Directory Federation
                                 Services</label>
                             <div class="col-sm-3">
                                 <div>
-                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                    <div class="input-group mb-0 d-flex justify-content-end">
                                         <div class="form-check">
                                             <input class="form-check-input" disabled type="radio"
                                                 name="adfsY" id="adfsY"
@@ -1057,7 +1098,7 @@ Dashboard
                                 </div>
                             </div>
                         </div>
-                        <!-- <div class="mb-3 row py-1">
+                        <!-- <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-9 col-form-label">Complete the Architecture Diagram
                                 Architecture Diagram Criteria</label>
                             <div class="col-sm-3">
@@ -1066,7 +1107,7 @@ Dashboard
                             </div>
                         </div> -->
                         {% if inte.comment %}
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-12 col-form-label"><strong>RA Comments</strong></label>
                             <div class="col-sm-12">
                                 <input type="text" readonly class="form-control-plaintext" id="staticEmail"
@@ -1079,10 +1120,10 @@ Dashboard
 
                     <!-- Cloud Service Model -->
                     <span class="text-white print-none" id="CSM">s</span>
-                    <span class="text-white print-none" id="">s</span>
+                    {% comment %} <span class="text-white print-none" id="">s</span> {% endcomment %}
 
                     <div class="col-12 px-5">
-                        <div class="row" style="height: 25px;"></div>
+                        <div class="row" style="height: 10px;"></div>
                         <div class="row">
                             <div class="col-6">
                                 <button type="button" class="btn btn-primary">Cloud Service Modelow</button>
@@ -1100,12 +1141,12 @@ Dashboard
                                 </div>
                             </div>
                         </div>
-                        <div class="row" style="height: 30px;"></div>
-                        <div class="mb-3 row py-1">
+                        <div class="row" style="height: 15px;"></div>
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-9 col-form-label">Is this a SaaS solution?</label>
                             <div class="col-sm-3">
                                 <div>
-                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                    <div class="input-group mb-0 d-flex justify-content-end">
                                         <div class="form-check">
                                             <input class="form-check-input" disabled type="radio"
                                                 name="saas_solY" id="saas_solY"
@@ -1128,12 +1169,12 @@ Dashboard
                                 </div>
                             </div>
                         </div>
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-9 col-form-label">Is it hosted in IaaS owned by the
                                 Company?</label>
                             <div class="col-sm-3">
                                 <div>
-                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                    <div class="input-group mb-0 d-flex justify-content-end">
                                         <div class="form-check">
                                             <input class="form-check-input" disabled type="radio"
                                                 name="iaas_hostedY" id="iaas_hostedY"  {% if csm.iaas_hosted == "Yes" %}checked{% endif %}  disabled>
@@ -1154,7 +1195,7 @@ Dashboard
                                 </div>
                             </div>
                         </div>
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-9 col-form-label">Complete the Architecture Diagram
                                 Architecture Diagram Criteria</label>
                             <div class="col-sm-3">
@@ -1163,12 +1204,12 @@ Dashboard
                                     value="https://arizonastateu-my.sharepoint.com/:b:/r/personal/smridha_sundevils_asu_edu/Documents/Docs/Resume_SayantanM.pdf?csf=1&web=1&e=r06qhn">
                             </div>
                         </div>
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-9 col-form-label">Is the solution built on premises
                                 in the Company's datacenter?</label>
                             <div class="col-sm-3">
                                 <div>
-                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                    <div class="input-group mb-0 d-flex justify-content-end">
                                         <div class="form-check">
                                             <input class="form-check-input" disabled type="radio"
                                                 name="on_premY" id="on_premY"
@@ -1192,7 +1233,7 @@ Dashboard
                             </div>
                         </div>
                         {% if csm.comment %}
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-12 col-form-label"><strong>RA Comments</strong></label>
                             <div class="col-sm-12">
                                 <input type="text" readonly class="form-control-plaintext" id="staticEmail"
@@ -1205,10 +1246,10 @@ Dashboard
 
                     <!-- Secure Design -->
                     <span class="text-white print-none" id="SD">s</span>
-                    <span class="text-white print-none" id="">s</span>
+                    {% comment %} <span class="text-white print-none" id="">s</span> {% endcomment %}
 
                     <div class="col-12 px-5">
-                        <div class="row" style="height: 25px;"></div>
+                        <div class="row" style="height: 10px;"></div>
                         <div class="row">
                             <div class="col-6">
                                 <button type="button" class="btn btn-primary">Secure Design</button>
@@ -1226,17 +1267,17 @@ Dashboard
                                 </div>
                             </div>
                         </div>
-                        <div class="row" style="height: 30px;"></div>
-                        <div class="mb-3 row py-1">
+                        <div class="row" style="height: 15px;"></div>
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-12 col-form-label"><strong>Who is responsible for the
                                     secure design of the entire system?</strong></label>
                         </div>
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-9 col-form-label {% if sd.q1 == "No" %}border border-2 border-danger{% endif %}">We do not know who is responsible
                                 for the security design of the entire system.</label>
                             <div class="col-sm-3">
                                 <div>
-                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                    <div class="input-group mb-0 d-flex justify-content-end">
                                         <div class="form-check">
                                             <input class="form-check-input" disabled type="radio"
                                                 name="sdq1Y" id="sdq1Y"
@@ -1259,14 +1300,14 @@ Dashboard
                                 </div>
                             </div>
                         </div>
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-9 col-form-label {% if sd.q2 == "No" %}border border-2 border-danger{% endif %}">Although certain parts may be
                                 designed for security, nobody is responsible for the security design and Company
                                 standards
                                 compliance of the entire system including users and their devices.</label>
                             <div class="col-sm-3">
                                 <div>
-                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                    <div class="input-group mb-0 d-flex justify-content-end">
                                         <div class="form-check">
                                             <input class="form-check-input" disabled type="radio"
                                                 name="sdq2Y" id="sdq2Y" {% if sd.q2 == "Yes" %}checked{% endif %} disabled>
@@ -1287,7 +1328,7 @@ Dashboard
                                 </div>
                             </div>
                         </div>
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-9 col-form-label {% if sd.q1 == "No" %}border border-2 border-warning{% endif %}">A vendor claims to be responsible
                                 for the security design and Company standards compliance of the entire system, but the
                                 vendor has not signed ISO language, or the scope of the vendor's contracted
@@ -1295,7 +1336,7 @@ Dashboard
                                 devices.</label>
                             <div class="col-sm-3">
                                 <div>
-                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                    <div class="input-group mb-0 d-flex justify-content-end">
                                         <div class="form-check">
                                             <input class="form-check-input" disabled type="radio"
                                                 name="sdq3Y" id="sdq3Y"
@@ -1318,7 +1359,7 @@ Dashboard
                                 </div>
                             </div>
                         </div>
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-9 col-form-label {% if sd.q4 == "No" %}border border-2 border-warning{% endif %}">A single vendor has accepted
                                 responsibility for all of the security design and Company standards compliance, has
                                 signed
@@ -1327,7 +1368,7 @@ Dashboard
                                 compliance with the ISO language.</label>
                             <div class="col-sm-3">
                                 <div>
-                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                    <div class="input-group mb-0 d-flex justify-content-end">
                                         <div class="form-check">
                                             <input class="form-check-input" disabled type="radio"
                                                 name="sdq4Y" id="sdq4Y"
@@ -1350,7 +1391,7 @@ Dashboard
                                 </div>
                             </div>
                         </div>
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-9 col-form-label">A single vendor has accepted
                                 responsibility for all of the security design and Company standards compliance, has
                                 signed
@@ -1365,7 +1406,7 @@ Dashboard
                             </label>
                             <div class="col-sm-3">
                                 <div>
-                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                    <div class="input-group mb-0 d-flex justify-content-end">
                                         <div class="form-check">
                                             <input class="form-check-input" disabled type="radio"
                                                 name="sdq5Y" id="sdq5Y" {% if sd.q5 == "Yes" %}checked{% endif %} disabled>
@@ -1386,14 +1427,14 @@ Dashboard
                                 </div>
                             </div>
                         </div>
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-9 col-form-label">One or more Company employees have
                                 designed the system with a holistic security perspective from the beginning, selecting
                                 components and/or vendors that meet regulatory requirements and Company
                                 standards.</label>
                             <div class="col-sm-3">
                                 <div>
-                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                    <div class="input-group mb-0 d-flex justify-content-end">
                                         <div class="form-check">
                                             <input class="form-check-input" disabled type="radio"
                                                 name="sdq6Y" id="sdq6Y"
@@ -1417,7 +1458,7 @@ Dashboard
                             </div>
                         </div>
                         {% if sd.comment %}
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-12 col-form-label"><strong>RA Comments</strong></label>
                             <div class="col-sm-12">
                                 <input type="text" readonly class="form-control-plaintext" id="staticEmail"
@@ -1430,10 +1471,10 @@ Dashboard
 
                     <!-- Encryption -->
                     <span class="text-white print-none" id="Encr">s</span>
-                    <span class="text-white print-none" id="">s</span>
+                    {% comment %} <span class="text-white print-none" id="">s</span> {% endcomment %}
 
                     <div class="col-12 px-5">
-                        <div class="row" style="height: 25px;"></div>
+                        <div class="row" style="height: 10px;"></div>
                         <div class="row">
                             <div class="col-6">
                                 <button type="button" class="btn btn-primary">Encryption</button>
@@ -1451,18 +1492,18 @@ Dashboard
                                 </div>
                             </div>
                         </div>
-                        <div class="row" style="height: 30px;"></div>
-                        <div class="mb-3 row py-1">
+                        <div class="row" style="height: 15px;"></div>
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-12 col-form-label"><strong>How will sensitive data be
                                     protected in transit (as it travels across the network)?</strong></label>
                         </div>
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-9 col-form-label {% if enc.p1q1 == "No" %}border border-2 border-danger{% endif %}">Sensitive data will be traveling
                                 across one or more external connections outside of the Company data Center without any
                                 protection.</label>
                             <div class="col-sm-3">
                                 <div>
-                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                    <div class="input-group mb-0 d-flex justify-content-end">
                                         <div class="form-check">
                                             <input class="form-check-input" disabled type="radio"
                                                 name="p1q1Y" id="p1q1Y"
@@ -1485,14 +1526,14 @@ Dashboard
                                 </div>
                             </div>
                         </div>
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-9 col-form-label {% if enc.p1q2 == "No" %}border border-2 border-danger{% endif %}">All systems and connections storing
                                 or processing sensitive data are within the Company data center, but sensitive data is
                                 not
                                 encrypted as it moves from system to system.</label>
                             <div class="col-sm-3">
                                 <div>
-                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                    <div class="input-group mb-0 d-flex justify-content-end">
                                         <div class="form-check">
                                             <input class="form-check-input" disabled type="radio"
                                                 name="p1q2Y" id="p1q2Y" {% if enc.p1q2 == "Yes" %}checked{% endif %} disabled>
@@ -1513,14 +1554,14 @@ Dashboard
                                 </div>
                             </div>
                         </div>
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-9 col-form-label {% if enc.p1q3 == "No" %}border border-2 border-danger{% endif %}">Firewalls, network segmentation,
                                 and/or other techniques limit sensitive traffic to only those systems that are intended
                                 to receive it. Other systems are prevented from connecting, or listening to sensitive
                                 traffic. However, sensitive data is not encrypted in transit.</label>
                             <div class="col-sm-3">
                                 <div>
-                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                    <div class="input-group mb-0 d-flex justify-content-end">
                                         <div class="form-check">
                                             <input class="form-check-input" disabled type="radio"
                                                 name="p1q3Y" id="p1q3Y"
@@ -1543,12 +1584,12 @@ Dashboard
                                 </div>
                             </div>
                         </div>
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-9 col-form-label">Is there a crypto key management
                                 system of certificates?</label>
                             <div class="col-sm-3">
                                 <div>
-                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                    <div class="input-group mb-0 d-flex justify-content-end">
                                         <div class="form-check">
                                             <input class="form-check-input" disabled type="radio"
                                                 name="p1q4Y" id="p1q4Y"
@@ -1571,12 +1612,12 @@ Dashboard
                                 </div>
                             </div>
                         </div>
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-9 col-form-label">All sensitive data is encrypted as
                                 it travels over each network connection.</label>
                             <div class="col-sm-3">
                                 <div>
-                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                    <div class="input-group mb-0 d-flex justify-content-end">
                                         <div class="form-check">
                                             <input class="form-check-input" disabled type="radio"
                                                 name="p1q5Y" id="p1q5Y" {% if enc.p1q5 == "Yes" %}checked{% endif %} disabled>
@@ -1597,12 +1638,12 @@ Dashboard
                                 </div>
                             </div>
                         </div>
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-9 col-form-label">All sensitive data is encrypted as
                                 when it is at rest.</label>
                             <div class="col-sm-3">
                                 <div>
-                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                    <div class="input-group mb-0 d-flex justify-content-end">
                                         <div class="form-check">
                                             <input class="form-check-input" disabled type="radio"
                                                 name="p1q6Y" id="p1q6Y"
@@ -1625,13 +1666,13 @@ Dashboard
                                 </div>
                             </div>
                         </div>
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-9 col-form-label">All* web sites are using https
                                 encryption. Servers have valid https certificates. (The certificates are correctly
                                 configured and installed so that no warnings are seen.)</label>
                             <div class="col-sm-3">
                                 <div>
-                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                    <div class="input-group mb-0 d-flex justify-content-end">
                                         <div class="form-check">
                                             <input class="form-check-input" disabled type="radio"
                                                 name="p1q7Y" id="p1q7Y"
@@ -1654,12 +1695,12 @@ Dashboard
                                 </div>
                             </div>
                         </div>
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-9 col-form-label">This project has no sensitive
                                 data.</label>
                             <div class="col-sm-3">
                                 <div>
-                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                    <div class="input-group mb-0 d-flex justify-content-end">
                                         <div class="form-check">
                                             <input class="form-check-input" disabled type="radio"
                                                 name="p1q8Y" id="p1q8Y"
@@ -1682,7 +1723,7 @@ Dashboard
                                 </div>
                             </div>
                         </div>
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-9 col-form-label">This question is not applicable for
                                 this project because all of the following are true:
                                 <ul>
@@ -1694,7 +1735,7 @@ Dashboard
                             </label>
                             <div class="col-sm-3">
                                 <div>
-                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                    <div class="input-group mb-0 d-flex justify-content-end">
                                         <div class="form-check">
                                             <input class="form-check-input" disabled type="radio"
                                                 name="p1q9Y" id="p1q9Y" {% if enc.p1q9 == "Yes" %}checked{% endif %} disabled>
@@ -1715,17 +1756,17 @@ Dashboard
                                 </div>
                             </div>
                         </div>
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-12 col-form-label"><strong>How will sensitive data be
                                     protected at rest (wherever it is stored)?</strong></label>
                         </div>
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-9 col-form-label {% if enc.p2q1 == "No" %}border border-2 border-danger{% endif %}">Sensitive data will be stored
                                 without any protection, on devices available to the general public without logging
                                 in.</label>
                             <div class="col-sm-3">
                                 <div>
-                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                    <div class="input-group mb-0 d-flex justify-content-end">
                                         <div class="form-check">
                                             <input class="form-check-input" disabled type="radio"
                                                 name="p2q1Y" id="p2q1Y"
@@ -1748,13 +1789,13 @@ Dashboard
                                 </div>
                             </div>
                         </div>
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-9 col-form-label {% if enc.p2q2 == "No" %}border border-2 border-danger{% endif %}">Sensitive data will be stored
                                 without encryption at rest, even though PCI or other applicable regulations require
                                 it.</label>
                             <div class="col-sm-3">
                                 <div>
-                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                    <div class="input-group mb-0 d-flex justify-content-end">
                                         <div class="form-check">
                                             <input class="form-check-input" disabled type="radio"
                                                 name="p2q2Y" id="p2q2Y" {% if enc.p2q2 == "Yes" %}checked{% endif %} 
@@ -1776,13 +1817,13 @@ Dashboard
                                 </div>
                             </div>
                         </div>
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-9 col-form-label {% if enc.p2q3 == "No" %}border border-2 border-warning{% endif %}">Sensitive data will be stored
                                 without encryption, but the devices require a login, and there is no applicable
                                 regulation requiring encryption at rest.</label>
                             <div class="col-sm-3">
                                 <div>
-                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                    <div class="input-group mb-0 d-flex justify-content-end">
                                         <div class="form-check">
                                             <input class="form-check-input" disabled type="radio"
                                                 name="p2q3Y" id="p2q3Y"
@@ -1805,14 +1846,14 @@ Dashboard
                                 </div>
                             </div>
                         </div>
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-9 col-form-label {% if enc.p2q4 == "No" %}border border-2 border-warning{% endif %}">All systems storing or processing
                                 sensitive data are within the Company data center, but sensitive data is not encrypted
                                 on
                                 disk. There is no applicable regulation requiring encryption at rest.</label>
                             <div class="col-sm-3">
                                 <div>
-                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                    <div class="input-group mb-0 d-flex justify-content-end">
                                         <div class="form-check">
                                             <input class="form-check-input" disabled type="radio"
                                                 name="p2q4Y" id="p2q4Y"
@@ -1835,13 +1876,13 @@ Dashboard
                                 </div>
                             </div>
                         </div>
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-9 col-form-label">Sensitive data is encrypted on
                                 disk, but not on backups. There is no applicable regulation requiring encryption at
                                 rest.</label>
                             <div class="col-sm-3">
                                 <div>
-                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                    <div class="input-group mb-0 d-flex justify-content-end">
                                         <div class="form-check">
                                             <input class="form-check-input" disabled type="radio"
                                                 name="p2q5Y" id="p2q5Y" {% if enc.p2q5 == "Yes" %}checked{% endif %} 
@@ -1863,12 +1904,12 @@ Dashboard
                                 </div>
                             </div>
                         </div>
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-9 col-form-label">All sensitive data is encrypted at
                                 every location where it is stored, including user devices and backups.</label>
                             <div class="col-sm-3">
                                 <div>
-                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                    <div class="input-group mb-0 d-flex justify-content-end">
                                         <div class="form-check">
                                             <input class="form-check-input" disabled type="radio"
                                                 name="p2q6Y" id="p2q6Y"
@@ -1891,7 +1932,7 @@ Dashboard
                                 </div>
                             </div>
                         </div>
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-9 col-form-label">This question is not applicable for
                                 this project because all of the following are true:
                                 <ul>
@@ -1903,7 +1944,7 @@ Dashboard
                             </label>
                             <div class="col-sm-3">
                                 <div>
-                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                    <div class="input-group mb-0 d-flex justify-content-end">
                                         <div class="form-check">
                                             <input class="form-check-input" disabled type="radio"
                                                 name="p2q7Y" id="p2q7Y"
@@ -1927,7 +1968,7 @@ Dashboard
                             </div>
                         </div>
                         {% if enc.comment %}
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-12 col-form-label"><strong>RA Comments</strong></label>
                             <div class="col-sm-12">
                                 <input type="text" readonly class="form-control-plaintext" id="staticEmail"
@@ -1940,10 +1981,10 @@ Dashboard
 
                     <!-- Quality Assurance Environment -->
                     <span class="text-white print-none" id="QAE">s</span>
-                    <span class="text-white print-none" id="">s</span>
+                    {% comment %} <span class="text-white print-none" id="">s</span> {% endcomment %}
 
                     <div class="col-12 px-5">
-                        <div class="row" style="height: 25px;"></div>
+                        <div class="row" style="height: 10px;"></div>
                         <div class="row">
                             <div class="col-6">
                                 <button type="button" class="btn btn-primary">Quality Assurance Environment</button>
@@ -1961,17 +2002,17 @@ Dashboard
                                 </div>
                             </div>
                         </div>
-                        <div class="row" style="height: 30px;"></div>
-                        <div class="mb-3 row py-1">
+                        <div class="row" style="height: 15px;"></div>
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-12 col-form-label"><strong>Is there a Development or
                                     QA instance?</strong></label>
                         </div>
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-9 col-form-label {% if qa.q1 == "No" %}border border-2 border-danger{% endif %}">There will be Development or QA
                                 instances of the web site(s).</label>
                             <div class="col-sm-3">
                                 <div>
-                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                    <div class="input-group mb-0 d-flex justify-content-end">
                                         <div class="form-check">
                                             <input class="form-check-input" disabled type="radio"
                                                 name="qaq1Y" id="qaq1Y"
@@ -1994,13 +2035,13 @@ Dashboard
                                 </div>
                             </div>
                         </div>
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-9 col-form-label {% if qa.q2 == "No" %}border border-2 border-warning{% endif %}">Only a Production instance exists.
                                 There is no place to test code or changes without impacting live systems and data - in
                                 the Production instance.</label>
                             <div class="col-sm-3">
                                 <div>
-                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                    <div class="input-group mb-0 d-flex justify-content-end">
                                         <div class="form-check">
                                             <input class="form-check-input" disabled type="radio"
                                                 name="qaq2Y" id="qaq2Y" {% if qa.q2 == "Yes" %}checked{% endif %} disabled>
@@ -2021,13 +2062,13 @@ Dashboard
                                 </div>
                             </div>
                         </div>
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-9 col-form-label">Development or QA instance exists,
                                 but it is different from Production to the extent that there could be flaws in one
                                 instance that do not exist in the other instance.</label>
                             <div class="col-sm-3">
                                 <div>
-                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                    <div class="input-group mb-0 d-flex justify-content-end">
                                         <div class="form-check">
                                             <input class="form-check-input" disabled type="radio"
                                                 name="qaq3Y" id="qaq3Y" {% if qa.q3 == "Yes" %}checked{% endif %} 
@@ -2050,13 +2091,13 @@ Dashboard
                                 </div>
                             </div>
                         </div>
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-9 col-form-label">All sites have QA instances that
                                 are sufficiently identical to Production, that the results of tests in QA can be relied
                                 on to evaluate the Production instance.</label>
                             <div class="col-sm-3">
                                 <div>
-                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                    <div class="input-group mb-0 d-flex justify-content-end">
                                         <div class="form-check">
                                             <input class="form-check-input" disabled type="radio"
                                                 name="qaq4Y" id="qaq4Y"
@@ -2079,12 +2120,12 @@ Dashboard
                                 </div>
                             </div>
                         </div>
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-9 col-form-label">This project has no web
                                 sites.</label>
                             <div class="col-sm-3">
                                 <div>
-                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                    <div class="input-group mb-0 d-flex justify-content-end">
                                         <div class="form-check">
                                             <input class="form-check-input" disabled type="radio"
                                                 name="qaq5Y" id="qaq5Y" {% if qa.q5 == "Yes" %}checked{% endif %}  disabled>
@@ -2106,7 +2147,7 @@ Dashboard
                             </div>
                         </div>
                         {% if qa.comment %}
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-12 col-form-label"><strong>RA Comments</strong></label>
                             <div class="col-sm-12">
                                 <input type="text" readonly class="form-control-plaintext" id="staticEmail"
@@ -2119,10 +2160,10 @@ Dashboard
  
                     <!-- Database Servers -->
                     <span class="text-white print-none" id="DS">s</span>
-                    <span class="text-white print-none" id="">s</span>
+                    {% comment %} <span class="text-white print-none" id="">s</span> {% endcomment %}
 
                     <div class="col-12 px-5">
-                        <div class="row" style="height: 25px;"></div>
+                        <div class="row" style="height: 10px;"></div>
                         <div class="row">
                             <div class="col-6">
                                 <button type="button" class="btn btn-primary">Database Servers</button>
@@ -2140,8 +2181,8 @@ Dashboard
                                 </div>
                             </div>
                         </div>
-                        <div class="row" style="height: 30px;"></div>
-                        <div class="mb-3 row py-1">
+                        <div class="row" style="height: 15px;"></div>
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-12 col-form-label">Servers that have databases
                                 containing sensitive data should be protected from various types of attacks. A database
                                 server directly connected to the Internet has no defenses except the ID and password
@@ -2150,14 +2191,14 @@ Dashboard
                             <label for="staticEmail" class="col-sm-12 col-form-label"><strong>What database protections
                                     are in place?</strong></label>
                         </div>
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-9 col-form-label {% if dbserver.q1 == "No" %}border border-2 border-danger{% endif %}">There are one or more databases
                                 with access to sensitive data. The database servers have publicly routable IP addresses
                                 and there is no firewall limiting connections to the database. People from anywhere in
                                 the world can connect directly to the database server.</label>
                             <div class="col-sm-3">
                                 <div>
-                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                    <div class="input-group mb-0 d-flex justify-content-end">
                                         <div class="form-check">
                                             <input class="form-check-input" disabled type="radio"
                                                 name="dbq1Y" id="dbq1Y"
@@ -2180,13 +2221,13 @@ Dashboard
                                 </div>
                             </div>
                         </div>
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-9 col-form-label {% if dbserver.q2 == "No" %}border border-2 border-warning{% endif %}">A database containing sensitive
                                 data is directly accessible by a web server, but the database only accepts requests from
                                 the web server. Other devices cannot make connections to the database.</label>
                             <div class="col-sm-3">
                                 <div>
-                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                    <div class="input-group mb-0 d-flex justify-content-end">
                                         <div class="form-check">
                                             <input class="form-check-input" disabled type="radio"
                                                 name="dbq2Y" id="dbq2Y" {% if dbserver.q2 == "Yes" %}checked{% endif %} disabled>
@@ -2207,7 +2248,7 @@ Dashboard
                                 </div>
                             </div>
                         </div>
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-9 col-form-label">Web servers can connect to database
                                 servers directly, but alternate protections are in place to defend the database from a
                                 web server compromise, such as a Web Application Firewall in front of the web server.
@@ -2215,7 +2256,7 @@ Dashboard
                                 server compromise.)</label>
                             <div class="col-sm-3">
                                 <div>
-                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                    <div class="input-group mb-0 d-flex justify-content-end">
                                         <div class="form-check">
                                             <input class="form-check-input" disabled type="radio"
                                                 name="dbq3Y" id="dbq3Y" {% if dbserver.q3 == "Yes" %}checked{% endif %} 
@@ -2238,7 +2279,7 @@ Dashboard
                                 </div>
                             </div>
                         </div>
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-9 col-form-label">Web servers cannot connect directly
                                 to database servers due to network segmentation, firewall rules, etc. Web servers
                                 interact with database servers through an application server that only permits a white
@@ -2248,7 +2289,7 @@ Dashboard
                                 command interpreter.</label>
                             <div class="col-sm-3">
                                 <div>
-                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                    <div class="input-group mb-0 d-flex justify-content-end">
                                         <div class="form-check">
                                             <input class="form-check-input" disabled type="radio"
                                                 name="dbq4Y" id="dbq4Y"
@@ -2271,12 +2312,12 @@ Dashboard
                                 </div>
                             </div>
                         </div>
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-9 col-form-label">None of the systems in this project
                                 have access to a database containing sensitive data.</label>
                             <div class="col-sm-3">
                                 <div>
-                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                    <div class="input-group mb-0 d-flex justify-content-end">
                                         <div class="form-check">
                                             <input class="form-check-input" disabled type="radio"
                                                 name="dbq5Y" id="dbq5Y" {% if dbserver.q5 == "Yes" %}checked{% endif %}  disabled>
@@ -2297,7 +2338,7 @@ Dashboard
                                 </div>
                             </div>
                         </div>
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-9 col-form-label">This question is not applicable for
                                 this project because all of the following are true:
                                 <ul>
@@ -2309,7 +2350,7 @@ Dashboard
                             </label>
                             <div class="col-sm-3">
                                 <div>
-                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                    <div class="input-group mb-0 d-flex justify-content-end">
                                         <div class="form-check">
                                             <input class="form-check-input" disabled type="radio"
                                                 name="dbq6Y" id="dbq6Y" {% if dbserver.q6 == "Yes" %}checked{% endif %}  disabled>
@@ -2331,7 +2372,7 @@ Dashboard
                             </div>
                         </div>
                         {% if dbserver.comment %}
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-12 col-form-label"><strong>RA Comments</strong></label>
                             <div class="col-sm-12">
                                 <input type="text" readonly class="form-control-plaintext" id="staticEmail"
@@ -2344,10 +2385,10 @@ Dashboard
 
                     <!-- Secure Communications -->
                     <span class="text-white print-none" id="SC">s</span>
-                    <span class="text-white print-none" id="">s</span>
+                    {% comment %} <span class="text-white print-none" id="">s</span> {% endcomment %}
 
                     <div class="col-12 px-5">
-                        <div class="row" style="height: 25px;"></div>
+                        <div class="row" style="height: 10px;"></div>
                         <div class="row">
                             <div class="col-6">
                                 <button type="button" class="btn btn-primary">Secure Communications</button>
@@ -2365,18 +2406,18 @@ Dashboard
                                 </div>
                             </div>
                         </div>
-                        <div class="row" style="height: 30px;"></div>
-                        <div class="mb-3 row py-1">
+                        <div class="row" style="height: 15px;"></div>
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-12 col-form-label"><strong>How does the components of
                                     the architecture communicate and authenticate to each other?</strong></label>
                         </div>
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-9 col-form-label {% if sec_comm.q1 == "No" %}border border-2 border-danger{% endif %}">One or more servers initiate or
                                 accept connections with their peers, but do not verify or otherwise restrict which
                                 servers can connect.</label>
                             <div class="col-sm-3">
                                 <div>
-                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                    <div class="input-group mb-0 d-flex justify-content-end">
                                         <div class="form-check">
                                             <input class="form-check-input" disabled type="radio"
                                                 name="scomq1Y" id="scomq1Y"
@@ -2399,13 +2440,13 @@ Dashboard
                                 </div>
                             </div>
                         </div>
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-9 col-form-label {% if sec_comm.q2 == "No" %}border border-2 border-danger{% endif %}">When a server logs in to another
                                 server, a password or other secret is transmitted across a network connection without
                                 encryption.</label>
                             <div class="col-sm-3">
                                 <div>
-                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                    <div class="input-group mb-0 d-flex justify-content-end">
                                         <div class="form-check">
                                             <input class="form-check-input" disabled type="radio"
                                                 name="scomq2Y" id="scomq2Y" {% if sec_comm.q2 == "Yes" %}checked{% endif %}  disabled>
@@ -2427,14 +2468,14 @@ Dashboard
                                 </div>
                             </div>
                         </div>
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-9 col-form-label {% if sec_comm.q3 == "No" %}border border-2 border-warning{% endif %}">Firewalls, network segmentation, or
                                 other controls make it impossible for connections to be opened between anything other
                                 than the intended servers. Connections are imited by a "black list" identifying which
                                 addresses are not allowed to connect.</label>
                             <div class="col-sm-3">
                                 <div>
-                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                    <div class="input-group mb-0 d-flex justify-content-end">
                                         <div class="form-check">
                                             <input class="form-check-input" disabled type="radio"
                                                 name="scomq3Y" id="scomq3Y" {% if sec_comm.q3 == "Yes" %}checked{% endif %} 
@@ -2457,7 +2498,7 @@ Dashboard
                                 </div>
                             </div>
                         </div>
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-9 col-form-label">Firewalls, network segmentation, or
                                 other controls make it impossible for connections to be opened between anything other
                                 than the intended servers. Connections are limited by a "white list" specifically
@@ -2465,7 +2506,7 @@ Dashboard
                                 default.</label>
                             <div class="col-sm-3">
                                 <div>
-                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                    <div class="input-group mb-0 d-flex justify-content-end">
                                         <div class="form-check">
                                             <input class="form-check-input" disabled type="radio"
                                                 name="scomq4Y" id="scomq4Y"
@@ -2488,14 +2529,14 @@ Dashboard
                                 </div>
                             </div>
                         </div>
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-9 col-form-label">Servers use credentials to identify
                                 each other, but there are weaknesses (explain in the notes). For example: (A) the
                                 credentials are not unique to one application (B) the credentials are not safely stored,
                                 or (C) it is difficult to change the credentials.</label>
                             <div class="col-sm-3">
                                 <div>
-                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                    <div class="input-group mb-0 d-flex justify-content-end">
                                         <div class="form-check">
                                             <input class="form-check-input" disabled type="radio"
                                                 name="scomq5Y" id="scomq5Y" {% if sec_comm.q5 == "Yes" %}checked{% endif %}  disabled>
@@ -2517,7 +2558,7 @@ Dashboard
                                 </div>
                             </div>
                         </div>
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-9 col-form-label">Each server uses a standard
                                 mechanism, such as https, to verify the other server's identity when initiating a
                                 connection to another server. If using https, servers have valid https certificates, and
@@ -2529,7 +2570,7 @@ Dashboard
                             </label>
                             <div class="col-sm-3">
                                 <div>
-                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                    <div class="input-group mb-0 d-flex justify-content-end">
                                         <div class="form-check">
                                             <input class="form-check-input" disabled type="radio"
                                                 name="scomq6Y" id="scomq6Y" {% if sec_comm.q6 == "Yes" %}checked{% endif %}  disabled>
@@ -2551,12 +2592,12 @@ Dashboard
                                 </div>
                             </div>
                         </div>
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-9 col-form-label">The project does not have more than
                                 one server, so there is no need for servers to authenticate each other.</label>
                             <div class="col-sm-3">
                                 <div>
-                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                    <div class="input-group mb-0 d-flex justify-content-end">
                                         <div class="form-check">
                                             <input class="form-check-input" disabled type="radio"
                                                 name="scomq7Y" id="scomq7Y" {% if sec_comm.q7 == "Yes" %}checked{% endif %}  disabled>
@@ -2579,13 +2620,13 @@ Dashboard
                                 </div>
                             </div>
                         </div>
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-9 col-form-label">The changes being made as part of
                                 this project will not affect a situation where two or more servers are communicating
                                 with each other, so the question does not apply.</label>
                             <div class="col-sm-3">
                                 <div>
-                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                    <div class="input-group mb-0 d-flex justify-content-end">
                                         <div class="form-check">
                                             <input class="form-check-input" disabled type="radio"
                                                 name="scomq8Y" id="scomq8Y" {% if sec_comm.q8 == "Yes" %}checked{% endif %}  disabled>
@@ -2608,7 +2649,7 @@ Dashboard
                             </div>
                         </div>
                         {% if sec_comm.comment %}
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-12 col-form-label"><strong>RA Comments</strong></label>
                             <div class="col-sm-12">
                                 <input type="text" readonly class="form-control-plaintext" id="staticEmail"
@@ -2621,10 +2662,10 @@ Dashboard
 
                     <!-- Software Integrity -->
                     <span class="text-white print-none" id="SI">s</span>
-                    <span class="text-white print-none" id="">s</span>
+                    {% comment %} <span class="text-white print-none" id="">s</span> {% endcomment %}
 
                     <div class="col-12 px-5">
-                        <div class="row" style="height: 25px;"></div>
+                        <div class="row" style="height: 10px;"></div>
                         <div class="row">
                             <div class="col-6">
                                 <button type="button" class="btn btn-primary">Software Integrity</button>
@@ -2642,8 +2683,8 @@ Dashboard
                                 </div>
                             </div>
                         </div>
-                        <div class="row" style="height: 30px;"></div>
-                        <div class="mb-3 row py-1">
+                        <div class="row" style="height: 15px;"></div>
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-12 col-form-label">Whoever writes your software gains
                                 control of your computer, sensitive data, and identity. Thus it is important to be sure
                                 the software comes from sources you trust. Verify the origin of software before
@@ -2657,14 +2698,14 @@ Dashboard
                                     software being deployed? Will upgrades and patches be promptly
                                     applied?</strong></label>
                         </div>
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-9 col-form-label {% if sw.q1 == "No" %}border border-2 border-danger{% endif %}">Some systems run outdated versions
                                 of their operating system, utilities, or installed applications. Or, systems are
                                 initially deployed with current software, but nothing will be in place to keep them
                                 current in the future.</label>
                             <div class="col-sm-3">
                                 <div>
-                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                    <div class="input-group mb-0 d-flex justify-content-end">
                                         <div class="form-check">
                                             <input class="form-check-input" disabled type="radio"
                                                 name="swq1Y" id="swq1Y"
@@ -2687,13 +2728,13 @@ Dashboard
                                 </div>
                             </div>
                         </div>
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-9 col-form-label {% if sw.q2 == "No" %}border border-2 border-warning{% endif %}">There is a capability in place to
                                 distribute the most recent software version or updates, but it does not have controls to
                                 protect against fake (malicious) updates.</label>
                             <div class="col-sm-3">
                                 <div>
-                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                    <div class="input-group mb-0 d-flex justify-content-end">
                                         <div class="form-check">
                                             <input class="form-check-input" disabled type="radio"
                                                 name="swq2Y" id="swq2Y" {% if sw.q2 == "Yes" %}checked{% endif %}  disabled>
@@ -2715,14 +2756,14 @@ Dashboard
                                 </div>
                             </div>
                         </div>
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-9 col-form-label">Initial install files and/or
                                 updates carry a signature (e.g. a hash or checksum) to verify file integrity, but the
                                 file must be (and will be) manually checked against a trusted list of valid
                                 signatures.</label>
                             <div class="col-sm-3">
                                 <div>
-                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                    <div class="input-group mb-0 d-flex justify-content-end">
                                         <div class="form-check">
                                             <input class="form-check-input" disabled type="radio"
                                                 name="swq3Y" id="swq3Y" {% if sw.q3 == "Yes" %}checked{% endif %} 
@@ -2745,7 +2786,7 @@ Dashboard
                                 </div>
                             </div>
                         </div>
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-9 col-form-label">Software, including operating
                                 system, utilities, applications, and any other executable code, is only obtained from
                                 trusted sources. It is distributed using mechanisms that automatically ensure it is not
@@ -2756,7 +2797,7 @@ Dashboard
                                 installing a malicious update.</label>
                             <div class="col-sm-3">
                                 <div>
-                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                    <div class="input-group mb-0 d-flex justify-content-end">
                                         <div class="form-check">
                                             <input class="form-check-input" disabled type="radio"
                                                 name="swq4Y" id="swq4Y"
@@ -2779,7 +2820,7 @@ Dashboard
                                 </div>
                             </div>
                         </div>
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-9 col-form-label">This project does not include any
                                 new software. Nothing new is installed on user computers or on servers used by this
                                 system. There are no new web pages with code that runs on the server (for example,
@@ -2787,7 +2828,7 @@ Dashboard
                                 media players, Java, Active X, JavaScript etc.)</label>
                             <div class="col-sm-3">
                                 <div>
-                                    <div class="input-group mb-3 d-flex justify-content-end">
+                                    <div class="input-group mb-0 d-flex justify-content-end">
                                         <div class="form-check">
                                             <input class="form-check-input" disabled type="radio"
                                                 name="swq5Y" id="swq5Y" {% if sw.q5 == "Yes" %}checked{% endif %}  disabled>
@@ -2810,7 +2851,7 @@ Dashboard
                             </div>
                         </div>
                         {% if sw.comment %}
-                        <div class="mb-3 row py-1">
+                        <div class="mb-0 row py-0">
                             <label for="staticEmail" class="col-sm-12 col-form-label"><strong>RA Comments</strong></label>
                             <div class="col-sm-12">
                                 <input type="text" readonly class="form-control-plaintext" id="staticEmail"
