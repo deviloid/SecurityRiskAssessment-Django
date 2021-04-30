@@ -30,7 +30,7 @@ class Product(models.Model):
         return self.name
 
 def create_slug(instance, new_slug=None):
-    slug = slugify(instance.title).title()
+    slug = slugify(instance.name).title()
     if new_slug is not None:
         slug = new_slug
     qs = Product.objects.filter(slug=slug).order_by("-id")

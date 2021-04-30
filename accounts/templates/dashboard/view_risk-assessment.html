@@ -14,35 +14,54 @@ Dashboard
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
 
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-            <h1 class="h1">Risk Assessment - {{prod.name}} - {{ra.date}}</h1>
+            <div class="col-8">
+                <h1 class="h1">Risk Assessment - {{prod.name}} - {{ra.ra_number}}</h1>
+            </div>
+
             {% if ra.evaluated == True %}
-            <a href="{% url 'GenReport' slug=ra.product.slug p_id=ra.product.id ra_id=ra.id  %}"
-                class="btn btn-success d-flex align-items-center justify-content-between"><ion-icon name="eye-outline"></ion-icon> View Report</a>
-            {% else %}
-            <a href="{% url 'EvaluateRiskAssessment' ra_id=ra.id  %}" class="btn btn-primary">Evaluate</a>
+            <div class="col-4 d-flex justify-content-end">
+                {% if ra.approved == True %}<span class="d-inline-block" tabindex="0" data-bs-toggle="tooltip" data-bs-placement="left" title="Risk Assessment already Approved.">{% endif %}
+                {% if request.user.is_staff and not request.user.is_superuser %}<a href="{% url 'ApproveRA' slug=ra.product.slug p_id=ra.product.id ra_id=ra.id %}" class=" me-2 btn {% if ra.approved == True %}btn-success{% else %}btn-warning{% endif %} {% if ra.approved == True %}disabled{% endif %}"><span style="font-size: 1em"><i class="far fa-check-circle"></i></span>&nbsp;Approve</a>{% endif %}
+                {% if ra.approved == True %}</span>{% endif %}
+                {% if ra.approved == False %}<a href="{% url 'EvaluateRiskAssessment' ra_id=ra.id  %}" class="me-2 btn btn-primary {% if ra.steps_complete != 14 %}disabled{% endif %}"><span style="font-size: 0.8em"><i class="fas fa-redo-alt"></i> </span>&nbsp; Re-Evaluate</a>{% endif %}
+                <a href="{% url 'GenReport' slug=ra.product.slug p_id=ra.product.id ra_id=ra.id  %}" class="btn btn-success d-flex align-items-center justify-content-between"><span style="font-size: 0.8em"><i class="far fa-eye"></i></span>&nbsp; View Report</a>
+            </div>
+            {% endif %}
+            {% if ra.evaluated == False  %}
+            {% if ra.steps_complete != 14 %}<span class="d-inline-block" tabindex="0" data-bs-toggle="tooltip" data-bs-placement="left" title="Complete all Risk Assessment Sections first.">{% endif %}
+            <a href="{% url 'EvaluateRiskAssessment' ra_id=ra.id  %}" class="btn btn-primary {% if ra.steps_complete != 14 %}disabled{% endif %}">Evaluate</a>
+            {% if ra.steps_complete != 14 %}</span>{% endif %}
             {% endif %}
         </div>
         <div class="pb-2 mb-3 border-bottom">
             <div class="row row-col-2">
-                <div class="col">
+                <div class="col border-end border-2">
                     <h1 class="h2">Product Details</h1>
                     <hr class="dropdown-divider">
                     <div>
                         <div class="row">
-                            <label class="col-sm-3 col-form-label"><strong>Product
+                            <label class="col-sm-4 col-form-label"><strong>Product
                                     Name</strong></label>
-                            <div class="col-sm-9">
+                            <div class="col-sm-8">
                                 <div>
                                     <label class="col col-form-label">{{prod.name}}</label>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
-                            <label class="col-sm-3 col-form-label"><strong>Product
+                            <label class="col-sm-4 col-form-label"><strong>Product
                                     Purpose</strong></label>
-                            <div class="col-sm-9">
+                            <div class="col-sm-8">
                                 <div>
                                     <label class="col col-form-label">{{prod.purpose}}</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-sm-4 col-form-label"><strong>Requesting Department</strong></label>
+                            <div class="col-sm-8">
+                                <div>
+                                    <label class="col col-form-label">{{ra.department}}</label>
                                 </div>
                             </div>
                         </div>
@@ -55,16 +74,20 @@ Dashboard
                             <label class="col-5 col-form-label"><strong>Department Information</strong></label>
                             <div class="col-sm-7 pb-2 d-flex justify-content-between">
                                 <label class="col col-form-label"><span style="color: green"><ion-icon name="checkmark-done-outline"></ion-icon></span> Filled</label>
+                                {% if ra.approved != True %}
                                 <a href="{% url 'step1' slug=ra.product.slug p_id=ra.product.id ra_id=ra.id %}"
-                                    class="btn btn-primary d-flex align-items-center"><ion-icon name="create-outline"></ion-icon>Edit</a>
+                                    class="btn btn-primary d-flex align-items-center"><span style="font-size: 0.8em"><i class="far fa-edit"></i></span>&nbsp; Edit</a>
+                                {% endif %}
                             </div>
                         </div>
                         <div class="row">
                             <label class="col-5 col-form-label"><strong>Vendor Information</strong></label>
                             <div class="col-sm-7 pb-2 d-flex justify-content-between">
                                 <label class="col col-form-label"><span style="color: green"><ion-icon name="checkmark-done-outline"></ion-icon></span> Filled</label>
+                                {% if ra.approved != True %}
                                 <a href="{% url 'step2' slug=ra.product.slug p_id=ra.product.id ra_id=ra.id %}"
-                                    class="btn btn-primary d-flex align-items-center"><ion-icon name="create-outline"></ion-icon>Edit</a>
+                                    class="btn btn-primary d-flex align-items-center"><span style="font-size: 0.8em"><i class="far fa-edit"></i></span>&nbsp; Edit</a>
+                                {% endif %}
                             </div>
                         </div>
                         <div class="row">
@@ -95,10 +118,12 @@ Dashboard
                                         {% endif %}
                                         {% endif %}
                                 </div>
+                                {% if ra.approved != True %}
                                 <div>
                                     <a href="{% url 'step3' slug=ra.product.slug p_id=ra.product.id ra_id=ra.id %}"
-                                        class="btn btn-primary d-flex align-items-center"><ion-icon name="create-outline"></ion-icon> {% if data_mng == "Not Filled" %}Start{% elif data_mng == "Filled" %} Edit{% endif %}</a>
+                                        class="btn btn-primary d-flex align-items-center"><span style="font-size: 0.8em"><i class="far fa-edit"></i></span>&nbsp;  {% if data_mng == "Not Filled" %}Start{% elif data_mng == "Filled" %} Edit{% endif %}</a>
                                 </div>
+                                {% endif %}
                             </div>
                         </div>
                         <div class="row">
@@ -120,17 +145,21 @@ Dashboard
                                 </div>
                                 <div class="btn-group" role="group" aria-label="Basic mixed styles example">
                                     {% if a_c_score != -1 %}
-                                    {% if a_c_score >= 90 %}
-                                    <button type="button" class="btn btn-danger btn-score">High</button>
-                                    {% elif a_c_score < 90 and a_c_score >= 51 %}
-                                        <button type="button" class="btn btn-warning btn-score">Medium</button>
+                                        {% if a_c_score >= 90 %}
+                                            <button type="button" class="btn btn-danger btn-score">High</button>
+                                        {% elif a_c_score < 90 and a_c_score >= 51 %}
+                                            <button type="button" class="btn btn-warning btn-score">Medium</button>
                                         {% else %}
-                                        <button type="button" class="btn btn-success btn-score">Low</button>
+                                            <button type="button" class="btn btn-success btn-score">Low</button>
                                         {% endif %}
-                                        {% endif %}
+                                    {% endif %}
                                 </div>
+                                {% if ra.approved != True %}
+                                {% if data_mng == "Filled" %}
                                 <a href="{% url 'step4' slug=ra.product.slug p_id=ra.product.id ra_id=ra.id %}"
-                                    class="btn btn-primary d-flex align-items-center"><ion-icon name="create-outline"></ion-icon> {% if a_c == "Not Filled" %}Start{% elif a_c == "Filled" %} Edit{% endif %}</a>
+                                    class="btn btn-primary d-flex align-items-center"><span style="font-size: 0.8em"><i class="far fa-edit"></i></span>&nbsp;  {% if a_c == "Not Filled" %}Start{% elif a_c == "Filled" %} Edit{% endif %}</a>
+                                {% endif %}
+                                {% endif %}
                             </div>
                         </div>
                         <div class="row">
@@ -160,8 +189,12 @@ Dashboard
                                         {% endif %}
                                         {% endif %}
                                 </div>
+                                {% if ra.approved != True %}
+                                {% if a_c == "Filled" %}
                                 <a href="{% url 'step5' slug=ra.product.slug p_id=ra.product.id ra_id=ra.id %}"
-                                    class="btn btn-primary d-flex align-items-center"><ion-icon name="create-outline"></ion-icon> {% if comp == "Not Filled" %}Start{% elif comp == "Filled" %} Edit{% endif %}</a>
+                                    class="btn btn-primary d-flex align-items-center"><span style="font-size: 0.8em"><i class="far fa-edit"></i></span>&nbsp;  {% if comp == "Not Filled" %}Start{% elif comp == "Filled" %} Edit{% endif %}</a>
+                                {% endif %}
+                                {% endif %}
                             </div>
                         </div>
                         <div class="row">
@@ -192,8 +225,12 @@ Dashboard
                                         {% endif %}
                                         {% endif %}
                                 </div>
+                                {% if ra.approved != True %}
+                                {% if comp == "Filled" %}
                                 <a href="{% url 'step6' slug=ra.product.slug p_id=ra.product.id ra_id=ra.id %}"
-                                    class="btn btn-primary d-flex align-items-center"><ion-icon name="create-outline"></ion-icon> {% if sec_mat == "Not Filled" %}Start{% elif sec_mat == "Filled" %} Edit{% endif %}</a>
+                                    class="btn btn-primary d-flex align-items-center"><span style="font-size: 0.8em"><i class="far fa-edit"></i></span>&nbsp;  {% if sec_mat == "Not Filled" %}Start{% elif sec_mat == "Filled" %} Edit{% endif %}</a>
+                                {% endif %}
+                                {% endif %}
                             </div>
                         </div>
                         <div class="row">
@@ -223,8 +260,12 @@ Dashboard
                                         {% endif %}
                                         {% endif %}
                                 </div>
+                                {% if ra.approved != True %}
+                                {% if sec_mat == "Filled" %}
                                 <a href="{% url 'step7' slug=ra.product.slug p_id=ra.product.id ra_id=ra.id %}"
-                                    class="btn btn-primary d-flex align-items-center"><ion-icon name="create-outline"></ion-icon> {% if inte == "Not Filled" %}Start{% elif inte == "Filled" %} Edit{% endif %}</a>
+                                    class="btn btn-primary d-flex align-items-center"><span style="font-size: 0.8em"><i class="far fa-edit"></i></span>&nbsp;  {% if inte == "Not Filled" %}Start{% elif inte == "Filled" %} Edit{% endif %}</a>
+                                {% endif %}
+                                {% endif %}
                             </div>
                         </div>
                         <div class="row">
@@ -255,9 +296,12 @@ Dashboard
                                         {% endif %}
                                         {% endif %}
                                 </div>
+                                {% if ra.approved != True %}
+                                {% if inte == "Filled" %}
                                 <a href="{% url 'step8' slug=ra.product.slug p_id=ra.product.id ra_id=ra.id %}"
-                                    class="btn btn-primary d-flex align-items-center"><ion-icon name="create-outline"></ion-icon> {% if csm == "Not Filled" %}Start{% elif csm == "Filled" %}
-                                    Edit{% endif %}</a>
+                                    class="btn btn-primary d-flex align-items-center"><span style="font-size: 0.8em"><i class="far fa-edit"></i></span>&nbsp;  {% if csm == "Not Filled" %}Start{% elif csm == "Filled" %}Edit{% endif %}</a>
+                                {% endif %}
+                                {% endif %}                                    
                             </div>
                         </div>
                         <div class="row">
@@ -287,9 +331,12 @@ Dashboard
                                         {% endif %}
                                         {% endif %}
                                 </div>
+                                {% if ra.approved != True %}
+                                {% if csm == "Filled" %}
                                 <a href="{% url 'step9' slug=ra.product.slug p_id=ra.product.id ra_id=ra.id %}"
-                                    class="btn btn-primary d-flex align-items-center"><ion-icon name="create-outline"></ion-icon> {% if sd == "Not Filled" %}Start{% elif sd == "Filled" %}
-                                    Edit{% endif %}</a>
+                                    class="btn btn-primary d-flex align-items-center"><span style="font-size: 0.8em"><i class="far fa-edit"></i></span>&nbsp;  {% if sd == "Not Filled" %}Start{% elif sd == "Filled" %}Edit{% endif %}</a>
+                                {% endif %}
+                                {% endif %}                                    
                             </div>
                         </div>
                         <div class="row">
@@ -319,9 +366,12 @@ Dashboard
                                         {% endif %}
                                         {% endif %}
                                 </div>
+                                {% if ra.approved != True %}
+                                {% if sd == "Filled" %}
                                 <a href="{% url 'step10' slug=ra.product.slug p_id=ra.product.id ra_id=ra.id %}"
-                                    class="btn btn-primary d-flex align-items-center"><ion-icon name="create-outline"></ion-icon> {% if enc == "Not Filled" %}Start{% elif enc == "Filled" %}
-                                    Edit{% endif %}</a>
+                                    class="btn btn-primary d-flex align-items-center"><span style="font-size: 0.8em"><i class="far fa-edit"></i></span>&nbsp;  {% if enc == "Not Filled" %}Start{% elif enc == "Filled" %}Edit{% endif %}</a>
+                                {% endif %}
+                                {% endif %}                                    
                             </div>
                         </div>
                         <div class="row">
@@ -352,9 +402,12 @@ Dashboard
                                         {% endif %}
                                         {% endif %}
                                 </div>
+                                {% if ra.approved != True %}
+                                {% if enc == "Filled" %}
                                 <a href="{% url 'step11' slug=ra.product.slug p_id=ra.product.id ra_id=ra.id %}"
-                                    class="btn btn-primary d-flex align-items-center"><ion-icon name="create-outline"></ion-icon> {% if qa == "Not Filled" %}Start{% elif qa == "Filled" %}
-                                    Edit{% endif %}</a>
+                                    class="btn btn-primary d-flex align-items-center"><span style="font-size: 0.8em"><i class="far fa-edit"></i></span>&nbsp;  {% if qa == "Not Filled" %}Start{% elif qa == "Filled" %}Edit{% endif %}</a>
+                                {% endif %}
+                                {% endif %}
                             </div>
                         </div>
                         <div class="row">
@@ -386,8 +439,12 @@ Dashboard
                                         {% endif %}
                                         {% endif %}
                                 </div>
+                                {% if ra.approved != True %}
+                                {% if qa == "Filled" %}
                                 <a href="{% url 'step12' slug=ra.product.slug p_id=ra.product.id ra_id=ra.id %}"
-                                    class="btn btn-primary d-flex align-items-center"><ion-icon name="create-outline"></ion-icon> {% if dbserver == "Not Filled" %}Start{% elif dbserver == "Filled" %} Edit{% endif %}</a>
+                                    class="btn btn-primary d-flex align-items-center"><span style="font-size: 0.8em"><i class="far fa-edit"></i></span>&nbsp;  {% if dbserver == "Not Filled" %}Start{% elif dbserver == "Filled" %} Edit{% endif %}</a>
+                                {% endif %}
+                                {% endif %}
                             </div>
                         </div>
                         <div class="row">
@@ -418,8 +475,12 @@ Dashboard
                                         {% endif %}
                                         {% endif %}
                                 </div>
+                                {% if ra.approved != True %}
+                                {% if dbserver == "Filled" %}
                                 <a href="{% url 'step13' slug=ra.product.slug p_id=ra.product.id ra_id=ra.id %}"
-                                    class="btn btn-primary d-flex align-items-center"><ion-icon name="create-outline"></ion-icon> {% if sec_comm == "Not Filled" %}Start{% elif sec_comm == "Filled" %} Edit{% endif %}</a>
+                                    class="btn btn-primary d-flex align-items-center"><span style="font-size: 0.8em"><i class="far fa-edit"></i></span>&nbsp;  {% if sec_comm == "Not Filled" %}Start{% elif sec_comm == "Filled" %} Edit{% endif %}</a>
+                                {% endif %}
+                                {% endif %}
                             </div>
                         </div>
                         <div class="row">
@@ -450,8 +511,12 @@ Dashboard
                                         {% endif %}
                                         {% endif %}
                                 </div>
+                                {% if ra.approved != True %}
+                                {% if sec_comm == "Filled" %}
                                 <a href="{% url 'step14' slug=ra.product.slug p_id=ra.product.id ra_id=ra.id %}"
-                                    class="btn btn-primary d-flex align-items-center"><ion-icon name="create-outline"></ion-icon> {% if sw_inte == "Not Filled" %}Start{% elif sw_inte == "Filled" %} Edit{% endif %}</a>
+                                    class="btn btn-primary d-flex align-items-center"><span style="font-size: 0.8em"><i class="far fa-edit"></i></span>&nbsp;  {% if sw_inte == "Not Filled" %}Start{% elif sw_inte == "Filled" %} Edit{% endif %}</a>
+                                {% endif %}
+                                {% endif %}
                             </div>
                         </div>
                     </div>
@@ -462,7 +527,8 @@ Dashboard
                     <div class="mb-1 row py-1">
                         <label class="col-sm-6 col-form-label"><strong>Risk Analyst</strong></label>
                         <div class="col-sm-6">
-                            <label class="col-sm-6 col-form-label">{{prod.risk_analyst}}</label>
+                            <label class="col-sm-6 col-form-label">{{ra.ra}}</label>
+                            <label class="col-sm-6 col-form-label">{{ra.ra.email}}</label>
                         </div>
                     </div>
                     <hr class="dropdown-divider">
@@ -470,16 +536,17 @@ Dashboard
                         <label class="col-sm-6 col-form-label"><strong>Main Project Contact
                                 (Dept)</strong></label>
                         <div class="col-sm-6">
-                            <label class="col-sm-6 col-form-label">{{prod.dept_mpc}}</label>
-                            <label class="col-sm-6 col-form-label">+1 {{prod.dept_mpc.phone}}</label>
+                            <label class="col-sm-6 col-form-label">{{dept_info.mpc}}</label>
+                            <label class="col-sm-6 col-form-label">+1 {{dept_info.mpc.phone}}</label>
                             <label class="col-sm-6 col-form-label"><a
-                                    href="mailto:{{prod.dept_mpc.user.email}}">{{prod.dept_mpc.user.email}}</a></label>
+                                    href="mailto:{{dept_info.mpc.user.email}}">{{dept_info.mpc.user.email}}</a></label>
                         </div>
                     </div>
                     <div class="row">
                         <label class="col-sm-6 col-form-label"><strong>Technical Administrator
                                 Contact</strong></label>
                         <div class="col-sm-6">
+                            <label class="col-sm-6 col-form-label">{{dept_info.ta_dept}}</label>
                             <label class="col-sm-6 col-form-label">{{dept_info.ta_name}}</label>
                             <label class="col-sm-6 col-form-label">+1 {{dept_info.ta_phone}}</label>
                             <label class="col-sm-6 col-form-label"><a
@@ -490,6 +557,7 @@ Dashboard
                         <label class="col-sm-6 col-form-label"><strong>End-User Requestor
                                 Contact</strong></label>
                         <div class="col-sm-6">
+                            <label class="col-sm-6 col-form-label">{{dept_info.eur_dept}}</label>
                             <label class="col-sm-6 col-form-label">{{dept_info.eur_name}}</label>
                             <label class="col-sm-6 col-form-label">+1 {{dept_info.eur_phone}}</label>
                             <label class="col-sm-6 col-form-label"><a
@@ -499,6 +567,7 @@ Dashboard
                     <div class="row">
                         <label class="col-sm-6 col-form-label"><strong>Data Steward</strong></label>
                         <div class="col-sm-6">
+                            <label class="col-sm-6 col-form-label">{{dept_info.ds_dept}}</label>
                             <label class="col-sm-6 col-form-label">{{dept_info.ds_name}}</label>
                             <label class="col-sm-6 col-form-label">+1 {{dept_info.ds_phone}}</label>
                             <label class="col-sm-6 col-form-label"><a
@@ -507,17 +576,16 @@ Dashboard
                     </div>
                     <hr class="dropdown-divider">
                     <div class="row">
-                        <label class="col-sm-6 col-form-label"><strong>Main Project Contact
-                                (Vendor)</strong></label>
+                        <label class="col-sm-6 col-form-label"><strong>Vendor Primary Contact</strong></label>
                         <div class="col-sm-6">
-                            <label class="col-sm-6 col-form-label">{{prod.vend_mpc}}</label>
-                            <label class="col-sm-6 col-form-label">+1 {{prod.vend_mpc.phone}}</label>
+                            <label class="col-sm-6 col-form-label">{{vend_info.mpc_name}}</label>
+                            <label class="col-sm-6 col-form-label">+1 {{vend_info.mpc_phone}}</label>
                             <label class="col-sm-6 col-form-label"><a
-                                    href="mailto:{{prod.vend_mpc.user.email}}">{{prod.vend_mpc.user.email}}</a></label>
+                                    href="mailto:{{vend_info.mpc_email}}">{{vend_info.mpc_email}}</a></label>
                         </div>
                     </div>
                     <div class="row">
-                        <label class="col-sm-6 col-form-label"><strong>Technical
+                        <label class="col-sm-6 col-form-label"><strong>Vendor Technical
                                 Contact</strong></label>
                         <div class="col-sm-6">
                             <label class="col-sm-6 col-form-label">{{vend_info.tc_name}}</label>
@@ -537,4 +605,11 @@ Dashboard
 
 {% block js %}
 <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+
+<script>
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        })
+</script>
 {% endblock %}

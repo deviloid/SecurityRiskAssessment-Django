@@ -117,7 +117,7 @@ Dashboard | Risk Assessment | {{riskassessment.product.name}}
                     </div>
                     <br>
                     <input type="submit" name="Add Product" value="Next" class="btn btn-primary">
-                    {{form.errors|striptags}}
+                    {% comment %} {{form.errors|striptags}} {% endcomment %}
                 </form>
             </div>
         </div>

@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block title %}
-Dashboard | Add {{user_type}} User
+Dashboard | Add {{user_type}}
 {% endblock %}
 
 {% block body %}
@@ -20,7 +20,7 @@ Dashboard | Add {{user_type}} User
             <div class="col-5">
                 <div
                     class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-                    <h1 class="h2">Add {{user_type}} User</h1>
+                    <h1 class="h2">Add {{user_type}}</h1>
                     {% comment %} <a href="#" class="btn btn-primary">Add User</a> {% endcomment %}
                 </div>
                     <form action="" method="POST" autocomplete="off">
@@ -34,18 +34,8 @@ Dashboard | Add {{user_type}} User
                         </div>
                         <br>
                         {% endfor %}
-                        {% for field in user_info %}
-                        <div class="form-group row">
-                            <label for="inputPassword" class="col-3 col-form-label">{{field.label}}</label>
-                            <div class="col-9">
-                                {{field}}
-                            </div>
-                        </div>
-                        <br>
-                        {% endfor %}
                         <input type="submit" name="Create User" value="Add User" class="btn btn-primary">
                         <p>{{userform.errors|striptags}}</p>
-                        <p>{{user_info.errors|striptags}}</p>
                     </form>
 
             </div>

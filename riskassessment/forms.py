@@ -14,9 +14,9 @@ from .models import *
 
 class DeptInfoForm(ModelForm):
     mpc = forms.ModelChoiceField(queryset=UserDepartment.objects.none(), widget=forms.Select(attrs={'class':'form-control'}))
-    ta_dept = forms.ModelChoiceField(queryset=Department.objects.all(), widget=forms.Select(attrs={"class":"form-control"}))
-    eur_dept = forms.ModelChoiceField(queryset=Department.objects.all(), widget=forms.Select(attrs={"class":"form-control"}))
-    ds_dept = forms.ModelChoiceField(queryset=Department.objects.all(), widget=forms.Select(attrs={"class":"form-control"}))
+    ta_dept = forms.ModelChoiceField(queryset=Department.objects.all(), widget=forms.Select(attrs={"class":"form-control"}), empty_label="Select Technical Administrator Department")
+    eur_dept = forms.ModelChoiceField(queryset=Department.objects.all(), widget=forms.Select(attrs={"class":"form-control"}), empty_label="Select End-User Requestor Department")
+    ds_dept = forms.ModelChoiceField(queryset=Department.objects.all(), widget=forms.Select(attrs={"class":"form-control"}), empty_label="Select Data Steward Department")
 
     # def __init__(self, *args, **kwargs):
     #     super(DeptInfoForm, self).__init__(*args, **kwargs)
@@ -68,6 +68,10 @@ class VendInfoForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
+        self.fields['exst_contract'].disabled = True
+        self.fields['mpc_name'].disabled = True
+        self.fields['mpc_email'].disabled = True
+        self.fields['mpc_phone'].disabled = True
         self.fields['exst_contract'].label = False
         self.helper.layout = Layout(
             Div(InlineRadios('exst_contract')),
@@ -78,6 +82,15 @@ class VendInfoForm(ModelForm):
         fields = "__all__"
         exclude = ["score", "max_score", "eval_score"]
         widgets = {
+            "mpc_name": forms.TextInput(
+                attrs={"class": "form-control", "placeholder": "Name"}
+            ),
+            "mpc_email": forms.EmailInput(
+                attrs={"class": "form-control", "placeholder": "Email"}
+            ),
+            "mpc_phone": forms.TextInput(
+                attrs={"class": "form-control", "placeholder": "Phone"}
+            ),
             "tc_name": forms.TextInput(
                 attrs={"class": "form-control", "placeholder": "Name"}
             ),
@@ -96,6 +109,7 @@ class DataManagementForm(ModelForm):
     BOOL_CHOICES = [("Yes", "Yes"), ("No", "No")]
 
     INT_CHOICES = [
+        (None,'Select Option'),
         (500, 500),
         (1000, 1000),
         (2000, 2000),

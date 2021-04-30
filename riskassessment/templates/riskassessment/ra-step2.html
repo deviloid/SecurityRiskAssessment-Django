@@ -43,14 +43,28 @@ Dashboard | Risk Assessment | {{riskassessment.product.name}}
                     </div>
                     <br>
                     <div class="form-group row">
-                        <label for="inputPassword" class="col-3 col-form-label">{{form.mpc.label}}</label>
+                        <label for="inputPassword" class="col-3 col-form-label">Vendor Primary Contact</label>
                         <div class="col-9">
-                            {{form.mpc}}
+                            {{form.mpc_name}}
                         </div>
                     </div>
                     <br>
                     <div class="form-group row">
-                        <label for="inputPassword" class="col-3 col-form-label">Technical Administrator Contact</label>
+                        <label for="inputPassword" class="col-3 col-form-label"></label>
+                        <div class="col-9">
+                            {{form.mpc_email}}
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group row">
+                        <label for="inputPassword" class="col-3 col-form-label"></label>
+                        <div class="col-9">
+                            {{form.mpc_phone}}
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group row">
+                        <label for="inputPassword" class="col-3 col-form-label">Technical Contact</label>
                         <div class="col-9">
                             {{form.tc_name}}
                         </div>
@@ -80,7 +94,7 @@ Dashboard | Risk Assessment | {{riskassessment.product.name}}
                     <br>
 
                     <input type="submit" name="Add Product" value="Next" class="btn btn-primary">
-                    {{form.errors|striptags}}
+                    {% comment %} {{form.errors|striptags}} {% endcomment %}
                 </form>
 
             </div>

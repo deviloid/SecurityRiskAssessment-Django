@@ -3,7 +3,7 @@
 {% load progress %}
 
 {% block title %}
-Dashboard | Open Risk Assessments
+Dashboard | Closed Risk Assessments
 {% endblock %}
 
 {% block body %}
@@ -20,8 +20,8 @@ Dashboard | Open Risk Assessments
             <div class="col">
                 <div
                     class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-                    <h1 class="h2">Open Risk Assessments</h1>
-                    <a href="{% url 'AddRiskAssessment' %}" class="btn btn-primary">Add</a>
+                    <h1 class="h2">Closed Risk Assessments</h1>
+                    {% comment %} <a href="{% url 'AddRiskAssessment' %}" class="btn btn-primary">Add</a> {% endcomment %}
                 </div>
                 <div class="row d-flex align-items-center justify-content-center">
                     <div class="col-md-12">
@@ -29,8 +29,7 @@ Dashboard | Open Risk Assessments
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th class="col-md-4" scope="col">Product</th>
-                                    <th class="col-md-1" scope="col">RA Number</th>
+                                    <th class="col-md-5" scope="col">Product</th>
                                     <th class="col-md-2" scope="col">Score</th>
                                     <th class="col-md-1" scope="col">Date Added</th>
                                     <th class="col-md-2" scope="col"><div class="d-flex justify-content-center">Steps Completed (out of 14)</div></th>
@@ -44,9 +43,6 @@ Dashboard | Open Risk Assessments
                                             href="{% url 'RiskAssessmentDetail' slug=riskassessment.product.slug p_id=riskassessment.product.id ra_id=riskassessment.id %}"
                                             style="text-decoration: none">{% endif %}{{riskassessment.product}}{% if riskassessment.steps_complete > 2 %}</a>{% endif %}</th>
 
-                                    <td>
-                                        {{riskassessment.ra_number}}
-                                    </td>
                                     <td>
                                         {% if riskassessment.total_score == None %}
                                         Not Assessed Yet.
@@ -122,7 +118,7 @@ Dashboard | Open Risk Assessments
                             </tbody>
                         </table>
                         {% else %}
-                        <h1 class="display-6 d-flex align-items-center justify-content-center">No Risk Assessments
+                        <h1 class="display-6 d-flex align-items-center justify-content-center">No Approved Risk Assessments
                             exist.</h1>
                         {% endif %}
                     </div>
