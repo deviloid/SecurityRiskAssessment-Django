@@ -30,9 +30,9 @@ Dashboard | Open Risk Assessments
                             <thead>
                                 <tr>
                                     <th class="col-md-4" scope="col">Product</th>
-                                    <th class="col-md-1" scope="col">RA Number</th>
-                                    <th class="col-md-2" scope="col">Score</th>
-                                    <th class="col-md-1" scope="col">Date Added</th>
+                                    <th class="col-md-2" scope="col">RA Number</th>
+                                    {% comment %} <th class="col-md-2" scope="col">Score</th> {% endcomment %}
+                                    <th class="col-md-2" scope="col">Date Added</th>
                                     <th class="col-md-2" scope="col"><div class="d-flex justify-content-center">Steps Completed (out of 14)</div></th>
                                     <th class="col-md-2" scope="col"><div class="d-flex justify-content-center">Actions</div></th>
                                 </tr>
@@ -47,13 +47,13 @@ Dashboard | Open Risk Assessments
                                     <td>
                                         {{riskassessment.ra_number}}
                                     </td>
-                                    <td>
+                                    {% comment %} <td>
                                         {% if riskassessment.total_score == None %}
                                         Not Assessed Yet.
                                         {% else %}
                                         {{riskassessment.total_score}}
                                         {% endif %}
-                                    </td>
+                                    </td> {% endcomment %}
                                     <td>
                                         {{riskassessment.date.month|month_name}} {{riskassessment.date.day}},
                                         <strong>{{riskassessment.date.year}}</strong>

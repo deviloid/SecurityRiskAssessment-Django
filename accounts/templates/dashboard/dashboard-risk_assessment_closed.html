@@ -29,9 +29,10 @@ Dashboard | Closed Risk Assessments
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th class="col-md-5" scope="col">Product</th>
-                                    <th class="col-md-2" scope="col">Score</th>
-                                    <th class="col-md-1" scope="col">Date Added</th>
+                                    <th class="col-md-4" scope="col">Product</th>
+                                    <th class="col-md-2" scope="col">RA Number</th>
+                                    {% comment %} <th class="col-md-2" scope="col">Score</th> {% endcomment %}
+                                    <th class="col-md-2" scope="col">Date Added</th>
                                     <th class="col-md-2" scope="col"><div class="d-flex justify-content-center">Steps Completed (out of 14)</div></th>
                                     <th class="col-md-2" scope="col"><div class="d-flex justify-content-center">Actions</div></th>
                                 </tr>
@@ -43,12 +44,15 @@ Dashboard | Closed Risk Assessments
                                             href="{% url 'RiskAssessmentDetail' slug=riskassessment.product.slug p_id=riskassessment.product.id ra_id=riskassessment.id %}"
                                             style="text-decoration: none">{% endif %}{{riskassessment.product}}{% if riskassessment.steps_complete > 2 %}</a>{% endif %}</th>
 
-                                    <td>
+                                    {% comment %} <td>
                                         {% if riskassessment.total_score == None %}
                                         Not Assessed Yet.
                                         {% else %}
                                         {{riskassessment.total_score}}
                                         {% endif %}
+                                    </td> {% endcomment %}
+                                    <td>
+                                        {{riskassessment.ra_number}}
                                     </td>
                                     <td>
                                         {{riskassessment.date.month|month_name}} {{riskassessment.date.day}},
