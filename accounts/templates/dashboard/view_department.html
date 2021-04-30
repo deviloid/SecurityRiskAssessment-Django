@@ -1,4 +1,5 @@
 {% extends 'accounts/base.html' %}
+{% load index_acc %}
 
 {% block title %}
 Dashboard | Department | {{department.name}}
@@ -58,6 +59,37 @@ Dashboard | Department | {{department.name}}
                                     exist.</h1>
                                 {% endif %}
                             </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row row-col-2">
+                    <div class="col-6">
+                        <h1 class="h3">Products Used</h1>
+                        <hr class="dropdown-divider">
+                        <div class="row">
+                            {% if products %}
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th class="col-md-8" scope="col">Product Name</th>
+                                            <th class="col-md-4" scope="col">Vendor</th>
+                                            {% comment %} <th class="col-md-4" scope="col">Email</th> {% endcomment %}
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for product in products %}
+                                        <tr>
+                                            <th scope="row"><a href="{% url "ViewProduct" pk=product|index_acc:3 slug=product|index_acc:2 %}" style="text-decoration: none">{{product|index_acc:0}}</a></th>
+                                            <td scope="row">{{product|index_acc:1}}</td>
+                                            {% comment %} <td scope="row"><a href="mailto:{{user.user.email}}" style="text-decoration: none">{{user.user.email}}<a></td> {% endcomment %}
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                                {% else %}
+                                <h1 class="display-6 d-flex align-items-center justify-content-center">No Departments
+                                    exist.</h1>
+                                {% endif %}
                         </div>
                     </div>
                 </div>

@@ -1,4 +1,5 @@
 {% extends 'accounts/base.html' %}
+{% load index_acc %}
 
 {% block title %}
 Dashboard | Product | {{product.name}}
@@ -30,7 +31,7 @@ Dashboard | Product | {{product.name}}
                         </div>
                         <div class="row">
                             <label class="col-3 col-form-label"><strong>Product Vendor</strong></label>
-                            <label class="col-9 col-form-label">{{product.vendor}}</label>
+                            <label class="col-9 col-form-label"><a href="{% url "ViewVendor" slug=product.vendor.slug %}" style="text-decoration: none">{{product.vendor}}</a></label>
                         </div>
                         <div class="row">
                             <label class="col-3 col-form-label"><strong>Technical Support</strong></label>
@@ -57,15 +58,15 @@ Dashboard | Product | {{product.name}}
                                     <tbody>
                                         {% for department in departments %}
                                         <tr>
-                                            <th scope="row">{{department.department.name}}</th>
-                                            <td scope="row">{{department.department.location}}</td>
+                                            <th scope="row">{{department|index_acc:0}}</th>
+                                            <td scope="row">{{department|index_acc:1}}</td>
                                         </tr>
                                         {% endfor %}
                                     </tbody>
                                 </table>
                                 {% else %}
-                                <h1 class="display-6 d-flex align-items-center justify-content-center">No Departments
-                                    exist.</h1>
+                                <h1 class="display-6 d-flex align-items-center justify-content-center">No Department
+                                    uses yet.</h1>
                                 {% endif %}
                             </div>
                         </div>

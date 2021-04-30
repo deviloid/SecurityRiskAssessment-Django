@@ -53,10 +53,12 @@ urlpatterns = [
 
 
     path('dashboard/risk-assessments/', views.RiskAssessmentsView, name="RiskAssessmentsView"),
+    path('dashboard/risk-assessments-closed/', views.ClosedRiskAssessmentsView, name="ClosedRiskAssessmentsView"),
     path('dashboard/risk-assessments/add', views.AddRiskAssessment, name="AddRiskAssessment"),
     path('dashboard/risk-assessments/evaluate/<str:ra_id>', views.score_evaluate, name="EvaluateRiskAssessment"),
     
 
+    path('dashboard/risk-assessments/<str:slug>/<str:p_id>/<str:ra_id>/approve', views.ApproveRA, name='ApproveRA'),
     path('dashboard/risk-assessments/<str:slug>/<str:p_id>/<str:ra_id>/view', views.RiskAssessmentDetail, name='RiskAssessmentDetail'),
     path('dashboard/risk-assessments/<str:slug>/<str:p_id>/<str:ra_id>/1/14', views.RA_step1, name='step1'),
     path('dashboard/risk-assessments/<str:slug>/<str:p_id>/<str:ra_id>/2/14', views.RA_step2, name='step2'),
@@ -73,6 +75,7 @@ urlpatterns = [
     path('dashboard/risk-assessments/<str:slug>/<str:p_id>/<str:ra_id>/13/14', views.RA_step13, name='step13'),
     path('dashboard/risk-assessments/<str:slug>/<str:p_id>/<str:ra_id>/14/14', views.RA_step14, name='step14'),
 
+    path('test/', views.test4, name="test4"),
 
     #PasswordReset
     path('password_reset/', auth_views.PasswordResetView.as_view(template_name='registration/password_reset_form.html', form_class=UserPasswordResetForm),name='password_reset'),

@@ -158,17 +158,19 @@ class VendorCreateForm(ModelForm):
     class Meta:
         model = Vendor
         fields = '__all__'
+        exclude = ['slug']
         widgets = {
             'name':forms.TextInput(attrs={'class':'form-control', 'placeholder':'Vendor Name'}),
-            'website':forms.TextInput(attrs={'class':'form-control', 'placeholder':'Website'})
+            'website':forms.TextInput(attrs={'class':'form-control', 'placeholder':'Website'}),
+            'address':forms.TextInput(attrs={'class':'form-control', 'placeholder':'Address'}),
         }
 
 
 class CreateRAForm(ModelForm):
 
-    product = forms.ModelChoiceField(queryset=Product.objects.all(), widget=forms.Select(attrs={'class':'form-control'}), empty_label="Select Product",)
-    department = forms.ModelChoiceField(queryset=Department.objects.all(), widget=forms.Select(attrs={'class':'form-control'}), empty_label="Select Department",)
+    product = forms.ModelChoiceField(queryset=Product.objects.all(), widget=forms.Select(attrs={'class':'form-control'}), empty_label="Select Product")
+    department = forms.ModelChoiceField(queryset=Department.objects.all(), widget=forms.Select(attrs={'class':'form-control'}), empty_label="Select Department")
 
     class Meta:
         model = RiskAssessment
-        fields = ['product']
+        fields = ['product', 'department']

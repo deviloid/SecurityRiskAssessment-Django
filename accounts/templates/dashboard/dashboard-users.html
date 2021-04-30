@@ -75,7 +75,7 @@ Dashboard | Users
                                     <th scope="row" class="{% if dept_user.user.has_setpsd == False %} text-danger {% endif %}">{{dept_user.user.fname}} {{dept_user.user.lname}}</th>
                                     <td><a href="mailto:{{dept_user.user.email}}" style="text-decoration: none">{{dept_user.user.email}}</a></td>
                                     <td>+1 {{dept_user.phone}}</td>
-                                    <td>{{dept_user.department}}</td>
+                                    <td><a href="{% url "ViewDepartment" slug=dept_user.department.slug %}" style="text-decoration: none">{{dept_user.department}}</a></td>
                                 </tr>
                                 {% endfor %}
                             </tbody>
@@ -90,7 +90,7 @@ Dashboard | Users
             <div class="col">
                 <div
                     class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-                    <h1 class="h2">Vendor Users</h1>
+                    <h1 class="h2">Vendor Primary Contacts</h1>
                     <a href="{% url 'register-vend-user' %}" class="btn btn-primary">Add</a>
                 </div>
                 <div class="row d-flex align-items-center justify-content-center">
@@ -111,7 +111,7 @@ Dashboard | Users
                                     <th scope="row" class="{% if dept_user.user.has_setpsd == False %} text-danger {% endif %}">{{vend_user.user.fname}} {{vend_user.user.lname}}</th>
                                     <td><a href="mailto:{{vend_user.user.email}}" style="text-decoration: none">{{vend_user.user.email}}</a></td>
                                     <td>+1 {{vend_user.phone}}</td>
-                                    <td> {{vend_user.vendor}}</td>
+                                    <td><a href="{% url "ViewVendor" slug=vend_user.vendor.slug %}" style="text-decoration: none">{{vend_user.vendor}}</a></td>
                                 </tr>
                                 {% endfor %}
                             </tbody>

@@ -15,7 +15,7 @@ Dashboard
         <div class="col-8 bg-light d-flex justify-content-center">
                 <div class="row d-flex justify-content-center d-print-block">
                     <div class="col-12 py-5 d-flex justify-content-center">
-                        <h1 class="display-4">{{riskassessment.product.name}}</h1>
+                        <h1 class="display-4">{{riskassessment.product.name}} - RA#{{riskassessment.ra_number}}</h1>
                     </div>
                     <div class="col-12 d-flex justify-content-center">
                         <h1 class="display-6">Security Risk Assessment Report</h1>
@@ -66,32 +66,32 @@ Dashboard
                         <div class="mb-3 row py-1">
                             <label for="staticEmail" class="col-sm-6 col-form-label">Department Name</label>
                             <div class="col-sm-6">
-                                <label class="col col-form-label">{{riskassessment.product.department.name}}</label>
+                                <label class="col col-form-label">{{riskassessment.department.name}}</label>
                             </div>
                         </div>
                         <hr class="dropdown-divider">
                         <div class="mb-3 row py-1">
                             <label for="staticEmail" class="col-sm-6 col-form-label">Department Primary Contact</label>
                             <div class="col-sm-6">
-                                <label class="col col-form-label">{{riskassessment.product.dept_mpc.department}}</label>
+                                <label class="col col-form-label">{{dept_info.mpc.department}}</label>
                             </div>
                         </div>
                         <div class="mb-3 row py-1">
                             <label for="staticEmail" class="col-sm-6 col-form-label"></label>
                             <div class="col-sm-6">
-                                <label class="col col-form-label">{{riskassessment.product.dept_mpc}}</label>
+                                <label class="col col-form-label">{{dept_info.mpc.user.fname}} {{dept_info.mpc.user.lname}}</label>
                             </div>
                         </div>
                         <div class="mb-3 row py-1">
                             <label for="staticEmail" class="col-sm-6 col-form-label"></label>
                             <div class="col-sm-6">
-                                <label class="col col-form-label">{{riskassessment.product.dept_mpc.user.email}}</label>
+                                <label class="col col-form-label">{{dept_info.mpc.user.email}}</label>
                             </div>
                         </div>
                         <div class="mb-3 row py-1">
                             <label for="staticEmail" class="col-sm-6 col-form-label"></label>
                             <div class="col-sm-6">
-                                <label class="col col-form-label">+1 {{riskassessment.product.dept_mpc.phone}}</label>
+                                <label class="col col-form-label">+1 {{dept_info.mpc.phone}}</label>
                             </div>
                         </div>
                         <hr class="dropdown-divider">
@@ -199,19 +199,19 @@ Dashboard
                         <div class="mb-3 row py-1">
                             <label for="staticEmail" class="col-sm-6 col-form-label">Vendor Primary Contact</label>
                             <div class="col-sm-6">
-                                <label class="col col-form-label">{{riskassessment.product.vend_mpc}}</label>
+                                <label class="col col-form-label">{{vend_info.mpc.user.fname}} {{vend_info.mpc.user.lname}}</label>
                             </div>
                         </div>
                         <div class="mb-3 row py-1">
                             <label for="staticEmail" class="col-sm-6 col-form-label"></label>
                             <div class="col-sm-6">
-                                <label class="col col-form-label">{{riskassessment.product.vend_mpc.user.email}}</label>
+                                <label class="col col-form-label">{{vend_info.mpc.user.email}}</label>
                             </div>
                         </div>
                         <div class="mb-3 row py-1">
                             <label for="staticEmail" class="col-sm-6 col-form-label"></label>
                             <div class="col-sm-6">
-                                <label class="col col-form-label">+1 {{riskassessment.product.vend_mpc.phone}}</label>
+                                <label class="col col-form-label">+1 {{vend_info.mpc.phone}}</label>
                             </div>
                         </div>
                         <hr class="dropdown-divider">
@@ -557,6 +557,15 @@ Dashboard
                                 </div>
                             </div>
                         </div>
+                        {% if data_mng.comment %}
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-12 col-form-label"><strong>RA Comments</strong></label>
+                            <div class="col-sm-12">
+                                <input type="text" readonly class="form-control-plaintext" id="staticEmail"
+                                    value="{{data_mng.comment}}">
+                            </div>
+                        </div>
+                        {% endif %}
                     </div>
 
                     <!-- Availability & Criticality -->
@@ -660,6 +669,15 @@ Dashboard
                                 </div>
                             </div>
                         </div>
+                        {% if a_c.comment %}
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-12 col-form-label"><strong>RA Comments</strong></label>
+                            <div class="col-sm-12">
+                                <input type="text" readonly class="form-control-plaintext" id="staticEmail"
+                                    value="{{a_c.comment}}">
+                            </div>
+                        </div>
+                        {% endif %}
                     </div>
 
                     <!-- Compliance -->
@@ -771,6 +789,15 @@ Dashboard
                                 </div>
                             </div>
                         </div>
+                        {% if comp.comment %}
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-12 col-form-label"><strong>RA Comments</strong></label>
+                            <div class="col-sm-12">
+                                <input type="text" readonly class="form-control-plaintext" id="staticEmail"
+                                    value="{{comp.comment}}">
+                            </div>
+                        </div>
+                        {% endif %}
                     </div>
 
 
@@ -910,6 +937,15 @@ Dashboard
                                 </div>
                             </div>
                         </div>
+                        {% if sec_mat.comment %}
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-12 col-form-label"><strong>RA Comments</strong></label>
+                            <div class="col-sm-12">
+                                <input type="text" readonly class="form-control-plaintext" id="staticEmail"
+                                    value="{{sec_mat.comment}}">
+                            </div>
+                        </div>
+                        {% endif %}
                     </div>
 
 
@@ -1029,6 +1065,15 @@ Dashboard
                                     value="https://arizonastateu-my.sharepoint.com/:b:/r/personal/smridha_sundevils_asu_edu/Documents/Docs/Resume_SayantanM.pdf?csf=1&web=1&e=r06qhn">
                             </div>
                         </div> -->
+                        {% if inte.comment %}
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-12 col-form-label"><strong>RA Comments</strong></label>
+                            <div class="col-sm-12">
+                                <input type="text" readonly class="form-control-plaintext" id="staticEmail"
+                                    value="{{inte.comment}}">
+                            </div>
+                        </div>
+                        {% endif %}
                     </div>
 
 
@@ -1146,6 +1191,15 @@ Dashboard
                                 </div>
                             </div>
                         </div>
+                        {% if csm.comment %}
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-12 col-form-label"><strong>RA Comments</strong></label>
+                            <div class="col-sm-12">
+                                <input type="text" readonly class="form-control-plaintext" id="staticEmail"
+                                    value="{{csm.comment}}">
+                            </div>
+                        </div>
+                        {% endif %}
                     </div>
                     
 
@@ -1178,7 +1232,7 @@ Dashboard
                                     secure design of the entire system?</strong></label>
                         </div>
                         <div class="mb-3 row py-1">
-                            <label for="staticEmail" class="col-sm-9 col-form-label">We do not know who is responsible
+                            <label for="staticEmail" class="col-sm-9 col-form-label {% if sd.q1 == "No" %}border border-2 border-danger{% endif %}">We do not know who is responsible
                                 for the security design of the entire system.</label>
                             <div class="col-sm-3">
                                 <div>
@@ -1206,7 +1260,7 @@ Dashboard
                             </div>
                         </div>
                         <div class="mb-3 row py-1">
-                            <label for="staticEmail" class="col-sm-9 col-form-label">Although certain parts may be
+                            <label for="staticEmail" class="col-sm-9 col-form-label {% if sd.q2 == "No" %}border border-2 border-danger{% endif %}">Although certain parts may be
                                 designed for security, nobody is responsible for the security design and Company
                                 standards
                                 compliance of the entire system including users and their devices.</label>
@@ -1234,7 +1288,7 @@ Dashboard
                             </div>
                         </div>
                         <div class="mb-3 row py-1">
-                            <label for="staticEmail" class="col-sm-9 col-form-label">A vendor claims to be responsible
+                            <label for="staticEmail" class="col-sm-9 col-form-label {% if sd.q1 == "No" %}border border-2 border-warning{% endif %}">A vendor claims to be responsible
                                 for the security design and Company standards compliance of the entire system, but the
                                 vendor has not signed ISO language, or the scope of the vendor's contracted
                                 responsibility does not cover the entire system including users and their
@@ -1265,7 +1319,7 @@ Dashboard
                             </div>
                         </div>
                         <div class="mb-3 row py-1">
-                            <label for="staticEmail" class="col-sm-9 col-form-label">A single vendor has accepted
+                            <label for="staticEmail" class="col-sm-9 col-form-label {% if sd.q4 == "No" %}border border-2 border-warning{% endif %}">A single vendor has accepted
                                 responsibility for all of the security design and Company standards compliance, has
                                 signed
                                 ISO language, and the scope of the vendor's contracted responsibility covers the entire
@@ -1362,6 +1416,15 @@ Dashboard
                                 </div>
                             </div>
                         </div>
+                        {% if sd.comment %}
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-12 col-form-label"><strong>RA Comments</strong></label>
+                            <div class="col-sm-12">
+                                <input type="text" readonly class="form-control-plaintext" id="staticEmail"
+                                    value="{{sd.comment}}">
+                            </div>
+                        </div>
+                        {% endif %}
                     </div>
 
 
@@ -1394,7 +1457,7 @@ Dashboard
                                     protected in transit (as it travels across the network)?</strong></label>
                         </div>
                         <div class="mb-3 row py-1">
-                            <label for="staticEmail" class="col-sm-9 col-form-label">Sensitive data will be traveling
+                            <label for="staticEmail" class="col-sm-9 col-form-label {% if enc.p1q1 == "No" %}border border-2 border-danger{% endif %}">Sensitive data will be traveling
                                 across one or more external connections outside of the Company data Center without any
                                 protection.</label>
                             <div class="col-sm-3">
@@ -1423,7 +1486,7 @@ Dashboard
                             </div>
                         </div>
                         <div class="mb-3 row py-1">
-                            <label for="staticEmail" class="col-sm-9 col-form-label">All systems and connections storing
+                            <label for="staticEmail" class="col-sm-9 col-form-label {% if enc.p1q2 == "No" %}border border-2 border-danger{% endif %}">All systems and connections storing
                                 or processing sensitive data are within the Company data center, but sensitive data is
                                 not
                                 encrypted as it moves from system to system.</label>
@@ -1451,7 +1514,7 @@ Dashboard
                             </div>
                         </div>
                         <div class="mb-3 row py-1">
-                            <label for="staticEmail" class="col-sm-9 col-form-label">Firewalls, network segmentation,
+                            <label for="staticEmail" class="col-sm-9 col-form-label {% if enc.p1q3 == "No" %}border border-2 border-danger{% endif %}">Firewalls, network segmentation,
                                 and/or other techniques limit sensitive traffic to only those systems that are intended
                                 to receive it. Other systems are prevented from connecting, or listening to sensitive
                                 traffic. However, sensitive data is not encrypted in transit.</label>
@@ -1657,7 +1720,7 @@ Dashboard
                                     protected at rest (wherever it is stored)?</strong></label>
                         </div>
                         <div class="mb-3 row py-1">
-                            <label for="staticEmail" class="col-sm-9 col-form-label">Sensitive data will be stored
+                            <label for="staticEmail" class="col-sm-9 col-form-label {% if enc.p2q1 == "No" %}border border-2 border-danger{% endif %}">Sensitive data will be stored
                                 without any protection, on devices available to the general public without logging
                                 in.</label>
                             <div class="col-sm-3">
@@ -1686,7 +1749,7 @@ Dashboard
                             </div>
                         </div>
                         <div class="mb-3 row py-1">
-                            <label for="staticEmail" class="col-sm-9 col-form-label">Sensitive data will be stored
+                            <label for="staticEmail" class="col-sm-9 col-form-label {% if enc.p2q2 == "No" %}border border-2 border-danger{% endif %}">Sensitive data will be stored
                                 without encryption at rest, even though PCI or other applicable regulations require
                                 it.</label>
                             <div class="col-sm-3">
@@ -1714,7 +1777,7 @@ Dashboard
                             </div>
                         </div>
                         <div class="mb-3 row py-1">
-                            <label for="staticEmail" class="col-sm-9 col-form-label">Sensitive data will be stored
+                            <label for="staticEmail" class="col-sm-9 col-form-label {% if enc.p2q3 == "No" %}border border-2 border-warning{% endif %}">Sensitive data will be stored
                                 without encryption, but the devices require a login, and there is no applicable
                                 regulation requiring encryption at rest.</label>
                             <div class="col-sm-3">
@@ -1743,7 +1806,7 @@ Dashboard
                             </div>
                         </div>
                         <div class="mb-3 row py-1">
-                            <label for="staticEmail" class="col-sm-9 col-form-label">All systems storing or processing
+                            <label for="staticEmail" class="col-sm-9 col-form-label {% if enc.p2q4 == "No" %}border border-2 border-warning{% endif %}">All systems storing or processing
                                 sensitive data are within the Company data center, but sensitive data is not encrypted
                                 on
                                 disk. There is no applicable regulation requiring encryption at rest.</label>
@@ -1863,6 +1926,15 @@ Dashboard
                                 </div>
                             </div>
                         </div>
+                        {% if enc.comment %}
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-12 col-form-label"><strong>RA Comments</strong></label>
+                            <div class="col-sm-12">
+                                <input type="text" readonly class="form-control-plaintext" id="staticEmail"
+                                    value="{{enc.comment}}">
+                            </div>
+                        </div>
+                        {% endif %}
                     </div>
 
 
@@ -1895,7 +1967,7 @@ Dashboard
                                     QA instance?</strong></label>
                         </div>
                         <div class="mb-3 row py-1">
-                            <label for="staticEmail" class="col-sm-9 col-form-label">There will be Development or QA
+                            <label for="staticEmail" class="col-sm-9 col-form-label {% if qa.q1 == "No" %}border border-2 border-danger{% endif %}">There will be Development or QA
                                 instances of the web site(s).</label>
                             <div class="col-sm-3">
                                 <div>
@@ -1923,7 +1995,7 @@ Dashboard
                             </div>
                         </div>
                         <div class="mb-3 row py-1">
-                            <label for="staticEmail" class="col-sm-9 col-form-label">Only a Production instance exists.
+                            <label for="staticEmail" class="col-sm-9 col-form-label {% if qa.q2 == "No" %}border border-2 border-warning{% endif %}">Only a Production instance exists.
                                 There is no place to test code or changes without impacting live systems and data - in
                                 the Production instance.</label>
                             <div class="col-sm-3">
@@ -2033,6 +2105,15 @@ Dashboard
                                 </div>
                             </div>
                         </div>
+                        {% if qa.comment %}
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-12 col-form-label"><strong>RA Comments</strong></label>
+                            <div class="col-sm-12">
+                                <input type="text" readonly class="form-control-plaintext" id="staticEmail"
+                                    value="{{qa.comment}}">
+                            </div>
+                        </div>
+                        {% endif %}
                     </div>
 
  
@@ -2070,7 +2151,7 @@ Dashboard
                                     are in place?</strong></label>
                         </div>
                         <div class="mb-3 row py-1">
-                            <label for="staticEmail" class="col-sm-9 col-form-label">There are one or more databases
+                            <label for="staticEmail" class="col-sm-9 col-form-label {% if dbserver.q1 == "No" %}border border-2 border-danger{% endif %}">There are one or more databases
                                 with access to sensitive data. The database servers have publicly routable IP addresses
                                 and there is no firewall limiting connections to the database. People from anywhere in
                                 the world can connect directly to the database server.</label>
@@ -2100,7 +2181,7 @@ Dashboard
                             </div>
                         </div>
                         <div class="mb-3 row py-1">
-                            <label for="staticEmail" class="col-sm-9 col-form-label">A database containing sensitive
+                            <label for="staticEmail" class="col-sm-9 col-form-label {% if dbserver.q2 == "No" %}border border-2 border-warning{% endif %}">A database containing sensitive
                                 data is directly accessible by a web server, but the database only accepts requests from
                                 the web server. Other devices cannot make connections to the database.</label>
                             <div class="col-sm-3">
@@ -2249,6 +2330,15 @@ Dashboard
                                 </div>
                             </div>
                         </div>
+                        {% if dbserver.comment %}
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-12 col-form-label"><strong>RA Comments</strong></label>
+                            <div class="col-sm-12">
+                                <input type="text" readonly class="form-control-plaintext" id="staticEmail"
+                                    value="{{dbserver.comment}}">
+                            </div>
+                        </div>
+                        {% endif %}
                     </div>
 
 
@@ -2281,7 +2371,7 @@ Dashboard
                                     the architecture communicate and authenticate to each other?</strong></label>
                         </div>
                         <div class="mb-3 row py-1">
-                            <label for="staticEmail" class="col-sm-9 col-form-label">One or more servers initiate or
+                            <label for="staticEmail" class="col-sm-9 col-form-label {% if sec_comm.q1 == "No" %}border border-2 border-danger{% endif %}">One or more servers initiate or
                                 accept connections with their peers, but do not verify or otherwise restrict which
                                 servers can connect.</label>
                             <div class="col-sm-3">
@@ -2310,7 +2400,7 @@ Dashboard
                             </div>
                         </div>
                         <div class="mb-3 row py-1">
-                            <label for="staticEmail" class="col-sm-9 col-form-label">When a server logs in to another
+                            <label for="staticEmail" class="col-sm-9 col-form-label {% if sec_comm.q2 == "No" %}border border-2 border-danger{% endif %}">When a server logs in to another
                                 server, a password or other secret is transmitted across a network connection without
                                 encryption.</label>
                             <div class="col-sm-3">
@@ -2338,7 +2428,7 @@ Dashboard
                             </div>
                         </div>
                         <div class="mb-3 row py-1">
-                            <label for="staticEmail" class="col-sm-9 col-form-label">Firewalls, network segmentation, or
+                            <label for="staticEmail" class="col-sm-9 col-form-label {% if sec_comm.q3 == "No" %}border border-2 border-warning{% endif %}">Firewalls, network segmentation, or
                                 other controls make it impossible for connections to be opened between anything other
                                 than the intended servers. Connections are imited by a "black list" identifying which
                                 addresses are not allowed to connect.</label>
@@ -2379,7 +2469,7 @@ Dashboard
                                         <div class="form-check">
                                             <input class="form-check-input" disabled type="radio"
                                                 name="scomq4Y" id="scomq4Y"
-                                                 {% if sec_comm.q4 == "Yes" %}checked{% endif %}  disabled>
+                                                {% if sec_comm.q4 == "Yes" %}checked{% endif %}  disabled>
                                             <label class="form-check-label" for="scomq4Y">
                                                 Yes
                                             </label>
@@ -2517,6 +2607,15 @@ Dashboard
                                 </div>
                             </div>
                         </div>
+                        {% if sec_comm.comment %}
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-12 col-form-label"><strong>RA Comments</strong></label>
+                            <div class="col-sm-12">
+                                <input type="text" readonly class="form-control-plaintext" id="staticEmail"
+                                    value="{{sec_comm.comment}}">
+                            </div>
+                        </div>
+                        {% endif %}
                     </div>
 
 
@@ -2559,7 +2658,7 @@ Dashboard
                                     applied?</strong></label>
                         </div>
                         <div class="mb-3 row py-1">
-                            <label for="staticEmail" class="col-sm-9 col-form-label">Some systems run outdated versions
+                            <label for="staticEmail" class="col-sm-9 col-form-label {% if sw.q1 == "No" %}border border-2 border-danger{% endif %}">Some systems run outdated versions
                                 of their operating system, utilities, or installed applications. Or, systems are
                                 initially deployed with current software, but nothing will be in place to keep them
                                 current in the future.</label>
@@ -2589,7 +2688,7 @@ Dashboard
                             </div>
                         </div>
                         <div class="mb-3 row py-1">
-                            <label for="staticEmail" class="col-sm-9 col-form-label">There is a capability in place to
+                            <label for="staticEmail" class="col-sm-9 col-form-label {% if sw.q2 == "No" %}border border-2 border-warning{% endif %}">There is a capability in place to
                                 distribute the most recent software version or updates, but it does not have controls to
                                 protect against fake (malicious) updates.</label>
                             <div class="col-sm-3">
@@ -2710,6 +2809,15 @@ Dashboard
                                 </div>
                             </div>
                         </div>
+                        {% if sw.comment %}
+                        <div class="mb-3 row py-1">
+                            <label for="staticEmail" class="col-sm-12 col-form-label"><strong>RA Comments</strong></label>
+                            <div class="col-sm-12">
+                                <input type="text" readonly class="form-control-plaintext" id="staticEmail"
+                                    value="{{sw.comment}}">
+                            </div>
+                        </div>
+                        {% endif %}
                     </div>
 
                     <div class="col-12 py-5 d-flex justify-content-center">

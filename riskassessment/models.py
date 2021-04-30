@@ -1,5 +1,11 @@
+from django.http import request
+from accounts.models import Account
 from django.db import models
 from django.db.models.deletion import DO_NOTHING
+from django.db.models.signals import pre_save
+
+from datetime import date
+
 from product.models import Product
 from department.models import Department, UserDepartment
 from vendor.models import UserVendor
@@ -7,18 +13,40 @@ from vendor.models import UserVendor
 # Create your models here.
 class RiskAssessment(models.Model):
     product = models.ForeignKey(Product, verbose_name='Product', on_delete=DO_NOTHING)
+    ra_number = models.CharField(verbose_name="RA Number", max_length=8, blank=True, null=True)
     department = models.ForeignKey(Department, verbose_name="Department", null=True, blank=True, on_delete=DO_NOTHING)
     date = models.DateField(verbose_name='Date Added', auto_now_add=True)
     steps_complete = models.IntegerField(verbose_name="Steps Completed", default=0)
     total_score = models.CharField(verbose_name='Assessment Score', max_length=6, default=None, blank=True, null=True)
     evaluated = models.BooleanField(verbose_name="Evaluated?", default=False)
     approved = models.BooleanField(verbose_name="Approved?", default=False)
+    ra = models.ForeignKey(Account, verbose_name="Risk Analyst", on_delete=DO_NOTHING)
 
     def __str__(self) -> str:
         if self.total_score != None:
             return str(self.product) + " - " + str(self.total_score)
         else:
             return str(self.product) + " - " + str(self.id) + " - " + "No Score" + " - " + str(self.date)
+
+
+            # ra.ra_number = str(int(date.today().year)*1000 + ra.id)
+
+
+def create_ra_number(instance, new_slug=None):
+    count = RiskAssessment.objects.filter(date__year=date.today().year).count() + 1
+    ra_number = str(int(date.today().year)*10000 + count)
+
+    return ra_number
+
+
+def pre_save_post_receiver(sender, instance, *args, **kwargs):
+    if not instance.ra_number:
+        instance.ra_number = create_ra_number(instance)
+
+pre_save.connect(pre_save_post_receiver, sender=RiskAssessment)
+
+
+
 
 class DeptInfo(models.Model):
 
@@ -27,7 +55,7 @@ class DeptInfo(models.Model):
         verbose_name_plural = 'Department Information'
 
     riskassessment = models.ForeignKey(
-        RiskAssessment, verbose_name="Risk Assessment", on_delete=DO_NOTHING
+        RiskAssessment, verbose_name="Risk Assessment", on_delete=DO_NOTHING, related_name='ra_step1'
     )
     mpc = models.ForeignKey(UserDepartment, verbose_name='Main Project Contact', on_delete=DO_NOTHING, blank=True, null=True)
     ta_dept = models.ForeignKey(Department, verbose_name="Department", related_name="ta_dept", on_delete=DO_NOTHING, blank=True)
@@ -43,7 +71,7 @@ class DeptInfo(models.Model):
     ds_email = models.EmailField(verbose_name="Email", max_length=100)
     ds_phone = models.CharField(verbose_name="Phone", max_length=10)
     score = models.IntegerField(verbose_name="Section Score", default=0)
-    eval_score = models.IntegerField(verbose_name="Evaluated Score", default=0)
+    eval_score = models.IntegerField(verbose_name="Evaluated Score", default=-1)
     max_score = models.IntegerField(verbose_name="Max Score", default=0)
     eval_score = models.IntegerField(verbose_name="Maxed Score", default=0)
 
@@ -61,16 +89,19 @@ class VendInfo(models.Model):
     CHOICES = (("Yes", "Yes"), ("No", "No"), ("Under Negotiation", "Under Negotiation"))
 
     riskassessment = models.ForeignKey(
-        RiskAssessment, verbose_name="Risk Assessment", on_delete=DO_NOTHING
+        RiskAssessment, verbose_name="Risk Assessment", on_delete=DO_NOTHING, related_name='ra_step2'
     )
-    mpc = models.ForeignKey(UserVendor, verbose_name='Main Project Contact', on_delete=DO_NOTHING, blank=True, null=True)
-    tc_name = models.CharField(verbose_name="Name", max_length=100)
-    tc_email = models.EmailField(verbose_name="Email", max_length=100)
-    tc_phone = models.CharField(verbose_name="Phone", max_length=10)
-    exst_contract = models.CharField(max_length=18, choices=CHOICES)
+    # mpc = models.ForeignKey(UserVendor, verbose_name='Main Project Contact', on_delete=DO_NOTHING, blank=True, null=True)
+    mpc_name = models.CharField(verbose_name="Vendor Primary Contact Name", max_length=100, blank=True)
+    mpc_email = models.EmailField(verbose_name="Vendor Primary Contact Email", max_length=100, blank=True)
+    mpc_phone = models.CharField(verbose_name="Vendor Primary Contact Phone", max_length=10, blank=True)
+    tc_name = models.CharField(verbose_name="Technical Contact Name", max_length=100)
+    tc_email = models.EmailField(verbose_name="Technical Contact Email", max_length=100)
+    tc_phone = models.CharField(verbose_name="Technical Contact Phone", max_length=10)
+    exst_contract = models.CharField(verbose_name="Master Agreement?", max_length=18, choices=CHOICES)
     vend_has_perm = models.BooleanField(verbose_name="Vendor can edit?", default=False)
     score = models.IntegerField(verbose_name="Section Score", default=0)
-    eval_score = models.IntegerField(verbose_name="Evaluated Score", default=0)
+    eval_score = models.IntegerField(verbose_name="Evaluated Score", default=-1)
     max_score = models.IntegerField(verbose_name="Max Score", default=0)
     eval_score = models.IntegerField(verbose_name="Maxed Score", default=0)
 
@@ -120,7 +151,7 @@ class DataManagement(models.Model):
     )
 
     riskassessment = models.ForeignKey(
-        RiskAssessment, verbose_name="Risk Assessment", on_delete=DO_NOTHING
+        RiskAssessment, verbose_name="Risk Assessment", on_delete=DO_NOTHING, related_name='ra_step3'
     )
     reg_data = models.ManyToManyField(RegulatedData, verbose_name="Regulated Data")
     data_classi = models.ManyToManyField(DataClassification, verbose_name="Data Classification")
@@ -156,7 +187,7 @@ class DataManagement(models.Model):
     comment = models.TextField(verbose_name="Comment", max_length=1000, blank=True, null=True)
     vend_has_perm = models.BooleanField(verbose_name="Vendor can edit?", default=False)
     score = models.IntegerField(verbose_name="Section Score", default=0)
-    eval_score = models.IntegerField(verbose_name="Evaluated Score", default=0)
+    eval_score = models.IntegerField(verbose_name="Evaluated Score", default=-1)
     max_score = models.IntegerField(verbose_name="Max Score", default=15)
 
 
@@ -170,7 +201,7 @@ class AvailabiltyCriticality(models.Model):
     C_CHOICES = (("High", "High"), ("Medium", "Medium"), ("Low", "Low"))
 
     riskassessment = models.ForeignKey(
-        RiskAssessment, verbose_name="Risk Assessment", on_delete=DO_NOTHING
+        RiskAssessment, verbose_name="Risk Assessment", on_delete=DO_NOTHING, related_name='ra_step4'
     )
     a_rating = models.CharField(
         verbose_name="Availability Rating", max_length=6, choices=A_CHOICES
@@ -181,7 +212,7 @@ class AvailabiltyCriticality(models.Model):
     comment = models.TextField(verbose_name="Comment", max_length=1000, blank=True, null=True)
     vend_has_perm = models.BooleanField(verbose_name="Vendor can edit?", default=False)
     score = models.IntegerField(verbose_name="Section Score", default=0)
-    eval_score = models.IntegerField(verbose_name="Evaluated Score", default=0)
+    eval_score = models.IntegerField(verbose_name="Evaluated Score", default=-1)
     max_score = models.IntegerField(verbose_name="Max Score", default=10)
 
 
@@ -194,7 +225,7 @@ class Compliance(models.Model):
     BOOL_CHOICES = (("Yes", "Yes"), ("No", "No"))
 
     riskassessment = models.ForeignKey(
-        RiskAssessment, verbose_name="Risk Assessment", on_delete=DO_NOTHING
+        RiskAssessment, verbose_name="Risk Assessment", on_delete=DO_NOTHING, related_name='ra_step5'
     )
     sso = models.CharField(
         verbose_name="Single Sign-on Systems?", max_length=3, choices=BOOL_CHOICES
@@ -212,7 +243,7 @@ class Compliance(models.Model):
     comment = models.TextField(verbose_name="Comment", max_length=1000, blank=True, null=True)
     vend_has_perm = models.BooleanField(verbose_name="Vendor can edit?", default=False)
     score = models.IntegerField(verbose_name="Section Score", default=0)
-    eval_score = models.IntegerField(verbose_name="Evaluated Score", default=0)
+    eval_score = models.IntegerField(verbose_name="Evaluated Score", default=-1)
     max_score = models.IntegerField(verbose_name="Max Score", default=9)
 
 
@@ -225,7 +256,7 @@ class SecMatEvidence(models.Model):
     BOOL_CHOICES = (("Yes", "Yes"), ("No", "No"))
 
     riskassessment = models.ForeignKey(
-        RiskAssessment, verbose_name="Risk Assessment", on_delete=DO_NOTHING
+        RiskAssessment, verbose_name="Risk Assessment", on_delete=DO_NOTHING, related_name='ra_step6'
     )
     attst_o_comp = models.CharField(
         verbose_name="Attestation of Compliance", max_length=3, choices=BOOL_CHOICES
@@ -248,7 +279,7 @@ class SecMatEvidence(models.Model):
     comment = models.TextField(verbose_name="Comment", max_length=1000, blank=True, null=True)
     vend_has_perm = models.BooleanField(verbose_name="Vendor can edit?", default=False)
     score = models.IntegerField(verbose_name="Section Score", default=0)
-    eval_score = models.IntegerField(verbose_name="Evaluated Score", default=0)
+    eval_score = models.IntegerField(verbose_name="Evaluated Score", default=-1)
     max_score = models.IntegerField(verbose_name="Max Score", default=12)
 
 
@@ -261,7 +292,7 @@ class Integration(models.Model):
     BOOL_CHOICES = (("Yes", "Yes"), ("No", "No"))
 
     riskassessment = models.ForeignKey(
-        RiskAssessment, verbose_name="Risk Assessment", on_delete=DO_NOTHING
+        RiskAssessment, verbose_name="Risk Assessment", on_delete=DO_NOTHING, related_name='ra_step7'
     )
     sso = models.CharField(
         verbose_name="Single Sign-on", max_length=3, choices=BOOL_CHOICES
@@ -277,7 +308,7 @@ class Integration(models.Model):
     comment = models.TextField(verbose_name="Comment", max_length=1000, blank=True, null=True)
     vend_has_perm = models.BooleanField(verbose_name="Vendor can edit?", default=False)
     score = models.IntegerField(verbose_name="Section Score", default=0)
-    eval_score = models.IntegerField(verbose_name="Evaluated Score", default=0)
+    eval_score = models.IntegerField(verbose_name="Evaluated Score", default=-1)
     max_score = models.IntegerField(verbose_name="Max Score", default=9)
 
 
@@ -290,7 +321,7 @@ class CloudService(models.Model):
     BOOL_CHOICES = (("Yes", "Yes"), ("No", "No"))
 
     riskassessment = models.ForeignKey(
-        RiskAssessment, verbose_name="Risk Assessment", on_delete=DO_NOTHING
+        RiskAssessment, verbose_name="Risk Assessment", on_delete=DO_NOTHING, related_name='ra_step8'
     )
     saas_sol = models.CharField(
         verbose_name="Is this a SaaS solution?", max_length=3, choices=BOOL_CHOICES
@@ -308,7 +339,7 @@ class CloudService(models.Model):
     comment = models.TextField(verbose_name="Comment", max_length=1000, blank=True, null=True)
     vend_has_perm = models.BooleanField(verbose_name="Vendor can edit?", default=False)
     score = models.IntegerField(verbose_name="Section Score", default=0)
-    eval_score = models.IntegerField(verbose_name="Evaluated Score", default=0)
+    eval_score = models.IntegerField(verbose_name="Evaluated Score", default=-1)
     max_score = models.IntegerField(verbose_name="Max Score", default=3)
 
 
@@ -321,7 +352,7 @@ class SecureDesign(models.Model):
     BOOL_CHOICES = (("Yes", "Yes"), ("No", "No"))
 
     riskassessment = models.ForeignKey(
-        RiskAssessment, verbose_name="Risk Assessment", on_delete=DO_NOTHING
+        RiskAssessment, verbose_name="Risk Assessment", on_delete=DO_NOTHING, related_name='ra_step9'
     )
     q1 = models.CharField(
         verbose_name="Secure Design Question 1", max_length=3, choices=BOOL_CHOICES
@@ -344,7 +375,7 @@ class SecureDesign(models.Model):
     comment = models.TextField(verbose_name="Comment", max_length=1000, blank=True, null=True)
     vend_has_perm = models.BooleanField(verbose_name="Vendor can edit?", default=False)
     score = models.IntegerField(verbose_name="Section Score", default=0)
-    eval_score = models.IntegerField(verbose_name="Evaluated Score", default=0)
+    eval_score = models.IntegerField(verbose_name="Evaluated Score", default=-1)
     max_score = models.IntegerField(verbose_name="Max Score", default=19)
 
 
@@ -357,7 +388,7 @@ class Encryption(models.Model):
     BOOL_CHOICES = (("Yes", "Yes"), ("No", "No"))
 
     riskassessment = models.ForeignKey(
-        RiskAssessment, verbose_name="Risk Assessment", on_delete=DO_NOTHING
+        RiskAssessment, verbose_name="Risk Assessment", on_delete=DO_NOTHING, related_name='ra_step10'
     )
     p1q1 = models.CharField(
         verbose_name="Encryption Part 1 - Question 1",
@@ -442,7 +473,7 @@ class Encryption(models.Model):
     comment = models.TextField(verbose_name="Comment", max_length=1000, blank=True, null=True)
     vend_has_perm = models.BooleanField(verbose_name="Vendor can edit?", default=False)
     score = models.IntegerField(verbose_name="Section Score", default=0)
-    eval_score = models.IntegerField(verbose_name="Evaluated Score", default=0)
+    eval_score = models.IntegerField(verbose_name="Evaluated Score", default=-1)
     max_score = models.IntegerField(verbose_name="Max Score", default=41)
 
 
@@ -455,7 +486,7 @@ class QAEnvironment(models.Model):
     BOOL_CHOICES = (("Yes", "Yes"), ("No", "No"))
 
     riskassessment = models.ForeignKey(
-        RiskAssessment, verbose_name="Risk Assessment", on_delete=DO_NOTHING
+        RiskAssessment, verbose_name="Risk Assessment", on_delete=DO_NOTHING, related_name='ra_step11'
     )
     q1 = models.CharField(
         verbose_name="Quality Assurance Environment Question 1",
@@ -485,7 +516,7 @@ class QAEnvironment(models.Model):
     comment = models.TextField(verbose_name="Comment", max_length=1000, blank=True, null=True)
     vend_has_perm = models.BooleanField(verbose_name="Vendor can edit?", default=False)
     score = models.IntegerField(verbose_name="Section Score", default=0)
-    eval_score = models.IntegerField(verbose_name="Evaluated Score", default=0)
+    eval_score = models.IntegerField(verbose_name="Evaluated Score", default=-1)
     max_score = models.IntegerField(verbose_name="Max Score", default=12)
 
 
@@ -498,7 +529,7 @@ class DatabaseServers(models.Model):
     BOOL_CHOICES = (("Yes", "Yes"), ("No", "No"))
 
     riskassessment = models.ForeignKey(
-        RiskAssessment, verbose_name="Risk Assessment", on_delete=DO_NOTHING
+        RiskAssessment, verbose_name="Risk Assessment", on_delete=DO_NOTHING, related_name='ra_step12'
     )
     q1 = models.CharField(
         verbose_name="Database Servers Question 1",
@@ -533,7 +564,7 @@ class DatabaseServers(models.Model):
     comment = models.TextField(verbose_name="Comment", max_length=1000, blank=True, null=True)
     vend_has_perm = models.BooleanField(verbose_name="Vendor can edit?", default=False)
     score = models.IntegerField(verbose_name="Section Score", default=0)
-    eval_score = models.IntegerField(verbose_name="Evaluated Score", default=0)
+    eval_score = models.IntegerField(verbose_name="Evaluated Score", default=-1)
     max_score = models.IntegerField(verbose_name="Max Score", default=13)
 
 
@@ -546,7 +577,7 @@ class SecureComms(models.Model):
     BOOL_CHOICES = (("Yes", "Yes"), ("No", "No"))
 
     riskassessment = models.ForeignKey(
-        RiskAssessment, verbose_name="Risk Assessment", on_delete=DO_NOTHING
+        RiskAssessment, verbose_name="Risk Assessment", on_delete=DO_NOTHING, related_name='ra_step13'
     )
     q1 = models.CharField(
         verbose_name="Secure Communications Question 1",
@@ -591,7 +622,7 @@ class SecureComms(models.Model):
     comment = models.TextField(verbose_name="Comment", max_length=1000, blank=True, null=True)
     vend_has_perm = models.BooleanField(verbose_name="Vendor can edit?", default=False)
     score = models.IntegerField(verbose_name="Section Score", default=0)
-    eval_score = models.IntegerField(verbose_name="Evaluated Score", default=0)
+    eval_score = models.IntegerField(verbose_name="Evaluated Score", default=-1)
     max_score = models.IntegerField(verbose_name="Max Score", default=20)
 
 
@@ -604,7 +635,7 @@ class SWIntegrity(models.Model):
     BOOL_CHOICES = (("Yes", "Yes"), ("No", "No"))
 
     riskassessment = models.ForeignKey(
-        RiskAssessment, verbose_name="Risk Assessment", on_delete=DO_NOTHING
+        RiskAssessment, verbose_name="Risk Assessment", on_delete=DO_NOTHING, related_name='ra_step14'
     )
     q1 = models.CharField(
         verbose_name="Software Integrity Question 1",
@@ -634,5 +665,5 @@ class SWIntegrity(models.Model):
     comment = models.TextField(verbose_name="Comment", max_length=1000, blank=True, null=True)
     vend_has_perm = models.BooleanField(verbose_name="Vendor can edit?", default=False)
     score = models.IntegerField(verbose_name="Section Score", default=0)
-    eval_score = models.IntegerField(verbose_name="Evaluated Score", default=0)
+    eval_score = models.IntegerField(verbose_name="Evaluated Score", default=-1)
     max_score = models.IntegerField(verbose_name="Max Score", default=12)
