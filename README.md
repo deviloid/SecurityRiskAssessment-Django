@@ -88,3 +88,7 @@ A software security risk assessment tool developed as part of ASU Information Te
     ```
     python manage.py runserver
     ```
+---
+
+## Additional Information
+Please refer to [ProjectStructure.md](ProjectStructure.md) for additional instructions.
