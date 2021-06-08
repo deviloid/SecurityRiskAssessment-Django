@@ -1,7 +1,7 @@
 # Sentinel Security Risk Assessment Application
 
 ## About
-A software security risk assessment tool developed as part of ASU Information Technology IFT 593 Applied Project for ASU University Technology Office under the guidance and collaboration of Dr. Tatiana Walsh
+A software security risk assessment tool developed as part of ASU Information Technology IFT 593 Applied Project for ASU University Technology Office under the guidance of and direct collaboration with Dr. Tatiana Walsh.
 
 ---
 ## Technology Stack
