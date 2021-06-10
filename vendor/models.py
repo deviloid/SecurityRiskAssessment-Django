@@ -58,6 +58,7 @@ class UserVendor(models.Model):
 
 def create_slug(instance, new_slug=None):
     slug = slugify(instance.name).title()
+
     if new_slug is not None:
         slug = new_slug
     qs = Vendor.objects.filter(slug=slug).order_by("-id")
